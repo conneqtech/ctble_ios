@@ -1,0 +1,28 @@
+{
+  "name": "ctble",
+  "version": "0.1.0",
+  "summary": "SDK to communicate with BLE enabled bluetooth trackers provided by Conneqtech",
+  "swift_version": "4.2",
+  "description": "Enable communication between iOS apps and ble enabled trackers. This SDK is the main point of entry for all bluetooth comms.",
+  "homepage": "https://bitbucket.org/nfnty_admin/ctble_ios",
+  "license": {
+    "type": "proprietary",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Conneqtech B.V.": "info@conneqtech.com"
+  },
+  "source": {
+    "git": "https://bitbucket.org/nfnty_admin/ctble_ios.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Source/**/*.swift",
+  "dependencies": {
+    "RxSwift": [
+      "~> 4.0"
+    ]
+  }
+}

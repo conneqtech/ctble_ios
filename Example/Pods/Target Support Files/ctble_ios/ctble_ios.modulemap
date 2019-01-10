@@ -1,6 +1,0 @@
-framework module ctble_ios {
-  umbrella header "ctble_ios-umbrella.h"
-
-  export *
-  module * { export * }
-}
