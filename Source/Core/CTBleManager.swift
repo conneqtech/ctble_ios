@@ -33,12 +33,12 @@ public class CTBleManager:NSObject {
         if keepScanning {
             print("== Resuming scan ==")
             _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-            centralManager.scanForPeripherals(withServices: [CBUUID(string: ERLOCK_SERVICE_UUID)], options: nil)
+            centralManager.scanForPeripherals(withServices: [], options: nil)
         }
     }
     
     public func startScanForPerhipherals() {
-        centralManager?.scanForPeripherals(withServices: [CBUUID(string: ERLOCK_SERVICE_UUID)], options: nil)
+        centralManager?.scanForPeripherals(withServices: [], options: nil)
     }
     
     public func stopScanForPeripherals() {
