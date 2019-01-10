@@ -1,0 +1,27 @@
+PODS:
+  - ctble_ios (0.1.0)
+  - Nimble (7.0.3)
+  - Quick (1.2.0)
+
+DEPENDENCIES:
+  - ctble_ios (from `../`)
+  - Nimble (~> 7.0.2)
+  - Quick (~> 1.2.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  ctble_ios:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ctble_ios: ec71cbe52c0fd88b952e334272b5a02fb4c82e43
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+
+PODFILE CHECKSUM: 77f1ca5310c634580bfcd570fe6e13226de17c56
+
+COCOAPODS: 1.5.3
