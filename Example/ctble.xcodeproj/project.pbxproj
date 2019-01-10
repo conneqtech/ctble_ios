@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AD43FA5BC1601D1DD1D5B6E /* Pods_ctble_ios_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1617138AC9D819AE3C8C6E /* Pods_ctble_ios_Example.framework */; };
+		0564111BF65A94F9B83E1CAB /* Pods_ctble_ios_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8158CFF24C33C66404BDFFC /* Pods_ctble_ios_Tests.framework */; };
+		46D7E114ED1AE9E8F7B96D34 /* Pods_ctble_ios_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B1063E148475E287446AA6 /* Pods_ctble_ios_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		A9C9C611F6F059E419FC054C /* Pods_ctble_ios_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4733FFC95B25ABC530EACFA7 /* Pods_ctble_ios_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,11 +29,8 @@
 
 /* Begin PBXFileReference section */
 		0B4B3F1FF207CE8A2B519F3E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		2F1617138AC9D819AE3C8C6E /* Pods_ctble_ios_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_ios_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36800DEEE2CB3A62E7F94A68 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		4733FFC95B25ABC530EACFA7 /* Pods_ctble_ios_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_ios_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55504815FF50B71158F6EA5E /* ctble.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ctble.podspec; path = ../ctble.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		589E4D94E74ADEFC8421D9F6 /* Pods-ctble_ios_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ctble_ios_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ctble_ios_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,9 +41,12 @@
 		607FACE51AFB9204008FA782 /* ctble_ios_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ctble_ios_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		8CD228E8F02B58B047EE1260 /* Pods-ctble_ios_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Example/Pods-ctble_ios_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		987EF56B5A6156A4691F2366 /* Pods-ctble_ios_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Example/Pods-ctble_ios_Example.release.xcconfig"; sourceTree = "<group>"; };
-		EFC84C4B6C196155410D2506 /* Pods-ctble_ios_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7FB470AFB0E7E1F4ECEE6FED /* Pods-ctble_ios_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Example/Pods-ctble_ios_Example.release.xcconfig"; sourceTree = "<group>"; };
+		D8158CFF24C33C66404BDFFC /* Pods_ctble_ios_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_ios_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B1063E148475E287446AA6 /* Pods_ctble_ios_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_ios_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB4F8B842C0CC67EC4CCA9BB /* Pods-ctble_ios_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Example/Pods-ctble_ios_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		EC46D8E445CE3AE0341EE05E /* Pods-ctble_ios_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD3CCA7D19AB1C1852FEA610 /* Pods-ctble_ios_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AD43FA5BC1601D1DD1D5B6E /* Pods_ctble_ios_Example.framework in Frameworks */,
+				46D7E114ED1AE9E8F7B96D34 /* Pods_ctble_ios_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,29 +62,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9C9C611F6F059E419FC054C /* Pods_ctble_ios_Tests.framework in Frameworks */,
+				0564111BF65A94F9B83E1CAB /* Pods_ctble_ios_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3E2072D9B01B9C2E5C940C36 /* Frameworks */ = {
+		01836CD1CE90D58C32BB1211 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2F1617138AC9D819AE3C8C6E /* Pods_ctble_ios_Example.framework */,
-				4733FFC95B25ABC530EACFA7 /* Pods_ctble_ios_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		40424F6E041E1FA97F230496 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8CD228E8F02B58B047EE1260 /* Pods-ctble_ios_Example.debug.xcconfig */,
-				987EF56B5A6156A4691F2366 /* Pods-ctble_ios_Example.release.xcconfig */,
-				589E4D94E74ADEFC8421D9F6 /* Pods-ctble_ios_Tests.debug.xcconfig */,
-				EFC84C4B6C196155410D2506 /* Pods-ctble_ios_Tests.release.xcconfig */,
+				EB4F8B842C0CC67EC4CCA9BB /* Pods-ctble_ios_Example.debug.xcconfig */,
+				7FB470AFB0E7E1F4ECEE6FED /* Pods-ctble_ios_Example.release.xcconfig */,
+				EC46D8E445CE3AE0341EE05E /* Pods-ctble_ios_Tests.debug.xcconfig */,
+				FD3CCA7D19AB1C1852FEA610 /* Pods-ctble_ios_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -96,8 +87,8 @@
 				607FACD21AFB9204008FA782 /* Example for ctble_ios */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				40424F6E041E1FA97F230496 /* Pods */,
-				3E2072D9B01B9C2E5C940C36 /* Frameworks */,
+				01836CD1CE90D58C32BB1211 /* Pods */,
+				6C884A8EA47982912BD7890F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +150,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		6C884A8EA47982912BD7890F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2B1063E148475E287446AA6 /* Pods_ctble_ios_Example.framework */,
+				D8158CFF24C33C66404BDFFC /* Pods_ctble_ios_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,12 +166,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ctble_ios_Example" */;
 			buildPhases = (
-				F2E5D897D06011DF9A25059B /* [CP] Check Pods Manifest.lock */,
+				CF4DFB2C287BA5D0AE62CA31 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				C0CD0FDA21E7476E00AC10C8 /* SwiftLint */,
-				75B9D6A49B6E25D147A5AD8C /* [CP] Embed Pods Frameworks */,
+				6A095999C63FD6B8F4AD88B0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,11 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ctble_ios_Tests" */;
 			buildPhases = (
-				4590AB46B7EDC614FDF80EB7 /* [CP] Check Pods Manifest.lock */,
+				21450E4ED3FD10E17A6BE531 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				47BE10EE8B01ED905D4A2CF0 /* [CP] Embed Pods Frameworks */,
+				893C5AA6B65607CF45B3774A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,7 +225,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "ctble_ios" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "ctble" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -265,7 +265,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4590AB46B7EDC614FDF80EB7 /* [CP] Check Pods Manifest.lock */ = {
+		21450E4ED3FD10E17A6BE531 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -287,31 +287,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		47BE10EE8B01ED905D4A2CF0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		75B9D6A49B6E25D147A5AD8C /* [CP] Embed Pods Frameworks */ = {
+		6A095999C63FD6B8F4AD88B0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,6 +313,30 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ctble_ios_Example/Pods-ctble_ios_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		893C5AA6B65607CF45B3774A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ctble_ios_Tests/Pods-ctble_ios_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C0CD0FDA21E7476E00AC10C8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -355,7 +355,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		F2E5D897D06011DF9A25059B /* [CP] Check Pods Manifest.lock */ = {
+		CF4DFB2C287BA5D0AE62CA31 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -528,7 +528,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CD228E8F02B58B047EE1260 /* Pods-ctble_ios_Example.debug.xcconfig */;
+			baseConfigurationReference = EB4F8B842C0CC67EC4CCA9BB /* Pods-ctble_ios_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PHFR6RN8YP;
@@ -544,7 +544,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 987EF56B5A6156A4691F2366 /* Pods-ctble_ios_Example.release.xcconfig */;
+			baseConfigurationReference = 7FB470AFB0E7E1F4ECEE6FED /* Pods-ctble_ios_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PHFR6RN8YP;
@@ -560,7 +560,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 589E4D94E74ADEFC8421D9F6 /* Pods-ctble_ios_Tests.debug.xcconfig */;
+			baseConfigurationReference = EC46D8E445CE3AE0341EE05E /* Pods-ctble_ios_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = PHFR6RN8YP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -583,7 +583,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFC84C4B6C196155410D2506 /* Pods-ctble_ios_Tests.release.xcconfig */;
+			baseConfigurationReference = FD3CCA7D19AB1C1852FEA610 /* Pods-ctble_ios_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = PHFR6RN8YP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -603,7 +603,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "ctble_ios" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "ctble" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
