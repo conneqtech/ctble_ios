@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import ctble
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        CTBleManager.shared.startScanForPeripherals()
     }
 
     override func didReceiveMemoryWarning() {

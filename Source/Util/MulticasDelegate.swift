@@ -11,10 +11,10 @@ import Foundation
  *  `MulticastDelegate` lets you easily create a "multicast delegate" for a given protocol or class.
  */
 open class MulticastDelegate<T> {
-    
+
     /// The delegates hash table.
     private let delegates: NSHashTable<AnyObject>
-    
+
     /**
      *  Use the property to check if no delegates are contained there.
      *
@@ -24,7 +24,7 @@ open class MulticastDelegate<T> {
         // swiftlint:disable:next empty_count
         return delegates.count == 0
     }
-    
+
     /**
      *  Use this method to initialize a new `MulticastDelegate`
      *  specifying whether delegate references should be weak or
@@ -35,10 +35,10 @@ open class MulticastDelegate<T> {
      *  - returns: A new `MulticastDelegate` instance
      */
     public init(strongReferences: Bool = false) {
-        
+
         delegates = strongReferences ? NSHashTable<AnyObject>() : NSHashTable<AnyObject>.weakObjects()
     }
-    
+
     /**
      *  Use this method to initialize a new `MulticastDelegate` specifying the storage options yourself.
      *
@@ -47,10 +47,10 @@ open class MulticastDelegate<T> {
      *  - returns: A new `MulticastDelegate` instance
      */
     public init(options: NSPointerFunctions.Options) {
-        
+
         delegates = NSHashTable<AnyObject>(options: options, capacity: 0)
     }
-    
+
     /**
      *  Use this method to add a delelgate.
      *
@@ -59,10 +59,10 @@ open class MulticastDelegate<T> {
      *  - parameter delegate:  The delegate to be added.
      */
     public func addDelegate(_ delegate: T) {
-        
+
         delegates.add(delegate as AnyObject)
     }
-    
+
     /**
      *  Use this method to remove a previously-added delegate.
      *
@@ -71,10 +71,10 @@ open class MulticastDelegate<T> {
      *  - parameter delegate:  The delegate to be removed.
      */
     public func removeDelegate(_ delegate: T) {
-        
+
         delegates.remove(delegate as AnyObject)
     }
-    
+
     /**
      *  Use this method to invoke a closure on each delegate.
      *
@@ -83,12 +83,12 @@ open class MulticastDelegate<T> {
      *  - parameter invocation: The closure to be invoked on each delegate.
      */
     public func invokeDelegates(_ invocation: (T) -> Void) {
-        
+
         for delegate in delegates.allObjects {
             invocation(delegate as! T)
         }
     }
-    
+
     /**
      *  Use this method to determine if the multicast delegate contains a given delegate.
      *
@@ -97,7 +97,7 @@ open class MulticastDelegate<T> {
      *  - returns: `true` if the delegate is found or `false` otherwise
      */
     public func containsDelegate(_ delegate: T) -> Bool {
-        
+
         return delegates.contains(delegate as AnyObject)
     }
 }
@@ -111,7 +111,7 @@ open class MulticastDelegate<T> {
  *  - parameter right:  The delegate to be added
  */
 public func +=<T>(left: MulticastDelegate<T>, right: T) {
-    
+
     left.addDelegate(right)
 }
 
@@ -124,7 +124,7 @@ public func +=<T>(left: MulticastDelegate<T>, right: T) {
  *  - parameter right:  The delegate to be removed
  */
 public func -=<T>(left: MulticastDelegate<T>, right: T) {
-    
+
     left.removeDelegate(right)
 }
 
@@ -144,6 +144,6 @@ precedencegroup MulticastPrecedence {
 }
 infix operator |> : MulticastPrecedence
 public func |><T>(left: MulticastDelegate<T>, right: (T) -> Void) {
-    
+
     left.invokeDelegates(right)
 }
