@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import CoreBluetooth
 
-public class CTBasePeripheral: NSObject {
-
+public protocol CTBasePeripheral {
+    var peripheral: CBPeripheral! { get set}
 }

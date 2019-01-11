@@ -20,6 +20,8 @@ public class CTBleManager: NSObject {
     var centralManager: CBCentralManager!
     var keepScanning = false
 
+    public var connectedDevice: CK300Device?
+
     private override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -27,7 +29,11 @@ public class CTBleManager: NSObject {
 
     @objc func pauseScan() {
         print("== Pausing scan ==")
-        _ = Timer(timeInterval: timerPauseInterval, target: self, selector: #selector(resumeScan), userInfo: nil, repeats: false)
+        _ = Timer(timeInterval: timerPauseInterval,
+                  target: self,
+                  selector: #selector(resumeScan),
+                  userInfo: nil,
+                  repeats: false)
         centralManager.stopScan()
     }
 
@@ -55,9 +61,12 @@ public class CTBleManager: NSObject {
         centralManager?.cancelPeripheralConnection(peripheral)
     }
 
-    public func connectPeripheral(peripheral: CBPeripheral) {
-        peripheral.delegate = self
-        centralManager?.connect(peripheral, options: nil)
+    public func connectBleDevice(_ device: CK300Device) {
+        print("== Attempting to connect to device ==")
+        self.connectedDevice = device
+        self.connectedDevice?.peripheral.delegate = self
+
+        centralManager?.connect(self.connectedDevice!.peripheral, options: nil)
     }
 }
 
@@ -94,8 +103,9 @@ extension CTBleManager: CBCentralManagerDelegate {
                 print("🚴‍♀️ \(peripheralName)")
                 keepScanning = false
 
+                let device = CK300Device(peripheral: peripheral)
                 delegate |> { delegate in
-                    delegate.didDiscoverPeripheral?(peripheral, advertisementData: advertisementData, RSSI: RSSI)
+                    delegate.didDiscover(device)
                 }
             }
         }
@@ -105,34 +115,57 @@ extension CTBleManager: CBCentralManagerDelegate {
 // MARK: - CBPeripheral delegate
 extension CTBleManager: CBPeripheralDelegate {
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        delegate |> { delegate in
-            delegate.centralManager?(central, didConnect: peripheral)
+        if let device = self.connectedDevice {
+            delegate |> { delegate in
+                delegate.didConnect(device)
+            }
         }
     }
 
     public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        let device = CK300Device(peripheral: peripheral)
         delegate |> { delegate in
-            delegate.centralManager?(central, didFailToConnect: peripheral, error: error)
+            delegate.didFailToConnect(device)
         }
-
     }
 
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        delegate |> { delegate in
-            delegate.peripheral?(peripheral, didDiscoverServices: error)
-        }
+        self.connectedDevice?.peripheral = peripheral
 
+        peripheral.services?.forEach {
+            self.connectedDevice?.handleDiscoveredService($0)
+        }
+        
+        if let foundService = peripheral.services?.first {
+             self.connectedDevice?.discoverCharacteristics(for: foundService)
+        }
     }
 
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        delegate |> { delegate in
-            delegate.peripheral?(peripheral, didDiscoverCharacteristicsFor: service, error: error)
+    public func peripheral(_ peripheral: CBPeripheral,
+                           didDiscoverCharacteristicsFor service: CBService,
+                           error: Error?) {
+        self.connectedDevice?.peripheral = peripheral
+
+        service.characteristics?.forEach { characteristic in
+            self.connectedDevice?.handleDiscoveredCharacteristic(characteristic)
         }
     }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("== Did write characteristic")
+        self.connectedDevice?.handleCharacteristicWrite(characteristic)
+    }
 
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        delegate |> { delegate in
-            delegate.peripheral?(peripheral, didUpdateValueFor: characteristic, error: error)
-        }
+    public func peripheral(_ peripheral: CBPeripheral,
+                           didUpdateNotificationStateFor characteristic: CBCharacteristic,
+                           error: Error?) {
+        print("notif state")
+    }
+
+    public func peripheral(_ peripheral: CBPeripheral,
+                           didUpdateValueFor characteristic: CBCharacteristic,
+                           error: Error?) {
+        self.connectedDevice?.peripheral = peripheral
+        self.connectedDevice?.handleCharacteristicUpdate(characteristic)
     }
 }

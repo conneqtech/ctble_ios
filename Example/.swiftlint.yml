@@ -43,6 +43,7 @@ identifier_name:
     error: 4 # only error
   excluded: # excluded via string array
     - id
+    - ptr
     - url
     - ERLOCK_SERVICE_UUID
     - uid

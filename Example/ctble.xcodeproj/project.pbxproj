@@ -10,11 +10,12 @@
 		0564111BF65A94F9B83E1CAB /* Pods_ctble_ios_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8158CFF24C33C66404BDFFC /* Pods_ctble_ios_Tests.framework */; };
 		46D7E114ED1AE9E8F7B96D34 /* Pods_ctble_ios_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B1063E148475E287446AA6 /* Pods_ctble_ios_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C022087321E8BDD900053866 /* DeviceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087221E8BDD900053866 /* DeviceListTableViewController.swift */; };
+		C022087521E8C93000053866 /* DeviceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087421E8C93000053866 /* DeviceDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,6 @@
 		607FACD01AFB9204008FA782 /* ctble_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ctble_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -42,6 +42,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7FB470AFB0E7E1F4ECEE6FED /* Pods-ctble_ios_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Example/Pods-ctble_ios_Example.release.xcconfig"; sourceTree = "<group>"; };
+		C022087221E8BDD900053866 /* DeviceListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListTableViewController.swift; sourceTree = "<group>"; };
+		C022087421E8C93000053866 /* DeviceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewController.swift; sourceTree = "<group>"; };
 		D8158CFF24C33C66404BDFFC /* Pods_ctble_ios_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_ios_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B1063E148475E287446AA6 /* Pods_ctble_ios_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_ios_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4F8B842C0CC67EC4CCA9BB /* Pods-ctble_ios_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_ios_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_ios_Example/Pods-ctble_ios_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,11 +107,12 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				C022087221E8BDD900053866 /* DeviceListTableViewController.swift */,
+				C022087421E8C93000053866 /* DeviceDetailViewController.swift */,
 			);
 			name = "Example for ctble";
 			path = ctble_ios;
@@ -384,7 +387,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				C022087321E8BDD900053866 /* DeviceListTableViewController.swift in Sources */,
+				C022087521E8C93000053866 /* DeviceDetailViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
