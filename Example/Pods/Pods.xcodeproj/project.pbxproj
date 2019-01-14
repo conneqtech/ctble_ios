@@ -223,6 +223,10 @@
 		BF768461E044A27C8601E2E86B260603 /* SingleAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A2B1E2BBA928A4A3FB43A67A08C974 /* SingleAsync.swift */; };
 		BFEEF4E623C84E8442918671A7AF003C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2700C31DDC35193475988DF8CD10EAE8 /* Foundation.framework */; };
 		C022087821E8E09200053866 /* CTAutenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087721E8E09200053866 /* CTAutenticationService.swift */; };
+		C022087A21EC6C2B00053866 /* CTStaticInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087921EC6C2B00053866 /* CTStaticInformationService.swift */; };
+		C022087C21EC6D2F00053866 /* CTBleCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087B21EC6D2F00053866 /* CTBleCharacteristic.swift */; };
+		C022087E21EC721700053866 /* CTBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087D21EC721700053866 /* CTBaseService.swift */; };
+		C022088121ECC7D900053866 /* CTVariableInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022088021ECC7D900053866 /* CTVariableInformationService.swift */; };
 		C0B20EE15A0F349DA33F47C779370B5C /* DispatchQueueConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFAF9C5D2EBEBA6CB96EA18E6578F37 /* DispatchQueueConfiguration.swift */; };
 		C104907393AACB2D498EA3B9442A5752 /* RecursiveScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58136601EF82D17F08C4D9CEFB1E630C /* RecursiveScheduler.swift */; };
 		C1821B6BF6C5EA44CE3B064CDEEEF205 /* QuickSpecBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B83A022AD3118CCD1BEE86256E7FCAF3 /* QuickSpecBase.m */; };
@@ -603,6 +607,10 @@
 		BCC35DE2E440A9EDDF4B7E8D69918CED /* AsyncSubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncSubject.swift; path = RxSwift/Subjects/AsyncSubject.swift; sourceTree = "<group>"; };
 		BFF246518BD4AEA2DC1B99133AB8BF1B /* HaveCount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HaveCount.swift; path = Sources/Nimble/Matchers/HaveCount.swift; sourceTree = "<group>"; };
 		C022087721E8E09200053866 /* CTAutenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAutenticationService.swift; sourceTree = "<group>"; };
+		C022087921EC6C2B00053866 /* CTStaticInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTStaticInformationService.swift; sourceTree = "<group>"; };
+		C022087B21EC6D2F00053866 /* CTBleCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBleCharacteristic.swift; sourceTree = "<group>"; };
+		C022087D21EC721700053866 /* CTBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBaseService.swift; sourceTree = "<group>"; };
+		C022088021ECC7D900053866 /* CTVariableInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTVariableInformationService.swift; sourceTree = "<group>"; };
 		C0D964FF90597E719CB0D6D9758FC984 /* DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DSL.swift; path = Sources/Nimble/DSL.swift; sourceTree = "<group>"; };
 		C1E5CC41980960980C1F9CDE50BCE184 /* Debounce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debounce.swift; path = RxSwift/Observables/Debounce.swift; sourceTree = "<group>"; };
 		C25C5455D26961B714C78640B631AA5B /* Pods_ctble_ios_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_ios_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -967,6 +975,7 @@
 			children = (
 				C022087621E8E06400053866 /* Services */,
 				8E1F24F1272950DAB4E40FFE45B090C3 /* CK300Device.swift */,
+				C022087B21EC6D2F00053866 /* CTBleCharacteristic.swift */,
 			);
 			path = CK300;
 			sourceTree = "<group>";
@@ -1238,6 +1247,9 @@
 			isa = PBXGroup;
 			children = (
 				C022087721E8E09200053866 /* CTAutenticationService.swift */,
+				C022087921EC6C2B00053866 /* CTStaticInformationService.swift */,
+				C022087D21EC721700053866 /* CTBaseService.swift */,
+				C022088021ECC7D900053866 /* CTVariableInformationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1657,8 +1669,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C022087A21EC6C2B00053866 /* CTStaticInformationService.swift in Sources */,
+				C022087C21EC6D2F00053866 /* CTBleCharacteristic.swift in Sources */,
+				C022087E21EC721700053866 /* CTBaseService.swift in Sources */,
 				4E350F412590F7EF44806105C1249F35 /* CK300Device.swift in Sources */,
 				E2F5B72CB2EBD0EEBF1850EC3CD11BCF /* CTBasePerhiperal.swift in Sources */,
+				C022088121ECC7D900053866 /* CTVariableInformationService.swift in Sources */,
 				6B87716E2E104288B75AB5C2E55F1C7C /* ctble-dummy.m in Sources */,
 				48C7A1DFE11CDB5DFC640646D1498B6D /* CTBle.swift in Sources */,
 				7D5D44F44D86F423DAE389CB69097852 /* CTBleManager.swift in Sources */,

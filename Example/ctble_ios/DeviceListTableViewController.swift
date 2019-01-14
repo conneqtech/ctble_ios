@@ -39,9 +39,8 @@ extension DeviceListTableViewController: CTBleManagerDelegate {
         print("Connected")
         activityIndicator.stopAnimating()
         
-        let alertController = UIAlertController(title: "Enter password", message: "Please enter the password for \(device.peripheral.name!)", preferredStyle: .alert)
         
-    
+        let alertController = UIAlertController(title: "Enter password", message: "Please enter the password for \(device.peripheral.name!)", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Unlock", style: .default, handler: { alert -> Void in
             let passwordTextField = alertController.textFields![0] as UITextField
             
@@ -49,11 +48,11 @@ extension DeviceListTableViewController: CTBleManagerDelegate {
             
             if let password = passwordTextField.text {
                 CTBleManager.shared.connectedDevice?.login(withPassword: password)
+                CTBleManager.shared.connectedDevice?.getStaticInformation()
             }
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceDetailViewController")
             self.navigationController?.pushViewController(vc, animated: true)
-            
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -64,7 +63,7 @@ extension DeviceListTableViewController: CTBleManagerDelegate {
         
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
- 
+        
         self.present(alertController, animated: true, completion: nil)
     }
     

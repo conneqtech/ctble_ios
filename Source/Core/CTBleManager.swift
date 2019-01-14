@@ -135,10 +135,6 @@ extension CTBleManager: CBPeripheralDelegate {
         peripheral.services?.forEach {
             self.connectedDevice?.handleDiscoveredService($0)
         }
-        
-        if let foundService = peripheral.services?.first {
-             self.connectedDevice?.discoverCharacteristics(for: foundService)
-        }
     }
 
     public func peripheral(_ peripheral: CBPeripheral,
@@ -147,25 +143,26 @@ extension CTBleManager: CBPeripheralDelegate {
         self.connectedDevice?.peripheral = peripheral
 
         service.characteristics?.forEach { characteristic in
-            self.connectedDevice?.handleDiscoveredCharacteristic(characteristic)
+            self.connectedDevice?.handleEvent(characteristic: characteristic, type: .discover)
         }
     }
-    
+
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("== Did write characteristic")
-        self.connectedDevice?.handleCharacteristicWrite(characteristic)
+        self.connectedDevice?.peripheral = peripheral
+        self.connectedDevice?.handleEvent(characteristic: characteristic, type: .write)
     }
 
     public func peripheral(_ peripheral: CBPeripheral,
                            didUpdateNotificationStateFor characteristic: CBCharacteristic,
                            error: Error?) {
-        print("notif state")
+        self.connectedDevice?.peripheral = peripheral
+        self.connectedDevice?.handleEvent(characteristic: characteristic, type: .notification)
     }
 
     public func peripheral(_ peripheral: CBPeripheral,
                            didUpdateValueFor characteristic: CBCharacteristic,
                            error: Error?) {
         self.connectedDevice?.peripheral = peripheral
-        self.connectedDevice?.handleCharacteristicUpdate(characteristic)
+        self.connectedDevice?.handleEvent(characteristic: characteristic, type: .update)
     }
 }

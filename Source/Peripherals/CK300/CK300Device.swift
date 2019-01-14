@@ -8,92 +8,90 @@
 import Foundation
 import CoreBluetooth
 
-public enum CK300Characteristic: String {
-    case password = "003065A4-1002-11E8-A8D5-435154454348"
-    case authenticationStatus = "003065A4-1003-11E8-A8D5-435154454348"
-}
-
-public enum CK300Service: String {
-    case authentication = "003065A4-1001-11E8-A8D5-435154454348"
-}
-
 public class CK300Device: CTBasePeripheral {
     public var peripheral: CBPeripheral!
 
-    public let authenticatedServices: [CBUUID] = [
-        CBUUID(string: "003065A4-1020-11E8-A8D5-435154454348"),
-        CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348"),
-        CBUUID(string: "003065A4-10A0-11E8-A8D5-435154454348"),
-        CBUUID(string: "003065A4-10B0-11E8-A8D5-435154454348")
+    public var services: [String: CTBleServiceProtocol] = [
+        "authentication": CTAuthenticationService(),
+        "static_information" : CTStaticInformationService(),
+        "variable_information": CTVariableInformationService()
     ]
-    
+
+    public var UUIDList: [String: String] = [:]
+
     public var discoveredCharacteristics: [String: CBCharacteristic] = [:]
 
     public required init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
+        self.UUIDList = self.buildUUIDList()
+    }
+
+    public func buildUUIDList() -> [String: String] {
+        var uuidList: [String: String] = [:]
+        services.forEach { _, service in
+            uuidList[service.UUID.uuidString] = service.name
+            service.characteristics.forEach { key, characteristic in
+                uuidList[key] = "\(service.name)|\(characteristic.name)"
+            }
+        }
+
+        return uuidList
     }
 
     public func login(withPassword password: String) {
         print("== Performing login ==")
-        self.peripheral.discoverServices([CBUUID(string: CK300Service.authentication.rawValue)])
+
+        if let service = services["authentication"] {
+            self.peripheral.discoverServices([service.UUID])
+        }
+    }
+
+    public func getStaticInformation() {
+        getVariableInformaiton()
+        return
+
+        print("== Fetching static information ==")
+
+        if let service = services["static_information"] {
+            self.peripheral.discoverServices([service.UUID])
+        }
+    }
+
+    public func getVariableInformaiton() {
+        print("== Fetching variable information ==")
+
+        if let service = services["variable_information"] {
+            self.peripheral.discoverServices([service.UUID])
+        }
     }
 
     public func discoverCharacteristics(for service: CBService) {
 
     }
 
-    public func handleDiscoveredCharacteristic(_ characteristic: CBCharacteristic) {
-        discoveredCharacteristics[characteristic.uuid.uuidString] = characteristic
-        switch characteristic.uuid.uuidString {
-        case CK300Characteristic.password.rawValue:
-            print("== Found password char")
-            peripheral.writeValue("<p&F0hFN?*J*N?lckw_?".data(using: .ascii)!,
-                                  for: characteristic,
-                                  type: .withResponse)
-        case CK300Characteristic.authenticationStatus.rawValue:
-            print("== Found authentication status")
-        default:
-            break
-        }
-    }
-
-    public func handleCharacteristicUpdate(_ characteristic: CBCharacteristic) {
-        switch characteristic.uuid.uuidString {
-        case CK300Characteristic.password.rawValue:
-            break
-        case CK300Characteristic.authenticationStatus.rawValue:
-            print("== Update authentication status")
-            if let data = characteristic.value {
-                print(Int8(bitPattern: data[0]))
-            }
-        default:
-            break
-        }
-    }
-
-    public func handleCharacteristicWrite(_ characteristic: CBCharacteristic) {
-        print(characteristic.uuid.uuidString)
-        
-        switch characteristic.uuid.uuidString {
-        case CK300Characteristic.password.rawValue:
-            print("== Wrote password, reading result")
-            
-            if let authStatusChar = discoveredCharacteristics[CK300Characteristic.authenticationStatus.rawValue] {
-                peripheral.readValue(for: authStatusChar)
-            }
-        default:
-            break
+    public func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
+        self.services.keys.forEach { key in
+            self.services[key]!.handleEvent(peripheral: peripheral, characteristic: characteristic, type: type)
         }
     }
 
     public func handleDiscoveredService(_ service: CBService) {
-        switch (service.uuid.uuidString) {
-        case CK300Service.authentication.rawValue:
+        guard  let foundItem = UUIDList[service.uuid.uuidString] else {
+            return
+        }
+
+        switch foundItem {
+        case "authentication":
             print("== Discovered auth service")
             self.peripheral.discoverCharacteristics(nil, for: service)
+        case "static_information":
+            print("== Discovered static information service")
+            self.peripheral.discoverCharacteristics(nil, for: service)
+        case "variable_information":
+            print("== Discovered static information service")
+            self.peripheral.discoverCharacteristics(nil, for: service)
         default:
-            print("Unknown service")
-            break
+            print("⚠️ This service will not be handled for this device")
         }
     }
 }
