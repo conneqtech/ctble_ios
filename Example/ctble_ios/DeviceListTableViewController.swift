@@ -36,35 +36,10 @@ extension DeviceListTableViewController: CTBleManagerDelegate {
     }
     
     func didConnect(_ device: CK300Device) {
-        print("Connected")
         activityIndicator.stopAnimating()
-        
-        
-        let alertController = UIAlertController(title: "Enter password", message: "Please enter the password for \(device.peripheral.name!)", preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Unlock", style: .default, handler: { alert -> Void in
-            let passwordTextField = alertController.textFields![0] as UITextField
-            
-            print(passwordTextField.text)
-            
-            if let password = passwordTextField.text {
-                CTBleManager.shared.connectedDevice?.login(withPassword: password)
-                CTBleManager.shared.connectedDevice?.getStaticInformation()
-            }
-            
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceDetailViewController")
-            self.navigationController?.pushViewController(vc, animated: true)
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Password"
-        }
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(saveAction)
-        
-        self.present(alertController, animated: true, completion: nil)
+    
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceDetailViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func didFailToConnect(_ device: CK300Device) {

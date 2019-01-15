@@ -11,10 +11,11 @@ import CoreBluetooth
 public class CK300Device: CTBasePeripheral {
     public var peripheral: CBPeripheral!
 
-    public var services: [String: CTBleServiceProtocol] = [
-        "authentication": CTAuthenticationService(),
-        "static_information" : CTStaticInformationService(),
-        "variable_information": CTVariableInformationService()
+    public var services: [String: CTDeviceServiceProtocol] = [
+        "authentication": CTDeviceAuthenticationService(),
+        "static_information" : CTDeviceStaticInformationService(),
+        "location_information": CTDeviceLocationService(),
+        "variable_information": CTDeviceVariableInformationService()
     ]
 
     public var UUIDList: [String: String] = [:]
@@ -47,12 +48,15 @@ public class CK300Device: CTBasePeripheral {
     }
 
     public func getStaticInformation() {
-        getVariableInformaiton()
-        return
-
         print("== Fetching static information ==")
 
         if let service = services["static_information"] {
+            self.peripheral.discoverServices([service.UUID])
+        }
+    }
+    
+    public func startReportingLocationData() {
+        if let service = services["location_information"] {
             self.peripheral.discoverServices([service.UUID])
         }
     }
@@ -87,7 +91,7 @@ public class CK300Device: CTBasePeripheral {
         case "static_information":
             print("== Discovered static information service")
             self.peripheral.discoverCharacteristics(nil, for: service)
-        case "variable_information":
+        case "variable_information", "location_information":
             print("== Discovered static information service")
             self.peripheral.discoverCharacteristics(nil, for: service)
         default:

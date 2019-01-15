@@ -12,6 +12,18 @@ import ctble
 
 class DeviceDetailViewController: UITableViewController {
     
+    let bikeInformationSubtitles = [
+        "Bike type",
+        "Serial number bike",
+        "Serial number battery",
+        "Bike software version",
+        "Controller software version",
+        "Display software version",
+        "Bike design capacity",
+        "Wheel diameter",
+        "IMEI"
+    ]
+    
     var device: CK300Device!
     
     override func viewDidLoad() {
@@ -26,23 +38,43 @@ class DeviceDetailViewController: UITableViewController {
 extension DeviceDetailViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return bikeInformationSubtitles.count
+        default:
+            return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Static information"
+        switch section {
+        case 0:
+            return "Location"
+        case 1:
+            return "Static information"
+        default:
+            return "TBI"
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "staticInformationCell", for: indexPath)
+        var cell = self.tableView.dequeueReusableCell(withIdentifier: "staticInformationCell", for: indexPath)
         
-        cell.textLabel?.text = "CK300"
-        cell.detailTextLabel?.text = "CK300-1"
+        if indexPath.section == 0 {
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
+            cell.textLabel?.text = "Show location"
+        }
         
+        if indexPath.section == 1 {
+            cell.textLabel?.text = "-"
+            cell.detailTextLabel?.text = bikeInformationSubtitles[indexPath.row].uppercased()
+        }
         return cell
     }
     
@@ -51,7 +83,10 @@ extension DeviceDetailViewController {
 //MARK: - UITableViewDelegate
 extension DeviceDetailViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section == 0 {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceMapViewController")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
