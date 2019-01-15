@@ -27,6 +27,11 @@ class DeviceListTableViewController: UITableViewController {
         let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         self.navigationItem.rightBarButtonItem = refreshBarButton
     }
+    
+    func moveToDetailView() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceDetailViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension DeviceListTableViewController: CTBleManagerDelegate {
@@ -38,8 +43,7 @@ extension DeviceListTableViewController: CTBleManagerDelegate {
     func didConnect(_ device: CK300Device) {
         activityIndicator.stopAnimating()
     
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceDetailViewController")
-        self.navigationController?.pushViewController(vc, animated: true)
+        moveToDetailView()
     }
     
     func didFailToConnect(_ device: CK300Device) {
@@ -50,18 +54,27 @@ extension DeviceListTableViewController: CTBleManagerDelegate {
 //MARK: - UITableViewDataSource
 extension DeviceListTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.devices.count
+        return devices.count > 0 ? devices.count : 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "deviceCell", for: indexPath)
+        
+        // Just for the test dummy
+        if indexPath.row == devices.count {
+            cell.textLabel?.text = "Dummy"
+            cell.detailTextLabel?.text = "Test dummy"
+            return cell
+        }
+        
+        
         let device = self.devices[indexPath.row]
         
         cell.textLabel?.text = "CK300"
-        
-        if let identifier = device.peripheral.name?.split(separator: "-").last {
-            cell.detailTextLabel?.text = "\(identifier)"
+        if let deviceName = device.peripheral.name {
+            cell.detailTextLabel?.text = deviceName
         }
+        
         
         return cell
     }
@@ -71,6 +84,12 @@ extension DeviceListTableViewController {
 //MARK: - UITableViewDelegate
 extension DeviceListTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Just for the test dummy
+        if indexPath.row == devices.count {
+            moveToDetailView()
+            return
+        }
+        
         let device = devices[indexPath.row]
         CTBleManager.shared.connectBleDevice(device)
         activityIndicator.startAnimating()

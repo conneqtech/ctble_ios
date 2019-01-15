@@ -21,7 +21,7 @@ struct CTLogObject {
 class DeviceMapViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var mapType: UISegmentedControl!
+    @IBOutlet weak var updatedOnButton: UIBarButtonItem!
     
     var coords: [CLLocationCoordinate2D] = []
     var log: [CTLogObject] = []
@@ -37,6 +37,9 @@ class DeviceMapViewController: UIViewController {
         CTLocationService.shared.delegate = self
         self.title = "Locations"
         self.map.delegate = self
+        
+        let font = UIFont.systemFont(ofSize: 12)
+        updatedOnButton.setTitleTextAttributes([NSAttributedString.Key(rawValue: NSAttributedStringKey.font.rawValue): font], for: .normal)
     }
     
     @IBAction func exportRoute(_ sender: Any) {
@@ -62,13 +65,10 @@ class DeviceMapViewController: UIViewController {
     }
     
     @IBAction func changeMapType(_ sender: Any) {
-        switch mapType.selectedSegmentIndex {
-        case 0:
+        if map.mapType == .satellite {
             map.mapType = .standard
-        case 1:
+        } else {
             map.mapType = .satellite
-        default:
-            break
         }
     }
 }
@@ -109,7 +109,8 @@ extension DeviceMapViewController: CTLocationServiceDelegate, MKMapViewDelegate 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         
-        self.title = "Last refresh: \(dateFormatter.string(from: Date()))"
+        
+        self.updatedOnButton.title = "Last updated: \(dateFormatter.string(from: Date()))"
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

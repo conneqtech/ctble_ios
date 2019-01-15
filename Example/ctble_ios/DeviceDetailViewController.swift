@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 import ctble
 
+struct TableSection {
+    var title: String
+    var items: [String]
+    var cellIdentifier: String
+    var lastUpdated: Date?
+}
+
 class DeviceDetailViewController: UITableViewController {
     
     let bikeStaticInformationSubtitles = [
@@ -35,17 +42,31 @@ class DeviceDetailViewController: UITableViewController {
         "Light status"
     ]
     
+    var sections: [TableSection] = []
+    
     var device: CK300Device!
     var bikeInformation: CTBikeInformation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let connectedDevice = CTBleManager.shared.connectedDevice {
-            title = connectedDevice.peripheral.name!
-            connectedDevice.getBikeInformation()
-            
-            CTVariableInformationService.shared.delegate = self
+        
+        sections = [
+            TableSection(title: "📱 as a display", items: ["Show display"], cellIdentifier: "titleCell", lastUpdated: nil),
+            TableSection(title: "🚴‍♀️ Bike information - 1051", items: bikeInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
+            TableSection(title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil)
+        ]
+        
+        guard let connectedDevice = CTBleManager.shared.connectedDevice else {
+            title = "Test dummy"
+            return
         }
+        
+        title = connectedDevice.peripheral.name!
+        connectedDevice.getBikeInformation()
+        
+        CTVariableInformationService.shared.delegate = self
+        
+        
     }
 }
 
@@ -53,41 +74,27 @@ class DeviceDetailViewController: UITableViewController {
 extension DeviceDetailViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return bikeInformationSubtitles.count
-        case 2:
-            return bikeStaticInformationSubtitles.count
-        default:
-            return 1
-        }
+        return sections[section].items.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Location - 1052"
-        case 1:
-            return "Bike information - 1051"
-        case 2:
-            return "Static information"
-        default:
-            return "TBI"
-        }
+        return sections[section].title
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCell(withIdentifier: "staticInformationCell", for: indexPath)
+        let sectionData = sections[indexPath.section]
         
-        if indexPath.section == 0 {
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
-            cell.textLabel?.text = "Show location"
+        
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: sectionData.cellIdentifier, for: indexPath)
+        
+        if sectionData.cellIdentifier == "titleCell" {
+            cell.textLabel?.text = sectionData.items[indexPath.row]
+        } else {
+            cell.detailTextLabel?.text = sectionData.items[indexPath.row]
         }
         
         if indexPath.section == 1 {
@@ -97,11 +104,11 @@ extension DeviceDetailViewController {
                 case 0:
                     textToShow = info.bikeStatus == 1 ? "ON" : "OFF"
                 case 1:
-                    textToShow = "\(info.speed) km/h"
+                    textToShow = "\(Double(info.speed) / 10) km/h"
                 case 2:
                     textToShow = "\(info.range) km"
                 case 3:
-                    textToShow = "\(info.odometer) km"
+                    textToShow = "\(Double(info.odometer) / 1000) km"
                 case 4:
                     textToShow = "\(info.bikeBatterySOC) mAh/mWh"
                 case 5:
@@ -109,7 +116,7 @@ extension DeviceDetailViewController {
                 case 6:
                     textToShow = "\(info.supportMode)"
                 case 7:
-                    textToShow = "\(info.lightStatus)"
+                    textToShow = info.lightStatus == 1 ? "ON" : "OFF"
                 default:
                     break
                 }
@@ -118,23 +125,16 @@ extension DeviceDetailViewController {
             } else {
                 cell.textLabel?.text = "-"
             }
-            
-            cell.detailTextLabel?.text = bikeInformationSubtitles[indexPath.row].uppercased()
         }
-        
-        if indexPath.section == 2 {
-            cell.textLabel?.text = "-"
-            cell.detailTextLabel?.text = bikeStaticInformationSubtitles[indexPath.row].uppercased()
-        }
+
         return cell
     }
-    
 }
 
 //MARK: - UITableViewDelegate
 extension DeviceDetailViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+        if indexPath.section == 2 {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceMapViewController")
             self.navigationController?.pushViewController(vc, animated: true)
         }
