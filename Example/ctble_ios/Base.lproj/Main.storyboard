@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="2885.5999999999999" y="171.36431784107947"/>
         </scene>
-        <!--View Controller-->
+        <!--Phone AsA Display View Controller-->
         <scene sceneID="xSf-db-fRx">
             <objects>
-                <viewController id="Qzq-mK-Zrj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="phoneAsDisplay" id="Qzq-mK-Zrj" customClass="PhoneAsADisplayViewController" customModule="ctble_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oyA-K9-cM0"/>
                         <viewControllerLayoutGuide type="bottom" id="X3x-oa-a9w"/>
@@ -194,7 +194,19 @@
                     <view key="view" contentMode="scaleToFill" id="AdC-fr-vot">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMD-oO-4PM">
+                                <rect key="frame" x="103" y="305.5" width="169.5" height="56.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="47"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RMD-oO-4PM" firstAttribute="centerX" secondItem="AdC-fr-vot" secondAttribute="centerX" id="scb-Kj-EzM"/>
+                            <constraint firstItem="RMD-oO-4PM" firstAttribute="centerY" secondItem="AdC-fr-vot" secondAttribute="centerY" id="vlb-Mk-Shn"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRu-zp-czq" userLabel="First Responder" sceneMemberID="firstResponder"/>

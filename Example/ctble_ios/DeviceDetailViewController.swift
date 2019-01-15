@@ -51,9 +51,9 @@ class DeviceDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         sections = [
-            TableSection(title: "📱 as a display", items: ["Show display"], cellIdentifier: "titleCell", lastUpdated: nil),
             TableSection(title: "🚴‍♀️ Bike information - 1051", items: bikeInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
-            TableSection(title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil)
+            TableSection(title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil),
+            TableSection(title: "📱 as a display", items: ["Show display"], cellIdentifier: "titleCell", lastUpdated: nil),
         ]
         
         guard let connectedDevice = CTBleManager.shared.connectedDevice else {
@@ -63,10 +63,11 @@ class DeviceDetailViewController: UITableViewController {
         
         title = connectedDevice.peripheral.name!
         connectedDevice.getBikeInformation()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         CTVariableInformationService.shared.delegate = self
-        
-        
     }
 }
 
@@ -134,8 +135,18 @@ extension DeviceDetailViewController {
 //MARK: - UITableViewDelegate
 extension DeviceDetailViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var viewToUse = ""
+        
         if indexPath.section == 2 {
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceMapViewController")
+            viewToUse = "phoneAsDisplay"
+        }
+        
+        if indexPath.section == 1 {
+            viewToUse = "deviceMapViewController"
+        }
+        
+        if viewToUse != "" {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewToUse)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		C0129FFB21EDDC5B006585F0 /* DeviceMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0129FFA21EDDC5B006585F0 /* DeviceMapViewController.swift */; };
+		C012A00C21EE8911006585F0 /* PhoneAsADisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012A00B21EE8911006585F0 /* PhoneAsADisplayViewController.swift */; };
 		C022087321E8BDD900053866 /* DeviceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087221E8BDD900053866 /* DeviceListTableViewController.swift */; };
 		C022087521E8C93000053866 /* DeviceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087421E8C93000053866 /* DeviceDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		667376F3D6812ADFCD33F5CD /* Pods-ctble_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_Example/Pods-ctble_Example.release.xcconfig"; sourceTree = "<group>"; };
 		86F0A6967E8D127EDA4E4F5A /* Pods_ctble_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0129FFA21EDDC5B006585F0 /* DeviceMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMapViewController.swift; sourceTree = "<group>"; };
+		C012A00B21EE8911006585F0 /* PhoneAsADisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAsADisplayViewController.swift; sourceTree = "<group>"; };
 		C022087221E8BDD900053866 /* DeviceListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListTableViewController.swift; sourceTree = "<group>"; };
 		C022087421E8C93000053866 /* DeviceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewController.swift; sourceTree = "<group>"; };
 		C198502BF3216BB7CD286710 /* Pods_ctble_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				C022087221E8BDD900053866 /* DeviceListTableViewController.swift */,
 				C022087421E8C93000053866 /* DeviceDetailViewController.swift */,
 				C0129FFA21EDDC5B006585F0 /* DeviceMapViewController.swift */,
+				C012A00B21EE8911006585F0 /* PhoneAsADisplayViewController.swift */,
 			);
 			name = "Example for ctble";
 			path = ctble_ios;
@@ -387,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C012A00C21EE8911006585F0 /* PhoneAsADisplayViewController.swift in Sources */,
 				C022087321E8BDD900053866 /* DeviceListTableViewController.swift in Sources */,
 				C0129FFB21EDDC5B006585F0 /* DeviceMapViewController.swift in Sources */,
 				C022087521E8C93000053866 /* DeviceDetailViewController.swift in Sources */,
