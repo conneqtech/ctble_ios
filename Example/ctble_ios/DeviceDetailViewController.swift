@@ -98,7 +98,7 @@ extension DeviceDetailViewController {
             cell.detailTextLabel?.text = sectionData.items[indexPath.row]
         }
         
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
             if let info = bikeInformation {
                 var textToShow = "-"
                 switch indexPath.row {
