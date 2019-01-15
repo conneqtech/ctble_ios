@@ -105,6 +105,11 @@ extension DeviceMapViewController: CTLocationServiceDelegate, MKMapViewDelegate 
             route = MKPolyline(coordinates: coords, count: coords.count)
             self.map.add(route!)
         }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        self.title = "Last refresh: \(dateFormatter.string(from: Date()))"
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

@@ -15,7 +15,7 @@ public class CK300Device: CTBasePeripheral {
         "authentication": CTDeviceAuthenticationService(),
         "static_information" : CTDeviceStaticInformationService(),
         "location_information": CTDeviceLocationService(),
-        "variable_information": CTDeviceVariableInformationService()
+        "bike_information": CTDeviceBikeInformationService()
     ]
 
     public var UUIDList: [String: String] = [:]
@@ -54,17 +54,17 @@ public class CK300Device: CTBasePeripheral {
             self.peripheral.discoverServices([service.UUID])
         }
     }
-    
+
     public func startReportingLocationData() {
         if let service = services["location_information"] {
             self.peripheral.discoverServices([service.UUID])
         }
     }
 
-    public func getVariableInformaiton() {
-        print("== Fetching variable information ==")
+    public func getBikeInformation() {
+        print("== Fetching bike information ==")
 
-        if let service = services["variable_information"] {
+        if let service = services["bike_information"] {
             self.peripheral.discoverServices([service.UUID])
         }
     }
@@ -80,22 +80,6 @@ public class CK300Device: CTBasePeripheral {
     }
 
     public func handleDiscoveredService(_ service: CBService) {
-        guard  let foundItem = UUIDList[service.uuid.uuidString] else {
-            return
-        }
-
-        switch foundItem {
-        case "authentication":
-            print("== Discovered auth service")
-            self.peripheral.discoverCharacteristics(nil, for: service)
-        case "static_information":
-            print("== Discovered static information service")
-            self.peripheral.discoverCharacteristics(nil, for: service)
-        case "variable_information", "location_information":
-            print("== Discovered static information service")
-            self.peripheral.discoverCharacteristics(nil, for: service)
-        default:
-            print("⚠️ This service will not be handled for this device")
-        }
+        self.peripheral.discoverCharacteristics(nil, for: service)
     }
 }

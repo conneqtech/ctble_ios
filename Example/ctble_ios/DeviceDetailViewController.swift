@@ -12,7 +12,7 @@ import ctble
 
 class DeviceDetailViewController: UITableViewController {
     
-    let bikeInformationSubtitles = [
+    let bikeStaticInformationSubtitles = [
         "Bike type",
         "Serial number bike",
         "Serial number battery",
@@ -24,12 +24,27 @@ class DeviceDetailViewController: UITableViewController {
         "IMEI"
     ]
     
+    let bikeInformationSubtitles = [
+        "Bike status",
+        "Speed",
+        "Range",
+        "Odometer",
+        "Bike battery SOC mAh/mWh",
+        "Bike battery SOC percentage",
+        "Support mode",
+        "Light status"
+    ]
+    
     var device: CK300Device!
+    var bikeInformation: CTBikeInformation?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         if let connectedDevice = CTBleManager.shared.connectedDevice {
-            super.viewDidLoad()
             title = connectedDevice.peripheral.name!
+            connectedDevice.getBikeInformation()
+            
+            CTVariableInformationService.shared.delegate = self
         }
     }
 }
@@ -47,6 +62,8 @@ extension DeviceDetailViewController {
             return 1
         case 1:
             return bikeInformationSubtitles.count
+        case 2:
+            return bikeStaticInformationSubtitles.count
         default:
             return 1
         }
@@ -55,8 +72,10 @@ extension DeviceDetailViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Location"
+            return "Location - 1052"
         case 1:
+            return "Bike information - 1051"
+        case 2:
             return "Static information"
         default:
             return "TBI"
@@ -72,8 +91,40 @@ extension DeviceDetailViewController {
         }
         
         if indexPath.section == 1 {
-            cell.textLabel?.text = "-"
+            if let info = bikeInformation {
+                var textToShow = "-"
+                switch indexPath.row {
+                case 0:
+                    textToShow = info.bikeStatus == 1 ? "ON" : "OFF"
+                case 1:
+                    textToShow = "\(info.speed) km/h"
+                case 2:
+                    textToShow = "\(info.range) km"
+                case 3:
+                    textToShow = "\(info.odometer) km"
+                case 4:
+                    textToShow = "\(info.bikeBatterySOC) mAh/mWh"
+                case 5:
+                    textToShow = "\(info.bikeBatterySOCPercentage)%"
+                case 6:
+                    textToShow = "\(info.supportMode)"
+                case 7:
+                    textToShow = "\(info.lightStatus)"
+                default:
+                    break
+                }
+                
+                cell.textLabel?.text = textToShow
+            } else {
+                cell.textLabel?.text = "-"
+            }
+            
             cell.detailTextLabel?.text = bikeInformationSubtitles[indexPath.row].uppercased()
+        }
+        
+        if indexPath.section == 2 {
+            cell.textLabel?.text = "-"
+            cell.detailTextLabel?.text = bikeStaticInformationSubtitles[indexPath.row].uppercased()
         }
         return cell
     }
@@ -90,3 +141,9 @@ extension DeviceDetailViewController {
     }
 }
 
+extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
+    func didUpdateBikeInformation(_ bikeInformation: CTBikeInformation) {
+        self.bikeInformation = bikeInformation
+        self.tableView.reloadData()
+    }
+}
