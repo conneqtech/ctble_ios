@@ -9,4 +9,6 @@ import Foundation
 
 public protocol CTVariableInformationServiceDelegate: class {
     func didUpdateBikeInformation(_ bikeInformation: CTBikeInformation)
+    func didUpdateBatteryInformation(_ batteryInformation: CTBatteryInformation)
+    func didUpdateMotorInformation(_ motorInformation: CTMotorInformation)
 }

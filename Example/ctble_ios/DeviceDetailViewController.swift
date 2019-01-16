@@ -70,6 +70,8 @@ class DeviceDetailViewController: UITableViewController {
     
     var device: CK300Device!
     var bikeInformation: CTBikeInformation?
+    var batteryInformation: CTBatteryInformation?
+    var motorInformation: CTMotorInformation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +118,7 @@ extension DeviceDetailViewController {
         if let lastUpdated = sections[section].lastUpdated {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm:ss"
-            return dateFormatter.string(from: lastUpdated)
+            return "Last updated: \(dateFormatter.string(from: lastUpdated))"
         }
         
         if sections[section].cellIdentifier == "titleCell" {
@@ -141,6 +143,7 @@ extension DeviceDetailViewController {
         if sectionData.identifier == "bike_info" {
             if let info = bikeInformation {
                 sections[indexPath.section].lastUpdated = Date()
+        
                 var textToShow = "-"
                 switch indexPath.row {
                 case 0:
@@ -170,11 +173,77 @@ extension DeviceDetailViewController {
         }
         
         if sectionData.identifier == "battery_info" {
-            cell.textLabel?.text = "-"
+            if let info = batteryInformation {
+                sections[indexPath.section].lastUpdated = Date()
+                
+                var textToShow = "-"
+                switch indexPath.row {
+                case 0:
+                    textToShow = "\(info.fccMah) mAh/mWh"
+                case 1:
+                    textToShow = "\(info.fccPercentage)%"
+                case 2:
+                    textToShow = "\(info.chargingCycles)"
+                case 3:
+                    textToShow = "\(Double(info.packVoltage) / 100)V"
+                case 4:
+                    textToShow = "\(info.temperature)C/K"
+                case 5:
+                    
+                    textToShow = info.errors.replacingOccurrences(of: " ", with: "") != "" ? "\(info.errors)" : "-"
+                case 6:
+                    switch info.state {
+                    case 0:
+                        textToShow = "rest"
+                    case 1:
+                        textToShow = "charge"
+                    case 2:
+                        textToShow = "discharge"
+                    case 3:
+                        textToShow = "disconnected"
+                    default:
+                        textToShow = "UNKNOWN"
+                    }
+                case 7:
+                    textToShow = "\(info.backupBatteryVoltage)mV"
+                default:
+                    break
+                }
+        
+                cell.textLabel?.text = textToShow
+            } else {
+                cell.textLabel?.text = "-"
+            }
         }
         
         if sectionData.identifier == "motor_info" {
-            cell.textLabel?.text = "-"
+            if let info = motorInformation {
+                sections[indexPath.section].lastUpdated = Date()
+                
+                var textToShow = "-"
+                switch indexPath.row {
+                case 0:
+                    textToShow = "\(Double(info.actualTorque) / 100) Nm"
+                case 1:
+                    textToShow = "\(info.wheelSpeed) RPM"
+                case 2:
+                    textToShow = "\(info.motorPower) W"
+                case 3:
+                    textToShow = info.motorError.replacingOccurrences(of: " ", with: "") != "" ? "\(info.motorError)" : "-"
+                case 4:
+                    textToShow = "\(info.pedalCadence) RPM"
+                case 5:
+                    textToShow = "\(info.pedalPower) W"
+                case 6:
+                    textToShow = "\(info.receivedSignalStrength) dbm"
+                default:
+                    break
+                }
+                
+                cell.textLabel?.text = textToShow
+            } else {
+                cell.textLabel?.text = "-"
+            }
         }
 
         return cell
@@ -204,8 +273,88 @@ extension DeviceDetailViewController {
 }
 
 extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
+    
+    
     func didUpdateBikeInformation(_ bikeInformation: CTBikeInformation) {
-        self.bikeInformation = bikeInformation
+        // Bad code for bad tracker :(
+        if self.bikeInformation == nil {
+            self.bikeInformation = bikeInformation
+        } else {
+            self.bikeInformation?.bikeStatus = bikeInformation.bikeStatus
+            
+            if bikeInformation.speed != 0 {
+                self.bikeInformation?.speed = bikeInformation.speed
+            }
+            
+            if bikeInformation.range != 0 {
+                self.bikeInformation?.range = bikeInformation.range
+            }
+            
+            if bikeInformation.odometer != 0 {
+                self.bikeInformation?.odometer = bikeInformation.odometer
+            }
+            
+            if bikeInformation.bikeBatterySOC != 0 {
+                self.bikeInformation?.bikeBatterySOC = bikeInformation.bikeBatterySOC
+            }
+            
+            if bikeInformation.bikeBatterySOCPercentage != 0 {
+                self.bikeInformation?.bikeBatterySOCPercentage = bikeInformation.bikeBatterySOCPercentage
+            }
+            
+            if bikeInformation.supportMode != 0 {
+                self.bikeInformation?.supportMode = bikeInformation.supportMode
+            }
+        
+            self.bikeInformation?.lightStatus = bikeInformation.lightStatus
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func didUpdateBatteryInformation(_ batteryInformation: CTBatteryInformation) {
+        
+        if self.batteryInformation == nil {
+            self.batteryInformation = batteryInformation
+        } else {
+            if batteryInformation.fccMah != 0 {
+                self.batteryInformation?.fccMah = batteryInformation.fccMah
+            }
+            
+            if batteryInformation.fccPercentage != 0 {
+                self.batteryInformation?.fccPercentage = batteryInformation.fccPercentage
+            }
+            
+            if batteryInformation.chargingCycles != 0 {
+                self.batteryInformation?.chargingCycles = batteryInformation.chargingCycles
+            }
+            
+            if batteryInformation.packVoltage != 0 {
+                self.batteryInformation?.packVoltage = batteryInformation.packVoltage
+            }
+            
+            if batteryInformation.temperature != 0 {
+                self.batteryInformation?.temperature = batteryInformation.temperature
+            }
+            
+            if batteryInformation.errors != "" {
+                self.batteryInformation?.errors = batteryInformation.errors
+            }
+            
+            if batteryInformation.state != 0 {
+                self.batteryInformation?.state = batteryInformation.state
+            }
+            
+            if batteryInformation.backupBatteryVoltage != 0 {
+                self.batteryInformation?.backupBatteryVoltage = batteryInformation.backupBatteryVoltage
+            }
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func didUpdateMotorInformation(_ motorInformation: CTMotorInformation) {
+        self.motorInformation = motorInformation
         self.tableView.reloadData()
     }
 }

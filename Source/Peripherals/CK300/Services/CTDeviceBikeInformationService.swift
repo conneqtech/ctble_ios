@@ -54,7 +54,6 @@ public struct CTDeviceBikeInformationService: CTDeviceServiceProtocol {
                     let bikeBatterySOCData = data.subdata(in: Range(9...12))
                     let bikeBatterySOCPercentData = data.subdata(in: Range(13...14))
                     let supportModeData = data[15]
-                    let lightStatusData = data[16]
 
                     let speed = speedData.withUnsafeBytes {
                         (pointer: UnsafePointer<UInt16>) -> UInt16 in
@@ -81,6 +80,11 @@ public struct CTDeviceBikeInformationService: CTDeviceServiceProtocol {
                         return pointer.pointee
                     }
 
+                    var lightStatusData: UInt8 = 0
+                    if data.count == 17 {
+                        lightStatusData = data[16]
+                    }
+
                     let bikeInformation = CTBikeInformation(bikeStatus: Int(bikeStatusData),
                                                 speed: Int(speed),
                                                 range: Int(range),
@@ -90,7 +94,7 @@ public struct CTDeviceBikeInformationService: CTDeviceServiceProtocol {
                                                 supportMode: Int(supportModeData),
                                                 lightStatus: Int(lightStatusData)
                         )
-                    
+
                     CTVariableInformationService.shared.updateBikeInformation(bikeInformation)
                 }
             }

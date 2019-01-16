@@ -15,7 +15,9 @@ public class CK300Device: CTBasePeripheral {
         "authentication": CTDeviceAuthenticationService(),
         "static_information" : CTDeviceStaticInformationService(),
         "location_information": CTDeviceLocationService(),
-        "bike_information": CTDeviceBikeInformationService()
+        "bike_information": CTDeviceBikeInformationService(),
+        "battery_information": CTDeviceBatteryInformationService(),
+        "motor_information": CTDeviceMotorInformationService()
     ]
 
     public var UUIDList: [String: String] = [:]
@@ -51,6 +53,14 @@ public class CK300Device: CTBasePeripheral {
         print("== Fetching static information ==")
 
         if let service = services["static_information"] {
+            self.peripheral.discoverServices([service.UUID])
+        }
+    }
+
+    public func getBatteryInformation() {
+        print("== Fetching battery information ==")
+
+        if let service = services["battery_information"] {
             self.peripheral.discoverServices([service.UUID])
         }
     }
