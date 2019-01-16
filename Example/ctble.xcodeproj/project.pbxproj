@@ -179,6 +179,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
+				C012A00D21EF11D7006585F0 /* Increment build */,
 				C0CD0FDA21E7476E00AC10C8 /* SwiftLint */,
 				BC7A6CF59083D296DC0DE960 /* [CP] Embed Pods Frameworks */,
 			);
@@ -364,6 +365,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ctble_Example/Pods-ctble_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C012A00D21EF11D7006585F0 /* Increment build */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment build";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		C0CD0FDA21E7476E00AC10C8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

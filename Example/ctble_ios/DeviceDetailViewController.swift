@@ -11,6 +11,7 @@ import UIKit
 import ctble
 
 struct TableSection {
+    var identifier: String
     var title: String
     var items: [String]
     var cellIdentifier: String
@@ -42,6 +43,29 @@ class DeviceDetailViewController: UITableViewController {
         "Light status"
     ]
     
+    let batteryInformationSubtitles = [
+        "FCC mAh/mWh",
+        "FCC percentage",
+        "Charging cycles",
+        "Pack voltage",
+        "Temperature",
+        "Errors",
+        "State",
+        "Backup battery voltage"
+    ]
+    
+    let motorInformationSubtitles = [
+        "Actual torque",
+        "Bike wheel speed",
+        "Motor power",
+        "Motor erorrs",
+        "Pedal cadence",
+        "Pedal power",
+        "Received signal strength"
+    ]
+    
+    
+    
     var sections: [TableSection] = []
     
     var device: CK300Device!
@@ -51,9 +75,11 @@ class DeviceDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         sections = [
-            TableSection(title: "🚴‍♀️ Bike information - 1051", items: bikeInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
-            TableSection(title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil),
-            TableSection(title: "📱 as a display", items: ["Show display"], cellIdentifier: "titleCell", lastUpdated: nil),
+            TableSection(identifier: "bike_info", title: "🚴‍♀️ Bike information - 1051", items: bikeInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
+            TableSection(identifier: "location", title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil),
+            TableSection(identifier: "battery_info", title: "🔋 Battery information - 1053", items: batteryInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
+            TableSection(identifier: "motor_info", title: "ℹ️ Motor information - 1054", items: motorInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
+            TableSection(identifier: "phone_as_display", title: "📱 as a display", items: ["Show display"], cellIdentifier: "titleCell", lastUpdated: nil),
         ]
         
         guard let connectedDevice = CTBleManager.shared.connectedDevice else {
@@ -86,6 +112,20 @@ extension DeviceDetailViewController {
         return sections[section].title
     }
     
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if let lastUpdated = sections[section].lastUpdated {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            return dateFormatter.string(from: lastUpdated)
+        }
+        
+        if sections[section].cellIdentifier == "titleCell" {
+            return ""
+        }
+        
+        return "Never updated"
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionData = sections[indexPath.section]
         
@@ -98,8 +138,9 @@ extension DeviceDetailViewController {
             cell.detailTextLabel?.text = sectionData.items[indexPath.row]
         }
         
-        if indexPath.section == 0 {
+        if sectionData.identifier == "bike_info" {
             if let info = bikeInformation {
+                sections[indexPath.section].lastUpdated = Date()
                 var textToShow = "-"
                 switch indexPath.row {
                 case 0:
@@ -127,6 +168,14 @@ extension DeviceDetailViewController {
                 cell.textLabel?.text = "-"
             }
         }
+        
+        if sectionData.identifier == "battery_info" {
+            cell.textLabel?.text = "-"
+        }
+        
+        if sectionData.identifier == "motor_info" {
+            cell.textLabel?.text = "-"
+        }
 
         return cell
     }
@@ -135,13 +184,15 @@ extension DeviceDetailViewController {
 //MARK: - UITableViewDelegate
 extension DeviceDetailViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sectionData = sections[indexPath.section]
+        
         var viewToUse = ""
         
-        if indexPath.section == 2 {
+        if sectionData.identifier == "phone_as_display" {
             viewToUse = "phoneAsDisplay"
         }
         
-        if indexPath.section == 1 {
+        if sectionData.identifier == "location" {
             viewToUse = "deviceMapViewController"
         }
         
