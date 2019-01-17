@@ -533,437 +533,437 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceAutenticationService.swift",
-      "line": 12,
-      "symbol": "CTDeviceAuthenticationService",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKAutenticationService.swift",
+      "line": 11,
+      "symbol": "CKAuthenticationService",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceAutenticationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKAutenticationService.swift",
+      "line": 12,
+      "symbol": "CKAuthenticationService.UUID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKAutenticationService.swift",
       "line": 13,
-      "symbol": "CTDeviceAuthenticationService.UUID",
+      "symbol": "CKAuthenticationService.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceAutenticationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKAutenticationService.swift",
       "line": 14,
-      "symbol": "CTDeviceAuthenticationService.name",
+      "symbol": "CKAuthenticationService.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceAutenticationService.swift",
-      "line": 15,
-      "symbol": "CTDeviceAuthenticationService.type",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKAutenticationService.swift",
+      "line": 16,
+      "symbol": "CKAuthenticationService.characteristics",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceAutenticationService.swift",
-      "line": 17,
-      "symbol": "CTDeviceAuthenticationService.characteristics",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceAutenticationService.swift",
-      "line": 30,
-      "symbol": "CTDeviceAuthenticationService.handleEvent(peripheral:characteristic:type:)",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKAutenticationService.swift",
+      "line": 29,
+      "symbol": "CKAuthenticationService.handleEvent(peripheral:characteristic:type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBatteryInformationService.swift",
       "line": 11,
-      "symbol": "CTBatteryInformation",
+      "symbol": "CKBatteryInformationService",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBatteryInformationService.swift",
       "line": 12,
-      "symbol": "CTBatteryInformation.fccMah",
+      "symbol": "CKBatteryInformationService.UUID",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBatteryInformationService.swift",
       "line": 13,
-      "symbol": "CTBatteryInformation.fccPercentage",
+      "symbol": "CKBatteryInformationService.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBatteryInformationService.swift",
       "line": 14,
-      "symbol": "CTBatteryInformation.chargingCycles",
+      "symbol": "CKBatteryInformationService.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 15,
-      "symbol": "CTBatteryInformation.packVoltage",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBatteryInformationService.swift",
       "line": 16,
-      "symbol": "CTBatteryInformation.temperature",
+      "symbol": "CKBatteryInformationService.characteristics",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 17,
-      "symbol": "CTBatteryInformation.errors",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 18,
-      "symbol": "CTBatteryInformation.state",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 19,
-      "symbol": "CTBatteryInformation.backupBatteryVoltage",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 22,
-      "symbol": "CTDeviceBatteryInformationService",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 23,
-      "symbol": "CTDeviceBatteryInformationService.UUID",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBatteryInformationService.swift",
       "line": 24,
-      "symbol": "CTDeviceBatteryInformationService.name",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 25,
-      "symbol": "CTDeviceBatteryInformationService.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 27,
-      "symbol": "CTDeviceBatteryInformationService.characteristics",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBatteryInformation.swift",
-      "line": 35,
-      "symbol": "CTDeviceBatteryInformationService.handleEvent(peripheral:characteristic:type:)",
+      "symbol": "CKBatteryInformationService.handleEvent(peripheral:characteristic:type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBikeInformationService.swift",
       "line": 11,
-      "symbol": "CTBikeInformation",
+      "symbol": "CKBikeInformationService",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBikeInformationService.swift",
       "line": 12,
-      "symbol": "CTBikeInformation.bikeStatus",
+      "symbol": "CKBikeInformationService.UUID",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBikeInformationService.swift",
       "line": 13,
-      "symbol": "CTBikeInformation.speed",
+      "symbol": "CKBikeInformationService.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBikeInformationService.swift",
       "line": 14,
-      "symbol": "CTBikeInformation.range",
+      "symbol": "CKBikeInformationService.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 15,
-      "symbol": "CTBikeInformation.odometer",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBikeInformationService.swift",
       "line": 16,
-      "symbol": "CTBikeInformation.bikeBatterySOC",
+      "symbol": "CKBikeInformationService.characteristics",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 17,
-      "symbol": "CTBikeInformation.bikeBatterySOCPercentage",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 18,
-      "symbol": "CTBikeInformation.supportMode",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 19,
-      "symbol": "CTBikeInformation.lightStatus",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 22,
-      "symbol": "CTDeviceBikeInformationService",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 23,
-      "symbol": "CTDeviceBikeInformationService.UUID",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKBikeInformationService.swift",
       "line": 24,
-      "symbol": "CTDeviceBikeInformationService.name",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 25,
-      "symbol": "CTDeviceBikeInformationService.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 27,
-      "symbol": "CTDeviceBikeInformationService.characteristics",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceBikeInformationService.swift",
-      "line": 35,
-      "symbol": "CTDeviceBikeInformationService.handleEvent(peripheral:characteristic:type:)",
+      "symbol": "CKBikeInformationService.handleEvent(peripheral:characteristic:type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceLocationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKLocationService.swift",
       "line": 11,
-      "symbol": "CTDeviceLocationService",
+      "symbol": "CKLocationService",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceLocationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKLocationService.swift",
       "line": 12,
-      "symbol": "CTDeviceLocationService.UUID",
+      "symbol": "CKLocationService.UUID",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceLocationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKLocationService.swift",
       "line": 13,
-      "symbol": "CTDeviceLocationService.name",
+      "symbol": "CKLocationService.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceLocationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKLocationService.swift",
       "line": 14,
-      "symbol": "CTDeviceLocationService.type",
+      "symbol": "CKLocationService.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceLocationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKLocationService.swift",
       "line": 16,
-      "symbol": "CTDeviceLocationService.characteristics",
+      "symbol": "CKLocationService.characteristics",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceLocationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKLocationService.swift",
       "line": 24,
-      "symbol": "CTDeviceLocationService.handleEvent(peripheral:characteristic:type:)",
+      "symbol": "CKLocationService.handleEvent(peripheral:characteristic:type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKMotorInformationService.swift",
       "line": 11,
-      "symbol": "CTMotorInformation",
+      "symbol": "CKMotorInformationService",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKMotorInformationService.swift",
       "line": 12,
-      "symbol": "CTMotorInformation.actualTorque",
+      "symbol": "CKMotorInformationService.UUID",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKMotorInformationService.swift",
       "line": 13,
-      "symbol": "CTMotorInformation.wheelSpeed",
+      "symbol": "CKMotorInformationService.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKMotorInformationService.swift",
       "line": 14,
-      "symbol": "CTMotorInformation.motorPower",
+      "symbol": "CKMotorInformationService.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 15,
-      "symbol": "CTMotorInformation.motorError",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKMotorInformationService.swift",
       "line": 16,
-      "symbol": "CTMotorInformation.pedalCadence",
+      "symbol": "CKMotorInformationService.characteristics",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 17,
-      "symbol": "CTMotorInformation.pedalPower",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 18,
-      "symbol": "CTMotorInformation.receivedSignalStrength",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 21,
-      "symbol": "CTDeviceMotorInformationService",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 22,
-      "symbol": "CTDeviceMotorInformationService.UUID",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 23,
-      "symbol": "CTDeviceMotorInformationService.name",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKMotorInformationService.swift",
       "line": 24,
-      "symbol": "CTDeviceMotorInformationService.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 26,
-      "symbol": "CTDeviceMotorInformationService.characteristics",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
-      "line": 34,
-      "symbol": "CTDeviceMotorInformationService.handleEvent(peripheral:characteristic:type:)",
+      "symbol": "CKMotorInformationService.handleEvent(peripheral:characteristic:type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceStaticInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKStaticInformationService.swift",
       "line": 11,
-      "symbol": "CTDeviceStaticInformationService",
+      "symbol": "CKStaticInformationService",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceStaticInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKStaticInformationService.swift",
       "line": 12,
-      "symbol": "CTDeviceStaticInformationService.UUID",
+      "symbol": "CKStaticInformationService.UUID",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceStaticInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKStaticInformationService.swift",
       "line": 13,
-      "symbol": "CTDeviceStaticInformationService.name",
+      "symbol": "CKStaticInformationService.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceStaticInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKStaticInformationService.swift",
       "line": 14,
-      "symbol": "CTDeviceStaticInformationService.type",
+      "symbol": "CKStaticInformationService.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceStaticInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKStaticInformationService.swift",
       "line": 16,
-      "symbol": "CTDeviceStaticInformationService.characteristics",
+      "symbol": "CKStaticInformationService.characteristics",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceStaticInformationService.swift",
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CKStaticInformationService.swift",
       "line": 54,
-      "symbol": "CTDeviceStaticInformationService.handleEvent(peripheral:characteristic:type:)",
+      "symbol": "CKStaticInformationService.handleEvent(peripheral:characteristic:type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 10,
+      "symbol": "CKBatteryInformationData",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 11,
+      "symbol": "CKBatteryInformationData.fccMah",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 12,
+      "symbol": "CKBatteryInformationData.fccPercentage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 13,
+      "symbol": "CKBatteryInformationData.chargingCycles",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 14,
+      "symbol": "CKBatteryInformationData.packVoltage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 15,
+      "symbol": "CKBatteryInformationData.temperature",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 16,
+      "symbol": "CKBatteryInformationData.errors",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 17,
+      "symbol": "CKBatteryInformationData.state",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBatteryInformationData.swift",
+      "line": 18,
+      "symbol": "CKBatteryInformationData.backupBatteryVoltage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 10,
+      "symbol": "CKBikeInformationData",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 11,
+      "symbol": "CKBikeInformationData.bikeStatus",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 12,
+      "symbol": "CKBikeInformationData.speed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 13,
+      "symbol": "CKBikeInformationData.range",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 14,
+      "symbol": "CKBikeInformationData.odometer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 15,
+      "symbol": "CKBikeInformationData.bikeBatterySOC",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 16,
+      "symbol": "CKBikeInformationData.bikeBatterySOCPercentage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 17,
+      "symbol": "CKBikeInformationData.supportMode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKBikeInformationData.swift",
+      "line": 18,
+      "symbol": "CKBikeInformationData.lightStatus",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 10,
+      "symbol": "CKMotorInformationData",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 11,
+      "symbol": "CKMotorInformationData.actualTorque",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 12,
+      "symbol": "CKMotorInformationData.wheelSpeed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 13,
+      "symbol": "CKMotorInformationData.motorPower",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 14,
+      "symbol": "CKMotorInformationData.motorError",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 15,
+      "symbol": "CKMotorInformationData.pedalCadence",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 16,
+      "symbol": "CKMotorInformationData.pedalPower",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Struct/CKMotorInformationData.swift",
+      "line": 17,
+      "symbol": "CKMotorInformationData.receivedSignalStrength",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {

@@ -253,6 +253,76 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleEventType.swift",
+      "line": 10,
+      "symbol": "CTBleEventType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleEventType.swift",
+      "line": 11,
+      "symbol": "CTBleEventType.write",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleEventType.swift",
+      "line": 12,
+      "symbol": "CTBleEventType.read",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleEventType.swift",
+      "line": 13,
+      "symbol": "CTBleEventType.update",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleEventType.swift",
+      "line": 14,
+      "symbol": "CTBleEventType.notification",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleEventType.swift",
+      "line": 15,
+      "symbol": "CTBleEventType.discover",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleServiceType.swift",
+      "line": 10,
+      "symbol": "CTBleServiceType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleServiceType.swift",
+      "line": 11,
+      "symbol": "CTBleServiceType.unauthenticated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleServiceType.swift",
+      "line": 12,
+      "symbol": "CTBleServiceType.authenticated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Enum/CTBleServiceType.swift",
+      "line": 13,
+      "symbol": "CTBleServiceType.login",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Protocol/CTBlePeripheral.swift",
       "line": 11,
       "symbol": "CTBlePeripheral",
@@ -264,6 +334,48 @@
       "line": 12,
       "symbol": "CTBlePeripheral.peripheral",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Protocol/CTBleServiceProtocol.swift",
+      "line": 11,
+      "symbol": "CTBleServiceProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Protocol/CTBleServiceProtocol.swift",
+      "line": 12,
+      "symbol": "CTBleServiceProtocol.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Protocol/CTBleServiceProtocol.swift",
+      "line": 13,
+      "symbol": "CTBleServiceProtocol.UUID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Protocol/CTBleServiceProtocol.swift",
+      "line": 14,
+      "symbol": "CTBleServiceProtocol.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Protocol/CTBleServiceProtocol.swift",
+      "line": 15,
+      "symbol": "CTBleServiceProtocol.characteristics",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/Protocol/CTBleServiceProtocol.swift",
+      "line": 17,
+      "symbol": "CTBleServiceProtocol.handleEvent(peripheral:characteristic:type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -809,118 +921,6 @@
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceMotorInformationService.swift",
       "line": 34,
       "symbol": "CTDeviceMotorInformationService.handleEvent(peripheral:characteristic:type:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 11,
-      "symbol": "CTBleServiceType",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 12,
-      "symbol": "CTBleServiceType.unauthenticated",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 13,
-      "symbol": "CTBleServiceType.authenticated",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 14,
-      "symbol": "CTBleServiceType.login",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 17,
-      "symbol": "CTBleEventType",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 18,
-      "symbol": "CTBleEventType.write",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 19,
-      "symbol": "CTBleEventType.read",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 20,
-      "symbol": "CTBleEventType.update",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 21,
-      "symbol": "CTBleEventType.notification",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 22,
-      "symbol": "CTBleEventType.discover",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 25,
-      "symbol": "CTDeviceServiceProtocol",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 26,
-      "symbol": "CTDeviceServiceProtocol.name",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 27,
-      "symbol": "CTDeviceServiceProtocol.UUID",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 28,
-      "symbol": "CTDeviceServiceProtocol.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 29,
-      "symbol": "CTDeviceServiceProtocol.characteristics",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Peripheral/CK300/Services/CTDeviceServiceProtocol.swift",
-      "line": 31,
-      "symbol": "CTDeviceServiceProtocol.handleEvent(peripheral:characteristic:type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
