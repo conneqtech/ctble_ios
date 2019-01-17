@@ -67,6 +67,7 @@ class DeviceDetailViewController: UITableViewController {
     
     
     var sections: [TableSection] = []
+    var reloadTimer: Timer!
     
     var device: CK300Device!
     var bikeInformation: CTBikeInformation?
@@ -96,6 +97,17 @@ class DeviceDetailViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         CTVariableInformationService.shared.delegate = self
+        reloadTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reloadTableView), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        reloadTimer.invalidate()
+        super.viewWillDisappear(animated)
+    }
+    
+    @objc func reloadTableView() {
+        print("Reload")
+        self.tableView.reloadData()
     }
 }
 
@@ -308,8 +320,6 @@ extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
         
             self.bikeInformation?.lightStatus = bikeInformation.lightStatus
         }
-        
-        self.tableView.reloadData()
     }
     
     func didUpdateBatteryInformation(_ batteryInformation: CTBatteryInformation) {
@@ -349,12 +359,9 @@ extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
                 self.batteryInformation?.backupBatteryVoltage = batteryInformation.backupBatteryVoltage
             }
         }
-        
-        self.tableView.reloadData()
     }
     
     func didUpdateMotorInformation(_ motorInformation: CTMotorInformation) {
         self.motorInformation = motorInformation
-        self.tableView.reloadData()
     }
 }
