@@ -406,7 +406,7 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
-		190A0E33F67BA93544788BD84A9D86C9 /* Services */ = {
+		190A0E33F67BA93544788BD84A9D86C9 /* BleServices */ = {
 			isa = PBXGroup;
 			children = (
 				E30F2DD6AE82523DA3FEFE20A2EE162F /* CTDeviceAutenticationService.swift */,
@@ -416,7 +416,7 @@
 				C0CC88EE21EF575900D1C2F9 /* CTDeviceBatteryInformation.swift */,
 				C0CC88F021EF6CDE00D1C2F9 /* CTDeviceMotorInformationService.swift */,
 			);
-			path = Services;
+			path = BleServices;
 			sourceTree = "<group>";
 		};
 		32DAC853D9D16AABD712DF0AA5835E2C /* Pods-ctble_Example */ = {
@@ -495,7 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				58F64A36AFBB28B88284CD7457327F89 /* CK300Device.swift */,
-				190A0E33F67BA93544788BD84A9D86C9 /* Services */,
+				190A0E33F67BA93544788BD84A9D86C9 /* BleServices */,
 			);
 			path = CK300;
 			sourceTree = "<group>";

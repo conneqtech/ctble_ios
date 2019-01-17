@@ -86,49 +86,49 @@
     },
     {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/CTBleManager.swift",
-      "line": 117,
+      "line": 115,
       "symbol": "CTBleManager.centralManager(_:didConnect:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/CTBleManager.swift",
-      "line": 125,
+      "line": 121,
       "symbol": "CTBleManager.centralManager(_:didFailToConnect:error:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/CTBleManager.swift",
-      "line": 132,
+      "line": 126,
       "symbol": "CTBleManager.peripheral(_:didDiscoverServices:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/CTBleManager.swift",
-      "line": 140,
+      "line": 134,
       "symbol": "CTBleManager.peripheral(_:didDiscoverCharacteristicsFor:error:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/CTBleManager.swift",
-      "line": 150,
+      "line": 144,
       "symbol": "CTBleManager.peripheral(_:didWriteValueFor:error:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/CTBleManager.swift",
-      "line": 155,
+      "line": 149,
       "symbol": "CTBleManager.peripheral(_:didUpdateNotificationStateFor:error:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Core/CTBleManager.swift",
-      "line": 162,
+      "line": 156,
       "symbol": "CTBleManager.peripheral(_:didUpdateValueFor:error:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1048,13 +1048,6 @@
       "line": 13,
       "symbol": "CTVariableInformationServiceDelegate.didUpdateMotorInformation(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/gert-jan/Repos/iOS/ctble_ios/Source/Util/MulticasDelegate.swift",
-      "line": 146,
-      "symbol": "|>(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     }
   ],
