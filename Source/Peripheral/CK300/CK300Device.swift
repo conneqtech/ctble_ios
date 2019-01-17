@@ -12,12 +12,12 @@ public class CK300Device: CTBlePeripheral {
     public var peripheral: CBPeripheral!
 
     public var services: [String: CTBleServiceProtocol] = [
-        "authentication": CTDeviceAuthenticationService(),
-        "static_information" : CTDeviceStaticInformationService(),
-        "location_information": CTDeviceLocationService(),
-        "bike_information": CTDeviceBikeInformationService(),
-        "battery_information": CTDeviceBatteryInformationService(),
-        "motor_information": CTDeviceMotorInformationService()
+        "authentication": CKAuthenticationService(),
+        "static_information" : CKStaticInformationService(),
+        "location_information": CKLocationService(),
+        "bike_information": CKBikeInformationService(),
+        "battery_information": CKBatteryInformationService(),
+        "motor_information": CKMotorInformationService()
     ]
 
     public var UUIDList: [String: String] = [:]

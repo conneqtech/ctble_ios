@@ -8,17 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-public struct CTMotorInformation {
-    public var actualTorque: Int
-    public var wheelSpeed: Int
-    public var motorPower: Int
-    public var motorError: String
-    public var pedalCadence: Int
-    public var pedalPower: Int
-    public var receivedSignalStrength: Int
-}
-
-public struct CTDeviceMotorInformationService: CTBleServiceProtocol {
+public struct CKMotorInformationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")
     public let name: String = "variable_information"
     public let type: CTBleServiceType = .authenticated
@@ -82,7 +72,7 @@ public struct CTDeviceMotorInformationService: CTBleServiceProtocol {
                         return pointer.pointee
                     }
 
-                    let motorInformation = CTMotorInformation(
+                    let motorInformation = CKMotorInformationData (
                         actualTorque: Int(actualTorque),
                         wheelSpeed: Int(wheelSpeed),
                         motorPower: Int(motorPower),

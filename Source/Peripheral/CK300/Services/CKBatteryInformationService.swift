@@ -8,18 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-public struct CTBatteryInformation {
-    public var fccMah: Int
-    public var fccPercentage: Int
-    public var chargingCycles: Int
-    public var packVoltage: Int
-    public var temperature: Int
-    public var errors: String
-    public var state: Int
-    public var backupBatteryVoltage: Int
-}
-
-public struct CTDeviceBatteryInformationService: CTBleServiceProtocol {
+public struct CKBatteryInformationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")
     public let name: String = "variable_information"
     public let type: CTBleServiceType = .authenticated
@@ -91,7 +80,7 @@ public struct CTDeviceBatteryInformationService: CTBleServiceProtocol {
                         }
                     }
 
-                    let batteryInformation = CTBatteryInformation(
+                    let batteryInformation = CKBatteryInformationData(
                         fccMah: Int(fccMah),
                         fccPercentage: Int(fccPercentage),
                         chargingCycles: Int(chargingCycles),

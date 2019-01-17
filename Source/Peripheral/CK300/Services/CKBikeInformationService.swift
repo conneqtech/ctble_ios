@@ -1,5 +1,5 @@
 //
-//  CTVariableInformationService.swift
+//  CKBikeInformationService.swift
 //  ctble
 //
 //  Created by Gert-Jan Vercauteren on 14/01/2019.
@@ -8,18 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-public struct CTBikeInformation {
-    public var bikeStatus: Int
-    public var speed: Int
-    public var range: Int
-    public var odometer: Int
-    public var bikeBatterySOC: Int
-    public var bikeBatterySOCPercentage: Int
-    public var supportMode: Int
-    public var lightStatus: Int
-}
-
-public struct CTDeviceBikeInformationService: CTBleServiceProtocol {
+public struct CKBikeInformationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")
     public let name: String = "variable_information"
     public let type: CTBleServiceType = .authenticated
@@ -85,7 +74,7 @@ public struct CTDeviceBikeInformationService: CTBleServiceProtocol {
                         lightStatusData = data[16]
                     }
 
-                    let bikeInformation = CTBikeInformation(bikeStatus: Int(bikeStatusData),
+                    let bikeInformation = CKBikeInformationData(bikeStatus: Int(bikeStatusData),
                                                 speed: Int(speed),
                                                 range: Int(range),
                                                 odometer: Int(odometer),

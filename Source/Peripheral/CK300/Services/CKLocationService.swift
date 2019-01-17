@@ -1,5 +1,5 @@
 //
-//  CTVariableInformationService.swift
+//  CKLocationService.swift
 //  ctble
 //
 //  Created by Gert-Jan Vercauteren on 15/01/2019.
@@ -8,7 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-public struct CTDeviceLocationService: CTBleServiceProtocol {
+public struct CKLocationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")
     public let name: String = "variable_information"
     public let type: CTBleServiceType = .authenticated

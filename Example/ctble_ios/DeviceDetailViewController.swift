@@ -70,9 +70,9 @@ class DeviceDetailViewController: UITableViewController {
     var reloadTimer: Timer!
     
     var device: CK300Device!
-    var bikeInformation: CTBikeInformation?
-    var batteryInformation: CTBatteryInformation?
-    var motorInformation: CTMotorInformation?
+    var bikeInformation: CKBikeInformationData?
+    var batteryInformation: CKBatteryInformationData?
+    var motorInformation: CKMotorInformationData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -287,7 +287,7 @@ extension DeviceDetailViewController {
 extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
     
     
-    func didUpdateBikeInformation(_ bikeInformation: CTBikeInformation) {
+    func didUpdateBikeInformation(_ bikeInformation: CKBikeInformationData) {
         // Bad code for bad tracker :(
         if self.bikeInformation == nil {
             self.bikeInformation = bikeInformation
@@ -322,7 +322,7 @@ extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
         }
     }
     
-    func didUpdateBatteryInformation(_ batteryInformation: CTBatteryInformation) {
+    func didUpdateBatteryInformation(_ batteryInformation: CKBatteryInformationData) {
         
         if self.batteryInformation == nil {
             self.batteryInformation = batteryInformation
@@ -361,7 +361,7 @@ extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
         }
     }
     
-    func didUpdateMotorInformation(_ motorInformation: CTMotorInformation) {
+    func didUpdateMotorInformation(_ motorInformation: CKMotorInformationData) {
         self.motorInformation = motorInformation
     }
 }

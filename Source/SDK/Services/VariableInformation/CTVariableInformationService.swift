@@ -16,15 +16,15 @@ public class CTVariableInformationService: NSObject {
         super.init()
     }
 
-    func updateBikeInformation(_ bikeInformation: CTBikeInformation) {
+    func updateBikeInformation(_ bikeInformation: CKBikeInformationData) {
         self.delegate?.didUpdateBikeInformation(bikeInformation)
     }
 
-    func updateBatteryInformation(_ batteryInformation: CTBatteryInformation) {
+    func updateBatteryInformation(_ batteryInformation: CKBatteryInformationData) {
         self.delegate?.didUpdateBatteryInformation(batteryInformation)
     }
 
-    func updateMotorInformation(_ motorInformation: CTMotorInformation) {
+    func updateMotorInformation(_ motorInformation: CKMotorInformationData) {
         self.delegate?.didUpdateMotorInformation(motorInformation)
     }
 }

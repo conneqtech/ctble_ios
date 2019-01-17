@@ -16,7 +16,7 @@
 		08326BC651F1E022DA52C8B309B8887A /* BeEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B11548A6516BB21526619897608E9F /* BeEmpty.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		0BD79DC689C7D481F4AABB8302F0074D /* ToSucceed.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE295D4D0ED3F1666C5921320F0E2C6 /* ToSucceed.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		0DF2D8C5D31E2C2DB9631672164F2667 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D954E7E4D336837086313DAE758F7F32 /* Functional.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		0EB32EDF6FB3FDE8D16CFA4DD4E4A245 /* CTDeviceLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492AF3FDE9471B301F0C4536B949C64D /* CTDeviceLocationService.swift */; };
+		0EB32EDF6FB3FDE8D16CFA4DD4E4A245 /* CKLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492AF3FDE9471B301F0C4536B949C64D /* CKLocationService.swift */; };
 		0F71A340850A82F86DD82E22B988A021 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3018B485E8310AC7A651EF03D32D0823 /* Expectation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1456EFF752D506C3B732B9E07202D3BF /* ctble-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F311659CCC468B46FAB44FE188B4039A /* ctble-dummy.m */; };
 		14FD1C2B7A89AF2B56D0AADA31DA893A /* BeNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605EF2A73B22D3E0863B202A2B7CFDEE /* BeNil.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -25,14 +25,14 @@
 		1A246F7B8314EE699F13602C09709810 /* CwlBadInstructionException.swift in Sources */ = {isa = PBXBuildFile; fileRef = B887FE600257A86B38E726B0E1D628AF /* CwlBadInstructionException.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		20E37FA1094C854F7029A36E285B64E9 /* EndWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA7B55BBFC51CA440749FF23010D40E /* EndWith.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		29D0CD0442E7988C852879119798AAE3 /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C78BF27F3A2B7B1368FE2E4317B6557 /* DSL.swift */; };
-		29F8750D31BA3EF13E6D57346334A6FD /* CTDeviceStaticInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB790D3435E4590BAFE117E4B492359C /* CTDeviceStaticInformationService.swift */; };
+		29F8750D31BA3EF13E6D57346334A6FD /* CKStaticInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB790D3435E4590BAFE117E4B492359C /* CKStaticInformationService.swift */; };
 		2B55F58ECB8826DCC9B23D61EE060569 /* HooksPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9245B48A46AAC45502A6B8A2AB745038 /* HooksPhase.swift */; };
 		2CFA351DD99BDAEB0A7A49F21880AB6F /* BeGreaterThanOrEqualTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440EEE98EDFE4F4752E17AFA3F550530 /* BeGreaterThanOrEqualTo.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		2D8769FA8968577A3896BC67FFBBB8B8 /* CTBleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8362D51D4572478DAB0678EC62ABDC /* CTBleManager.swift */; };
 		2E4FFB1124F266D95FF3D8595BD6990A /* BeAKindOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9AD5FA0EE5E85143D7DD2030D6818D /* BeAKindOf.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		2FCC0D35E0538B4BC30F73F43CE8686B /* CTBleServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3248453BB4BB757A01013E511A8968 /* CTBleServiceProtocol.swift */; };
 		33C92AF5C220916472D5964F35A5CA70 /* NMBStringify.m in Sources */ = {isa = PBXBuildFile; fileRef = 613C21AD6E98946BCAA54F25374CE020 /* NMBStringify.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		33CA2A71745AF1A224DF3167251297A2 /* CTDeviceAutenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30F2DD6AE82523DA3FEFE20A2EE162F /* CTDeviceAutenticationService.swift */; };
+		33CA2A71745AF1A224DF3167251297A2 /* CKAutenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30F2DD6AE82523DA3FEFE20A2EE162F /* CKAutenticationService.swift */; };
 		3A187F0E923C67738096763C2A3EC428 /* MatcherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4384CDA1479E6D88E3486B78FD7485 /* MatcherProtocols.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		3D701841CCFEA64D0A54343E741C4FA1 /* Quick-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEBCF9B57684FD89791D983A4733101F /* Quick-dummy.m */; };
 		3D7BB3EFDBB9B4332E72E2F92836EE50 /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F8B6E78A1CAF1BEE982E163FA968 /* MatcherFunc.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -104,17 +104,20 @@
 		B50EF1B76F079C869625EACBFA6A36D0 /* NSBundle+CurrentTestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B78AC1C0059E66BD95A9F0CD2D24F5 /* NSBundle+CurrentTestBundle.swift */; };
 		B7A3523DEB32D348EE1053E54D7F7593 /* NMBExceptionCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FAA89E2AC44E204B5E39B77BD6B921 /* NMBExceptionCapture.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		BF624B58A9828D18B1C5F2B73B97747D /* QuickSelectedTestSuiteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C7D6328493B73EF741AC61F4CEF01E /* QuickSelectedTestSuiteBuilder.swift */; };
-		C012A00521EE1FC4006585F0 /* CTDeviceBikeInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012A00421EE1FC4006585F0 /* CTDeviceBikeInformationService.swift */; };
+		C012A00521EE1FC4006585F0 /* CKBikeInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012A00421EE1FC4006585F0 /* CKBikeInformationService.swift */; };
 		C012A00821EE25F2006585F0 /* CTVariableInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012A00721EE25F2006585F0 /* CTVariableInformationService.swift */; };
 		C012A00A21EE25FD006585F0 /* CTVariableInformationServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012A00921EE25FD006585F0 /* CTVariableInformationServiceDelegate.swift */; };
-		C0CC88EF21EF575900D1C2F9 /* CTDeviceBatteryInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88EE21EF575900D1C2F9 /* CTDeviceBatteryInformation.swift */; };
-		C0CC88F121EF6CDE00D1C2F9 /* CTDeviceMotorInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88F021EF6CDE00D1C2F9 /* CTDeviceMotorInformationService.swift */; };
+		C0CC88EF21EF575900D1C2F9 /* CKBatteryInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88EE21EF575900D1C2F9 /* CKBatteryInformationService.swift */; };
+		C0CC88F121EF6CDE00D1C2F9 /* CKMotorInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88F021EF6CDE00D1C2F9 /* CKMotorInformationService.swift */; };
 		C0CC88F421F0B96000D1C2F9 /* CTBleCharacteristicPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88F321F0B96000D1C2F9 /* CTBleCharacteristicPermission.swift */; };
 		C0CC88F621F0B97A00D1C2F9 /* CTBleCharacteristicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88F521F0B97A00D1C2F9 /* CTBleCharacteristicType.swift */; };
 		C0CC88F921F0B9DB00D1C2F9 /* CTBleCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88F821F0B9DB00D1C2F9 /* CTBleCharacteristic.swift */; };
 		C0CC88FC21F0BA6C00D1C2F9 /* CTBlePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88FB21F0BA6C00D1C2F9 /* CTBlePeripheral.swift */; };
 		C0CC88FE21F0BD9400D1C2F9 /* CTBleServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88FD21F0BD9400D1C2F9 /* CTBleServiceType.swift */; };
 		C0CC890021F0BDA500D1C2F9 /* CTBleEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC88FF21F0BDA500D1C2F9 /* CTBleEventType.swift */; };
+		C0CC890321F0CC1500D1C2F9 /* CKBikeInformationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC890221F0CC1500D1C2F9 /* CKBikeInformationData.swift */; };
+		C0CC890521F0CCFD00D1C2F9 /* CKBatteryInformationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC890421F0CCFD00D1C2F9 /* CKBatteryInformationData.swift */; };
+		C0CC890721F0CD2D00D1C2F9 /* CKMotorInformationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC890621F0CD2D00D1C2F9 /* CKMotorInformationData.swift */; };
 		C2BB2E6E12641E69AE79FEC3B02CC166 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7BB2DC0DED3CBCF5D776D9E39AB30 /* Match.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		C394777CF14CEED282E0A7FBCFCE9F07 /* PostNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0D34DBF4CE55E4FF1BADBA826F9389 /* PostNotification.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		C45F8C4616CD3AF511AA9A8D2FCDF986 /* MatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AEA5EE84902B2868710A17C747AE0E /* MatchError.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -229,7 +232,7 @@
 		467F00CAF06ADEF612F697F068843FB2 /* World+DSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "World+DSL.h"; path = "Sources/QuickObjectiveC/DSL/World+DSL.h"; sourceTree = "<group>"; };
 		4751C923ACB051055F76821461557965 /* DSL+Wait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DSL+Wait.swift"; path = "Sources/Nimble/DSL+Wait.swift"; sourceTree = "<group>"; };
 		47578CD4C4970729A947555C915B2317 /* ThrowError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThrowError.swift; path = Sources/Nimble/Matchers/ThrowError.swift; sourceTree = "<group>"; };
-		492AF3FDE9471B301F0C4536B949C64D /* CTDeviceLocationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTDeviceLocationService.swift; sourceTree = "<group>"; };
+		492AF3FDE9471B301F0C4536B949C64D /* CKLocationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKLocationService.swift; sourceTree = "<group>"; };
 		495BFC3F9A44D525D4BFC5B10557E6C3 /* AssertionDispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionDispatcher.swift; path = Sources/Nimble/Adapters/AssertionDispatcher.swift; sourceTree = "<group>"; };
 		4FEA1DF1C7C22E7B20D2DC30FB9D3EF1 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Quick/Configuration/Configuration.swift; sourceTree = "<group>"; };
 		5378FB44B13DD72D6D9510C786BA96C5 /* AdapterProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdapterProtocols.swift; path = Sources/Nimble/Adapters/AdapterProtocols.swift; sourceTree = "<group>"; };
@@ -303,17 +306,20 @@
 		B9985CC02179403DC54B3460DCE486AC /* QCKDSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QCKDSL.h; path = Sources/QuickObjectiveC/DSL/QCKDSL.h; sourceTree = "<group>"; };
 		BAA7B55BBFC51CA440749FF23010D40E /* EndWith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EndWith.swift; path = Sources/Nimble/Matchers/EndWith.swift; sourceTree = "<group>"; };
 		BBD64278700877FA62EC38F4B27A4881 /* BeCloseTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeCloseTo.swift; path = Sources/Nimble/Matchers/BeCloseTo.swift; sourceTree = "<group>"; };
-		C012A00421EE1FC4006585F0 /* CTDeviceBikeInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTDeviceBikeInformationService.swift; sourceTree = "<group>"; };
+		C012A00421EE1FC4006585F0 /* CKBikeInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBikeInformationService.swift; sourceTree = "<group>"; };
 		C012A00721EE25F2006585F0 /* CTVariableInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTVariableInformationService.swift; sourceTree = "<group>"; };
 		C012A00921EE25FD006585F0 /* CTVariableInformationServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTVariableInformationServiceDelegate.swift; sourceTree = "<group>"; };
-		C0CC88EE21EF575900D1C2F9 /* CTDeviceBatteryInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTDeviceBatteryInformation.swift; sourceTree = "<group>"; };
-		C0CC88F021EF6CDE00D1C2F9 /* CTDeviceMotorInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTDeviceMotorInformationService.swift; sourceTree = "<group>"; };
+		C0CC88EE21EF575900D1C2F9 /* CKBatteryInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBatteryInformationService.swift; sourceTree = "<group>"; };
+		C0CC88F021EF6CDE00D1C2F9 /* CKMotorInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKMotorInformationService.swift; sourceTree = "<group>"; };
 		C0CC88F321F0B96000D1C2F9 /* CTBleCharacteristicPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBleCharacteristicPermission.swift; sourceTree = "<group>"; };
 		C0CC88F521F0B97A00D1C2F9 /* CTBleCharacteristicType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBleCharacteristicType.swift; sourceTree = "<group>"; };
 		C0CC88F821F0B9DB00D1C2F9 /* CTBleCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBleCharacteristic.swift; sourceTree = "<group>"; };
 		C0CC88FB21F0BA6C00D1C2F9 /* CTBlePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBlePeripheral.swift; sourceTree = "<group>"; };
 		C0CC88FD21F0BD9400D1C2F9 /* CTBleServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBleServiceType.swift; sourceTree = "<group>"; };
 		C0CC88FF21F0BDA500D1C2F9 /* CTBleEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTBleEventType.swift; sourceTree = "<group>"; };
+		C0CC890221F0CC1500D1C2F9 /* CKBikeInformationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBikeInformationData.swift; sourceTree = "<group>"; };
+		C0CC890421F0CCFD00D1C2F9 /* CKBatteryInformationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBatteryInformationData.swift; sourceTree = "<group>"; };
+		C0CC890621F0CD2D00D1C2F9 /* CKMotorInformationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKMotorInformationData.swift; sourceTree = "<group>"; };
 		C43C6FF18448F9176964B6A54405C7EB /* Pods-ctble_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ctble_Example-frameworks.sh"; sourceTree = "<group>"; };
 		C57921338FECDDCDAAC88A57C2055737 /* CwlCatchException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CwlCatchException.h; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/include/CwlCatchException.h; sourceTree = "<group>"; };
 		C720960D1A9DEF71091F5C5B2A6AD805 /* ctble.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ctble.modulemap; sourceTree = "<group>"; };
@@ -333,14 +339,14 @@
 		DE960FDA70783D86C4832257093317D2 /* Predicate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Predicate.swift; path = Sources/Nimble/Matchers/Predicate.swift; sourceTree = "<group>"; };
 		E10CBBF824E8DCD0DE811CE570005E5A /* Pods-ctble_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ctble_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E15D0BD895E38B9512195BFED925B0F7 /* NMBStringify.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBStringify.h; path = Sources/NimbleObjectiveC/NMBStringify.h; sourceTree = "<group>"; };
-		E30F2DD6AE82523DA3FEFE20A2EE162F /* CTDeviceAutenticationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTDeviceAutenticationService.swift; sourceTree = "<group>"; };
+		E30F2DD6AE82523DA3FEFE20A2EE162F /* CKAutenticationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKAutenticationService.swift; sourceTree = "<group>"; };
 		E4ECC5B36A1374107D76C636FD211DFF /* Pods-ctble_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ctble_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E585A4F6C1434FD922B8371E432B5051 /* QuickSpecBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickSpecBase.m; path = Sources/QuickSpecBase/QuickSpecBase.m; sourceTree = "<group>"; };
 		EA2996E8A4848392CD7B3073A86533B0 /* Pods-ctble_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ctble_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		EA57C72EE293B50ED3E1BA58B9FFCD89 /* Quick.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Quick.xcconfig; sourceTree = "<group>"; };
 		EA8315675F3D2B2385E834043F85C676 /* QuickSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpec.h; path = Sources/QuickObjectiveC/QuickSpec.h; sourceTree = "<group>"; };
 		EADFE06546D2FE7C91DF557E0F5ED093 /* SourceLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceLocation.swift; path = Sources/Nimble/Utils/SourceLocation.swift; sourceTree = "<group>"; };
-		EB790D3435E4590BAFE117E4B492359C /* CTDeviceStaticInformationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTDeviceStaticInformationService.swift; sourceTree = "<group>"; };
+		EB790D3435E4590BAFE117E4B492359C /* CKStaticInformationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CKStaticInformationService.swift; sourceTree = "<group>"; };
 		EC9AD5FA0EE5E85143D7DD2030D6818D /* BeAKindOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeAKindOf.swift; path = Sources/Nimble/Matchers/BeAKindOf.swift; sourceTree = "<group>"; };
 		EEBCF9B57684FD89791D983A4733101F /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
 		EF67F08D7E50F498A11015EED7B1496D /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -406,17 +412,17 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
-		190A0E33F67BA93544788BD84A9D86C9 /* BleServices */ = {
+		190A0E33F67BA93544788BD84A9D86C9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E30F2DD6AE82523DA3FEFE20A2EE162F /* CTDeviceAutenticationService.swift */,
-				492AF3FDE9471B301F0C4536B949C64D /* CTDeviceLocationService.swift */,
-				EB790D3435E4590BAFE117E4B492359C /* CTDeviceStaticInformationService.swift */,
-				C012A00421EE1FC4006585F0 /* CTDeviceBikeInformationService.swift */,
-				C0CC88EE21EF575900D1C2F9 /* CTDeviceBatteryInformation.swift */,
-				C0CC88F021EF6CDE00D1C2F9 /* CTDeviceMotorInformationService.swift */,
+				E30F2DD6AE82523DA3FEFE20A2EE162F /* CKAutenticationService.swift */,
+				492AF3FDE9471B301F0C4536B949C64D /* CKLocationService.swift */,
+				EB790D3435E4590BAFE117E4B492359C /* CKStaticInformationService.swift */,
+				C012A00421EE1FC4006585F0 /* CKBikeInformationService.swift */,
+				C0CC88EE21EF575900D1C2F9 /* CKBatteryInformationService.swift */,
+				C0CC88F021EF6CDE00D1C2F9 /* CKMotorInformationService.swift */,
 			);
-			path = BleServices;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		32DAC853D9D16AABD712DF0AA5835E2C /* Pods-ctble_Example */ = {
@@ -494,8 +500,9 @@
 		629DC4109178E43E60A393C4E4618065 /* CK300 */ = {
 			isa = PBXGroup;
 			children = (
+				190A0E33F67BA93544788BD84A9D86C9 /* Services */,
+				C0CC890121F0CC0100D1C2F9 /* Struct */,
 				58F64A36AFBB28B88284CD7457327F89 /* CK300Device.swift */,
-				190A0E33F67BA93544788BD84A9D86C9 /* BleServices */,
 			);
 			path = CK300;
 			sourceTree = "<group>";
@@ -712,6 +719,16 @@
 				C0CC88FB21F0BA6C00D1C2F9 /* CTBlePeripheral.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		C0CC890121F0CC0100D1C2F9 /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				C0CC890221F0CC1500D1C2F9 /* CKBikeInformationData.swift */,
+				C0CC890421F0CCFD00D1C2F9 /* CKBatteryInformationData.swift */,
+				C0CC890621F0CD2D00D1C2F9 /* CKMotorInformationData.swift */,
+			);
+			path = Struct;
 			sourceTree = "<group>";
 		};
 		D803EB5B15D4EAD4461BD11F3EF5188C /* Quick */ = {
@@ -1022,26 +1039,29 @@
 			files = (
 				C0CC88F621F0B97A00D1C2F9 /* CTBleCharacteristicType.swift in Sources */,
 				6D0525B3ED6A9F7FA7D453EC9226F4DB /* CK300Device.swift in Sources */,
+				C0CC890521F0CCFD00D1C2F9 /* CKBatteryInformationData.swift in Sources */,
 				C0CC88FC21F0BA6C00D1C2F9 /* CTBlePeripheral.swift in Sources */,
 				C0CC88F921F0B9DB00D1C2F9 /* CTBleCharacteristic.swift in Sources */,
 				1456EFF752D506C3B732B9E07202D3BF /* ctble-dummy.m in Sources */,
 				7547A6DDA13FBE90935AC3BE47B3035D /* CTBle.swift in Sources */,
-				C0CC88F121EF6CDE00D1C2F9 /* CTDeviceMotorInformationService.swift in Sources */,
+				C0CC88F121EF6CDE00D1C2F9 /* CKMotorInformationService.swift in Sources */,
 				C0CC88F421F0B96000D1C2F9 /* CTBleCharacteristicPermission.swift in Sources */,
 				C012A00821EE25F2006585F0 /* CTVariableInformationService.swift in Sources */,
 				2D8769FA8968577A3896BC67FFBBB8B8 /* CTBleManager.swift in Sources */,
 				F3449DD33B4F2F04A59B79800EA203A5 /* CTBleManagerDelegate.swift in Sources */,
-				33CA2A71745AF1A224DF3167251297A2 /* CTDeviceAutenticationService.swift in Sources */,
+				33CA2A71745AF1A224DF3167251297A2 /* CKAutenticationService.swift in Sources */,
 				C012A00A21EE25FD006585F0 /* CTVariableInformationServiceDelegate.swift in Sources */,
-				C012A00521EE1FC4006585F0 /* CTDeviceBikeInformationService.swift in Sources */,
-				0EB32EDF6FB3FDE8D16CFA4DD4E4A245 /* CTDeviceLocationService.swift in Sources */,
+				C012A00521EE1FC4006585F0 /* CKBikeInformationService.swift in Sources */,
+				0EB32EDF6FB3FDE8D16CFA4DD4E4A245 /* CKLocationService.swift in Sources */,
+				C0CC890721F0CD2D00D1C2F9 /* CKMotorInformationData.swift in Sources */,
 				2FCC0D35E0538B4BC30F73F43CE8686B /* CTBleServiceProtocol.swift in Sources */,
 				C0CC88FE21F0BD9400D1C2F9 /* CTBleServiceType.swift in Sources */,
-				29F8750D31BA3EF13E6D57346334A6FD /* CTDeviceStaticInformationService.swift in Sources */,
+				29F8750D31BA3EF13E6D57346334A6FD /* CKStaticInformationService.swift in Sources */,
 				A42FA325B201403DC87FF47EA6A7A2D0 /* CTLocationService.swift in Sources */,
 				C0CC890021F0BDA500D1C2F9 /* CTBleEventType.swift in Sources */,
+				C0CC890321F0CC1500D1C2F9 /* CKBikeInformationData.swift in Sources */,
 				91D4DD0FD13D7348EB6603FDAAAD539B /* CTLocationServiceDelegate.swift in Sources */,
-				C0CC88EF21EF575900D1C2F9 /* CTDeviceBatteryInformation.swift in Sources */,
+				C0CC88EF21EF575900D1C2F9 /* CKBatteryInformationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
