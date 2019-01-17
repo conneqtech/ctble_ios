@@ -11,7 +11,7 @@ import CoreBluetooth
 public class CK300Device: CTBlePeripheral {
     public var peripheral: CBPeripheral!
 
-    public var services: [String: CTDeviceServiceProtocol] = [
+    public var services: [String: CTBleServiceProtocol] = [
         "authentication": CTDeviceAuthenticationService(),
         "static_information" : CTDeviceStaticInformationService(),
         "location_information": CTDeviceLocationService(),

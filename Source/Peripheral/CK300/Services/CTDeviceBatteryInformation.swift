@@ -19,7 +19,7 @@ public struct CTBatteryInformation {
     public var backupBatteryVoltage: Int
 }
 
-public struct CTDeviceBatteryInformationService: CTDeviceServiceProtocol {
+public struct CTDeviceBatteryInformationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")
     public let name: String = "variable_information"
     public let type: CTBleServiceType = .authenticated

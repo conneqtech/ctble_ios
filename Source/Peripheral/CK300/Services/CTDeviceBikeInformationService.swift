@@ -19,7 +19,7 @@ public struct CTBikeInformation {
     public var lightStatus: Int
 }
 
-public struct CTDeviceBikeInformationService: CTDeviceServiceProtocol {
+public struct CTDeviceBikeInformationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")
     public let name: String = "variable_information"
     public let type: CTBleServiceType = .authenticated

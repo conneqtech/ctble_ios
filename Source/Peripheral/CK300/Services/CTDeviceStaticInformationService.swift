@@ -8,7 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-public struct CTDeviceStaticInformationService: CTDeviceServiceProtocol {
+public struct CTDeviceStaticInformationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1020-11E8-A8D5-435154454348")
     public let name: String = "static_information"
     public let type: CTBleServiceType = .unauthenticated

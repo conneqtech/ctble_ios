@@ -9,7 +9,7 @@ import Foundation
 import CoreBluetooth
 
 // https://codereview.stackexchange.com/questions/196429/a-consumable-byte-array-in-swift
-public struct CTDeviceAuthenticationService: CTDeviceServiceProtocol {
+public struct CTDeviceAuthenticationService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-1001-11E8-A8D5-435154454348")
     public let name: String = "authentication"
     public let type: CTBleServiceType = .login

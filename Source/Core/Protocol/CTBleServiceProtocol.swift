@@ -8,21 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-public enum CTBleServiceType {
-    case unauthenticated
-    case authenticated
-    case login
-}
-
-public enum CTBleEventType {
-    case write
-    case read
-    case update
-    case notification
-    case discover
-}
-
-public protocol CTDeviceServiceProtocol {
+public protocol CTBleServiceProtocol {
     var name: String { get }
     var UUID: CBUUID { get }
     var type: CTBleServiceType { get }
