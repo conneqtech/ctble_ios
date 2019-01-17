@@ -22,7 +22,7 @@ class DeviceListTableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         CTBleManager.shared.startScanForPeripherals()
-        CTBleManager.shared.delegate += self
+        CTBleManager.shared.delegate = self
         
         let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         self.navigationItem.rightBarButtonItem = refreshBarButton

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MulticastDelegate Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/MulticastDelegate" class="dashAnchor"></a>
+    <a title="MulticastDelegate Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ctble Docs</a> (6% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ctble Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MulticastDelegate Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CK300Device.html">CK300Device</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CTBleManager.html">CTBleManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CTLocationService.html">CTLocationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CTVariableInformationService.html">CTVariableInformationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MulticastDelegate.html">MulticastDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CTBleCharacteristicPermission.html">CTBleCharacteristicPermission</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CTBleCharacteristicType.html">CTBleCharacteristicType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CTBleEventType.html">CTBleEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CTBleServiceType.html">CTBleServiceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:5ctble2peoiyyAA17MulticastDelegateCyxG_xtlF">+=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:5ctble2seoiyyAA17MulticastDelegateCyxG_xtlF">-=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:5ctble2ogoiyyAA17MulticastDelegateCyxG_yxXEtlF">|&gt;(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CTBleManagerDelegate.html">CTBleManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CTBlePeripheral.html">CTBlePeripheral</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CTDeviceServiceProtocol.html">CTDeviceServiceProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CTLocationServiceDelegate.html">CTLocationServiceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CTVariableInformationServiceDelegate.html">CTVariableInformationServiceDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CTBatteryInformation.html">CTBatteryInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTBikeInformation.html">CTBikeInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTBleCharacteristic.html">CTBleCharacteristic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTDeviceAuthenticationService.html">CTDeviceAuthenticationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTDeviceBatteryInformationService.html">CTDeviceBatteryInformationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTDeviceBikeInformationService.html">CTDeviceBikeInformationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTDeviceLocationService.html">CTDeviceLocationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTDeviceMotorInformationService.html">CTDeviceMotorInformationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTDeviceStaticInformationService.html">CTDeviceStaticInformationService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CTMotorInformation.html">CTMotorInformation</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MulticastDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">MulticastDelegate</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>MulticastDelegate</code> lets you easily create a <q>multicast delegate</q> for a given protocol or class.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5ctble17MulticastDelegateC7isEmptySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5ctble17MulticastDelegateC7isEmptySbvp">isEmpty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use the property to check if no delegates are contained there.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if there are no delegates at all, <code>false</code> if there is at least one.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5ctble17MulticastDelegateC16strongReferencesACyxGSb_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(strongReferences:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5ctble17MulticastDelegateC16strongReferencesACyxGSb_tcfc">init(strongReferences:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to initialize a new <code>MulticastDelegate</code>
+  specifying whether delegate references should be weak or
+  strong.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">strongReferences</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>strongReferences</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether delegates should be strongly referenced, false by default.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code>MulticastDelegate</code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5ctble17MulticastDelegateC7optionsACyxGSo25NSPointerFunctionsOptionsV_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(options:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5ctble17MulticastDelegateC7optionsACyxGSo25NSPointerFunctionsOptionsV_tcfc">init(options:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to initialize a new <code>MulticastDelegate</code> specifying the storage options yourself.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">options</span><span class="p">:</span> <span class="kt">NSPointerFunctions</span><span class="o">.</span><span class="kt">Options</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The underlying storage options to use</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code>MulticastDelegate</code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5ctble17MulticastDelegateC03addC0yyxF"></a>
+                    <a name="//apple_ref/swift/Method/addDelegate(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5ctble17MulticastDelegateC03addC0yyxF">addDelegate(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to add a delelgate.</p>
+
+<p>Alternatively, you can use the <code>+=</code> operator to add a delegate.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addDelegate</span><span class="p">(</span><span class="n">_</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate to be added.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5ctble17MulticastDelegateC06removeC0yyxF"></a>
+                    <a name="//apple_ref/swift/Method/removeDelegate(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5ctble17MulticastDelegateC06removeC0yyxF">removeDelegate(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to remove a previously-added delegate.</p>
+
+<p>Alternatively, you can use the <code>-=</code> operator to add a delegate.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeDelegate</span><span class="p">(</span><span class="n">_</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate to be removed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5ctble17MulticastDelegateC15invokeDelegatesyyyxXEF"></a>
+                    <a name="//apple_ref/swift/Method/invokeDelegates(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5ctble17MulticastDelegateC15invokeDelegatesyyyxXEF">invokeDelegates(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to invoke a closure on each delegate.</p>
+
+<p>Alternatively, you can use the <code>|&gt;</code> operator to invoke a given closure on each delegate.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">invokeDelegates</span><span class="p">(</span><span class="n">_</span> <span class="nv">invocation</span><span class="p">:</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>invocation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The closure to be invoked on each delegate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5ctble17MulticastDelegateC08containsC0ySbxF"></a>
+                    <a name="//apple_ref/swift/Method/containsDelegate(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5ctble17MulticastDelegateC08containsC0ySbxF">containsDelegate(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Use this method to determine if the multicast delegate contains a given delegate.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsDelegate</span><span class="p">(</span><span class="n">_</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The given delegate to check if it&rsquo;s contained</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the delegate is found or <code>false</code> otherwise</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://bitbucket.org/nfnty_admin/ctble_ios" target="_blank" rel="external">Conneqtech B.V.</a>. All rights reserved. (Last updated: 2019-01-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

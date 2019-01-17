@@ -12,7 +12,7 @@ import CoreBluetooth
 // MARK: - CTBLeManager base
 public class CTBleManager: NSObject {
     public static let shared = CTBleManager()
-    public var delegate = MulticastDelegate<CTBleManagerDelegate>()
+    public var delegate: CTBleManagerDelegate?
 
     let timerPauseInterval:TimeInterval = 10.0
     let timerScanInterval:TimeInterval = 2.0
@@ -104,9 +104,7 @@ extension CTBleManager: CBCentralManagerDelegate {
                 keepScanning = false
 
                 let device = CK300Device(peripheral: peripheral)
-                delegate |> { delegate in
-                    delegate.didDiscover(device)
-                }
+                delegate?.didDiscover(device)
             }
         }
     }
@@ -116,17 +114,13 @@ extension CTBleManager: CBCentralManagerDelegate {
 extension CTBleManager: CBPeripheralDelegate {
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         if let device = self.connectedDevice {
-            delegate |> { delegate in
-                delegate.didConnect(device)
-            }
+            delegate?.didConnect(device)
         }
     }
 
     public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         let device = CK300Device(peripheral: peripheral)
-        delegate |> { delegate in
-            delegate.didFailToConnect(device)
-        }
+        delegate?.didFailToConnect(device)
     }
 
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
