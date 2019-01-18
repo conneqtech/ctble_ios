@@ -22,11 +22,9 @@ public struct CKBatteryInformationService: CTBleServiceProtocol {
     ]
 
     public func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
-        guard var localCharacteristic = characteristics[characteristic.uuid.uuidString] else {
+        guard let localCharacteristic = characteristics[characteristic.uuid.uuidString] else {
             return
         }
-
-        print("[BatIS] handle \(type) for \(characteristic.uuid.uuidString)")
 
         switch type {
         case .discover:

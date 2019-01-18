@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CKBatteryInformationData {
+public struct CKBatteryInformationData: Codable {
     public var fccMah: Int
     public var fccPercentage: Int
     public var chargingCycles: Int

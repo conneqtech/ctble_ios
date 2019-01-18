@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import ctble
 import MapKit
+import RxSwift
 
 struct CTLogObject {
     var date: Date
@@ -30,16 +31,31 @@ class DeviceMapViewController: UIViewController {
     var route: MKPolyline?
     var hideAnnotations = false
     
+    let diposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CTBleManager.shared.connectedDevice?.startReportingLocationData()
-        CTLocationService.shared.delegate = self
         self.title = "Locations"
-        self.map.delegate = self
+        
         
         let font = UIFont.systemFont(ofSize: 12)
         updatedOnButton.setTitleTextAttributes([NSAttributedString.Key(rawValue: NSAttributedStringKey.font.rawValue): font], for: .normal)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToLocationUpdates()
+        self.map.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.map.delegate = nil
+        self.map.removeFromSuperview()
+        self.map = nil
+        
+        super.viewWillDisappear(animated)
     }
     
     @IBAction func exportRoute(_ sender: Any) {
@@ -73,44 +89,48 @@ class DeviceMapViewController: UIViewController {
     }
 }
 
-extension DeviceMapViewController: CTLocationServiceDelegate, MKMapViewDelegate {
-    func didUpdateLocation(deviceName: String, lat: Double, lon: Double, altitude: Int) {
-        let annotation = MKPointAnnotation()
-        annotation.title = "alt: \(altitude)"
+extension DeviceMapViewController: MKMapViewDelegate {
+    
+    func subscribeToLocationUpdates() {
         
-        let coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        annotation.coordinate = coord
-        
-        log.append(
-            CTLogObject(date: Date(),
-                        lat: lat,
-                        lon: lon,
-                        altitude:altitude)
-        )
-        
-        if !coords.contains(where: { c in
-            c.latitude == coord.latitude && c.longitude == coord.longitude
-        }) {
-            self.coords.append(coord)
-            self.mapAnnotations.append(annotation)
+        CTLocationService.shared.locationSubject.subscribe(onNext: { locationData in
+            let annotation = MKPointAnnotation()
+            annotation.title = "alt: \(locationData.altitude)"
             
-            if !hideAnnotations {
-                self.map.addAnnotation(annotation)
-            }
-           
-            if let route = route {
-                 self.map.remove(route)
+            let coord = CLLocationCoordinate2D(latitude: locationData.latitude, longitude: locationData.longitude)
+            annotation.coordinate = coord
+            
+            self.log.append(
+                CTLogObject(date: Date(),
+                            lat: locationData.latitude,
+                            lon: locationData.longitude,
+                            altitude:locationData.altitude)
+            )
+            
+            if !self.coords.contains(where: { c in
+                c.latitude == coord.latitude && c.longitude == coord.longitude
+            }) {
+                self.coords.append(coord)
+                self.mapAnnotations.append(annotation)
+                
+                if !self.hideAnnotations {
+                    self.map.addAnnotation(annotation)
+                }
+                
+                if let route = self.route {
+                    self.map.remove(route)
+                }
+                
+                self.route = MKPolyline(coordinates: self.coords, count: self.coords.count)
+                self.map.add(self.route!)
             }
             
-            route = MKPolyline(coordinates: coords, count: coords.count)
-            self.map.add(route!)
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        
-        
-        self.updatedOnButton.title = "Last updated: \(dateFormatter.string(from: Date()))"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            
+            
+            self.updatedOnButton.title = "Last updated: \(dateFormatter.string(from: Date()))"
+        }).disposed(by: diposeBag)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

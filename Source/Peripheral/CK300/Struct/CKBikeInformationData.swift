@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CKBikeInformationData {
+public struct CKBikeInformationData: Codable {
     public var bikeStatus: Int
     public var speed: Int
     public var range: Int

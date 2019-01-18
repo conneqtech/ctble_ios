@@ -213,6 +213,50 @@
             </objects>
             <point key="canvasLocation" x="3614" y="179"/>
         </scene>
+        <!--Log-->
+        <scene sceneID="7QZ-jD-6JJ">
+            <objects>
+                <viewController storyboardIdentifier="logViewController" id="fml-2r-Zg6" customClass="LogViewController" customModule="ctble_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KYv-2Q-Rvq"/>
+                        <viewControllerLayoutGuide type="bottom" id="j0C-jq-eqg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rxr-KR-9b6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="LOG " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="M57-hc-WQl">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="M57-hc-WQl" firstAttribute="leading" secondItem="rxr-KR-9b6" secondAttribute="leadingMargin" id="7fh-5o-bye"/>
+                            <constraint firstItem="j0C-jq-eqg" firstAttribute="top" secondItem="M57-hc-WQl" secondAttribute="bottom" id="CPc-jV-kzS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="M57-hc-WQl" secondAttribute="trailing" id="S3d-1o-xzX"/>
+                            <constraint firstItem="M57-hc-WQl" firstAttribute="top" secondItem="rxr-KR-9b6" secondAttribute="top" constant="64" id="tGp-2W-TOM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Log" largeTitleDisplayMode="never" id="5Ic-Wp-W5w">
+                        <barButtonItem key="rightBarButtonItem" title="⏬" id="dYK-ur-Kka">
+                            <connections>
+                                <action selector="toggleScrollMode:" destination="fml-2r-Zg6" id="Es8-p8-zc1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="logTextView" destination="M57-hc-WQl" id="WMp-xk-5TP"/>
+                        <outlet property="scrollModeButton" destination="dYK-ur-Kka" id="Llq-J3-PeC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hyX-r6-yyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4309.6000000000004" y="178.56071964017991"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="bIM-HR-R6a">
             <objects>

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CKMotorInformationData {
+public struct CKMotorInformationData: Codable {
     public var actualTorque: Int
     public var wheelSpeed: Int
     public var motorPower: Int

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import ctble
+import RxSwift
 
 struct TableSection {
     var identifier: String
@@ -58,7 +59,7 @@ class DeviceDetailViewController: UITableViewController {
         "Actual torque",
         "Bike wheel speed",
         "Motor power",
-        "Motor erorrs",
+        "Motor error",
         "Pedal cadence",
         "Pedal power",
         "Received signal strength"
@@ -74,6 +75,9 @@ class DeviceDetailViewController: UITableViewController {
     var batteryInformation: CKBatteryInformationData?
     var motorInformation: CKMotorInformationData?
     
+    
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,21 +86,24 @@ class DeviceDetailViewController: UITableViewController {
             TableSection(identifier: "location", title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil),
             TableSection(identifier: "battery_info", title: "🔋 Battery information - 1053", items: batteryInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
             TableSection(identifier: "motor_info", title: "ℹ️ Motor information - 1054", items: motorInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
-            TableSection(identifier: "phone_as_display", title: "📱 as a display", items: ["Show display"], cellIdentifier: "titleCell", lastUpdated: nil),
+            TableSection(identifier: "phone_as_display", title: "⚙️ Utilities", items: ["Logging"], cellIdentifier: "titleCell", lastUpdated: nil),
         ]
         
         guard let connectedDevice = CTBleManager.shared.connectedDevice else {
             title = "Test dummy"
             return
         }
-        
+    
         title = connectedDevice.peripheral.name!
         connectedDevice.getBikeInformation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        CTVariableInformationService.shared.delegate = self
+        
+        subscribeToBikeInformation()
+        subscribeToBatteryInformation()
+        subscribeToMotorInformation()
         reloadTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reloadTableView), userInfo: nil, repeats: true)
     }
     
@@ -106,7 +113,6 @@ class DeviceDetailViewController: UITableViewController {
     }
     
     @objc func reloadTableView() {
-        print("Reload")
         self.tableView.reloadData()
     }
 }
@@ -270,7 +276,14 @@ extension DeviceDetailViewController {
         var viewToUse = ""
         
         if sectionData.identifier == "phone_as_display" {
-            viewToUse = "phoneAsDisplay"
+            switch indexPath.row {
+            case 0:
+                viewToUse = "logViewController"
+            case 1:
+                viewToUse = "phoneAsDisplay"
+            default:
+                viewToUse = "phoneAsDisplay"
+            }
         }
         
         if sectionData.identifier == "location" {
@@ -284,84 +297,88 @@ extension DeviceDetailViewController {
     }
 }
 
-extension DeviceDetailViewController: CTVariableInformationServiceDelegate {
+extension DeviceDetailViewController {
     
-    
-    func didUpdateBikeInformation(_ bikeInformation: CKBikeInformationData) {
-        // Bad code for bad tracker :(
-        if self.bikeInformation == nil {
-            self.bikeInformation = bikeInformation
-        } else {
-            self.bikeInformation?.bikeStatus = bikeInformation.bikeStatus
-            
-            if bikeInformation.speed != 0 {
-                self.bikeInformation?.speed = bikeInformation.speed
+    func subscribeToBikeInformation() {
+        CTVariableInformationService.shared.bikeInformationSubject.subscribe(onNext: { bikeInformation in
+            // Bad code for bad tracker :(
+            if self.bikeInformation == nil {
+                self.bikeInformation = bikeInformation
+            } else {
+                self.bikeInformation?.bikeStatus = bikeInformation.bikeStatus
+                
+                if bikeInformation.speed != 0 {
+                    self.bikeInformation?.speed = bikeInformation.speed
+                }
+                
+                if bikeInformation.range != 0 {
+                    self.bikeInformation?.range = bikeInformation.range
+                }
+                
+                if bikeInformation.odometer != 0 {
+                    self.bikeInformation?.odometer = bikeInformation.odometer
+                }
+                
+                if bikeInformation.bikeBatterySOC != 0 {
+                    self.bikeInformation?.bikeBatterySOC = bikeInformation.bikeBatterySOC
+                }
+                
+                if bikeInformation.bikeBatterySOCPercentage != 0 {
+                    self.bikeInformation?.bikeBatterySOCPercentage = bikeInformation.bikeBatterySOCPercentage
+                }
+                
+                if bikeInformation.supportMode != 0 {
+                    self.bikeInformation?.supportMode = bikeInformation.supportMode
+                }
+                
+                self.bikeInformation?.lightStatus = bikeInformation.lightStatus
             }
-            
-            if bikeInformation.range != 0 {
-                self.bikeInformation?.range = bikeInformation.range
-            }
-            
-            if bikeInformation.odometer != 0 {
-                self.bikeInformation?.odometer = bikeInformation.odometer
-            }
-            
-            if bikeInformation.bikeBatterySOC != 0 {
-                self.bikeInformation?.bikeBatterySOC = bikeInformation.bikeBatterySOC
-            }
-            
-            if bikeInformation.bikeBatterySOCPercentage != 0 {
-                self.bikeInformation?.bikeBatterySOCPercentage = bikeInformation.bikeBatterySOCPercentage
-            }
-            
-            if bikeInformation.supportMode != 0 {
-                self.bikeInformation?.supportMode = bikeInformation.supportMode
-            }
-        
-            self.bikeInformation?.lightStatus = bikeInformation.lightStatus
-        }
+        }).disposed(by: disposeBag)
     }
     
-    func didUpdateBatteryInformation(_ batteryInformation: CKBatteryInformationData) {
-        
-        if self.batteryInformation == nil {
-            self.batteryInformation = batteryInformation
-        } else {
-            if batteryInformation.fccMah != 0 {
-                self.batteryInformation?.fccMah = batteryInformation.fccMah
+    func subscribeToBatteryInformation() {
+        CTVariableInformationService.shared.batteryInformationSubject.subscribe(onNext: { batteryInformation in
+            if self.batteryInformation == nil {
+                self.batteryInformation = batteryInformation
+            } else {
+                if batteryInformation.fccMah != 0 {
+                    self.batteryInformation?.fccMah = batteryInformation.fccMah
+                }
+                
+                if batteryInformation.fccPercentage != 0 {
+                    self.batteryInformation?.fccPercentage = batteryInformation.fccPercentage
+                }
+                
+                if batteryInformation.chargingCycles != 0 {
+                    self.batteryInformation?.chargingCycles = batteryInformation.chargingCycles
+                }
+                
+                if batteryInformation.packVoltage != 0 {
+                    self.batteryInformation?.packVoltage = batteryInformation.packVoltage
+                }
+                
+                if batteryInformation.temperature != 0 {
+                    self.batteryInformation?.temperature = batteryInformation.temperature
+                }
+                
+                if batteryInformation.errors != "" {
+                    self.batteryInformation?.errors = batteryInformation.errors
+                }
+                
+                if batteryInformation.state != 0 {
+                    self.batteryInformation?.state = batteryInformation.state
+                }
+                
+                if batteryInformation.backupBatteryVoltage != 0 {
+                    self.batteryInformation?.backupBatteryVoltage = batteryInformation.backupBatteryVoltage
+                }
             }
-            
-            if batteryInformation.fccPercentage != 0 {
-                self.batteryInformation?.fccPercentage = batteryInformation.fccPercentage
-            }
-            
-            if batteryInformation.chargingCycles != 0 {
-                self.batteryInformation?.chargingCycles = batteryInformation.chargingCycles
-            }
-            
-            if batteryInformation.packVoltage != 0 {
-                self.batteryInformation?.packVoltage = batteryInformation.packVoltage
-            }
-            
-            if batteryInformation.temperature != 0 {
-                self.batteryInformation?.temperature = batteryInformation.temperature
-            }
-            
-            if batteryInformation.errors != "" {
-                self.batteryInformation?.errors = batteryInformation.errors
-            }
-            
-            if batteryInformation.state != 0 {
-                self.batteryInformation?.state = batteryInformation.state
-            }
-            
-            if batteryInformation.backupBatteryVoltage != 0 {
-                self.batteryInformation?.backupBatteryVoltage = batteryInformation.backupBatteryVoltage
-            }
-        }
+        }).disposed(by: disposeBag)
     }
-    
-    func didUpdateMotorInformation(_ motorInformation: CKMotorInformationData) {
-        self.motorInformation = motorInformation
+
+    func subscribeToMotorInformation() {
+        CTVariableInformationService.shared.motorInformationSubject.subscribe(onNext: { motorInformation in
+            self.motorInformation = motorInformation
+        }).disposed(by: disposeBag)
     }
 }
