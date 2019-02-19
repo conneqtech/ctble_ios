@@ -46,9 +46,12 @@ public struct CKStaticInformationService: CTBleServiceProtocol {
                             UUID: CBUUID(string: "003065A4-1028-11E8-A8D5-435154454348"),
                             type: .ascii),
 
-        "003065A4-1029-11E8-A8D5-435154454348": CTBleCharacteristic(name: "imei",
+        "003065A4-1029-11E8-A8D5-435154454348": CTBleCharacteristic(name: "ble_version",
                             UUID: CBUUID(string: "003065A4-1029-11E8-A8D5-435154454348"),
-                            type: .ascii)
+                            type: .ascii),
+        "003065A4-1030-11E8-A8D5-435154454348": CTBleCharacteristic(name: "air_version",
+                                                                    UUID: CBUUID(string: "003065A4-1030-11E8-A8D5-435154454348"),
+                                                                    type: .ascii)
     ]
 
     public mutating func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
@@ -68,8 +71,44 @@ public struct CKStaticInformationService: CTBleServiceProtocol {
              peripheral.readValue(for: characteristic)
         case .update:
             if let data = characteristic.value {
-                let test = String(data: data, encoding: .ascii)
-                print(test)
+                if let rawString = String(data: data, encoding: .ascii) {
+                    if let cString = rawString.cString(using: .utf8) {
+                        let actualString = String(cString: cString)
+                        print(actualString)
+                        
+                        switch characteristic.uuid.uuidString {
+                        case "003065A4-1021-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.bikeType = actualString
+                        case "003065A4-1022-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.bikeSerialNumber = actualString
+                        case "003065A4-1023-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.batterySerialNumber = actualString
+                        case "003065A4-1024-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.bikeSoftwareVersion = actualString
+                        case "003065A4-1025-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.controllerSoftwareVersion = actualString
+                        case "003065A4-1026-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.displaySoftwareVersion = actualString
+                        case "003065A4-1027-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.bikeDesignCapacity = Int(data[0])
+                        case "003065A4-1028-11E8-A8D5-435154454348":
+                            let wheelDiameter = data.withUnsafeBytes {
+                                (pointer: UnsafePointer<UInt16>) -> UInt16 in
+                                return pointer.pointee
+                            }
+                            
+                            CTStaticInformationService.shared.data.wheelDiameter = Int(wheelDiameter)
+                        case "003065A4-1029-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.bleVersion = actualString
+                        case "003065A4-1030-11E8-A8D5-435154454348":
+                            CTStaticInformationService.shared.data.airVersion = actualString
+                        default:
+                            break
+                        }
+                        
+                        CTStaticInformationService.shared.updateStaticInformation()
+                    }
+                }
             }
         default:
             break

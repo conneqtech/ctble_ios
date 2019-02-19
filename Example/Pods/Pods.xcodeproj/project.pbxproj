@@ -230,6 +230,8 @@
 		BC44131FA18817DD38FE4DE7B5F330A6 /* ObservableType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86A24930C3B7DF872C9C6FEF3D57F7 /* ObservableType+Extensions.swift */; };
 		BCCB81FA97C85DAA76444CD689929D83 /* SingleAssignmentDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD367D311F9409497AE28CADAE2CB19A /* SingleAssignmentDisposable.swift */; };
 		BF624B58A9828D18B1C5F2B73B97747D /* QuickSelectedTestSuiteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFC78FD4052C0F71D2E14AC35698305 /* QuickSelectedTestSuiteBuilder.swift */; };
+		C04DD1AB21FB072800C3B977 /* CKStaticInformationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DD1AA21FB072800C3B977 /* CKStaticInformationData.swift */; };
+		C04DD1AD21FB083700C3B977 /* CTStaticInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DD1AC21FB083700C3B977 /* CTStaticInformationService.swift */; };
 		C0CC891521F2070900D1C2F9 /* CKLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC891421F2070900D1C2F9 /* CKLocationData.swift */; };
 		C0ED97F3A6847AC2C5BC48F75F9B5D86 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C272721D8E3B23153742E3768546B4 /* Cancelable.swift */; };
 		C12E82C90CE63CE7D638F82E5D8E9A66 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9FE15136743965519A0D720F8299F /* Just.swift */; };
@@ -718,6 +720,8 @@
 		BE9297BF1D61E0842001D475BCE4FB77 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; name = highlight.css; path = docs/css/highlight.css; sourceTree = "<group>"; };
 		BECC45BDA25150FBD58D69BC23BB951F /* CTDeviceServiceProtocol.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = CTDeviceServiceProtocol.html; path = docs/Protocols/CTDeviceServiceProtocol.html; sourceTree = "<group>"; };
 		BFF246518BD4AEA2DC1B99133AB8BF1B /* HaveCount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HaveCount.swift; path = Sources/Nimble/Matchers/HaveCount.swift; sourceTree = "<group>"; };
+		C04DD1AA21FB072800C3B977 /* CKStaticInformationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKStaticInformationData.swift; sourceTree = "<group>"; };
+		C04DD1AC21FB083700C3B977 /* CTStaticInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTStaticInformationService.swift; sourceTree = "<group>"; };
 		C0CC891421F2070900D1C2F9 /* CKLocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKLocationData.swift; sourceTree = "<group>"; };
 		C0D964FF90597E719CB0D6D9758FC984 /* DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DSL.swift; path = Sources/Nimble/DSL.swift; sourceTree = "<group>"; };
 		C1C9E4D48A31CCEB145EAF014B81F08B /* Classes.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = Classes.html; path = docs/Classes.html; sourceTree = "<group>"; };
@@ -1322,6 +1326,7 @@
 				BC0FA03584FB6019DBEE089FF654AB3C /* CKBikeInformationData.swift */,
 				D1FD59A11D149928E082944F2260947F /* CKMotorInformationData.swift */,
 				C0CC891421F2070900D1C2F9 /* CKLocationData.swift */,
+				C04DD1AA21FB072800C3B977 /* CKStaticInformationData.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1332,6 +1337,7 @@
 				EC41047DD98FC936E123B3845647458F /* CTLocationService.swift */,
 				6B30E5E2DA4C740D41C62519FDCF6F35 /* CTBleLogService.swift */,
 				1CF01C363A26B26CE969C20384A9261D /* CTVariableInformationService.swift */,
+				C04DD1AC21FB083700C3B977 /* CTStaticInformationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2177,7 +2183,9 @@
 				DC777AF1E509D1E43800A05055F0E7D2 /* CKAutenticationService.swift in Sources */,
 				4E49BC301CD36A4942920DCC6C934B4B /* CKBatteryInformationData.swift in Sources */,
 				740B931A43A1F798C0FD18E7C9A57ED0 /* CKBatteryInformationService.swift in Sources */,
+				C04DD1AB21FB072800C3B977 /* CKStaticInformationData.swift in Sources */,
 				E295F267CB0A2878298AF376B2AC7F96 /* CKBikeInformationData.swift in Sources */,
+				C04DD1AD21FB083700C3B977 /* CTStaticInformationService.swift in Sources */,
 				7A1B1B6B64AD1573583710EF2D2A845B /* CKBikeInformationService.swift in Sources */,
 				334AB3D3C5A53EF20A879F65E665B33B /* CKLocationService.swift in Sources */,
 				4AE5D661812B3C4B9287AB7868213591 /* CKMotorInformationData.swift in Sources */,

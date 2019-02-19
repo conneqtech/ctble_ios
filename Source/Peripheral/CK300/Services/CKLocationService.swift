@@ -39,6 +39,9 @@ public struct CKLocationService: CTBleServiceProtocol {
                     let lonData = data.subdata(in: Range(0...3))
                     let latData = data.subdata(in: Range(4...7))
                     let altData = data.subdata(in: Range(8...9))
+                    let hdop = data[10]
+                    let speed = data[11]
+                    
 
                     let latInt = latData.withUnsafeBytes {
                         (pointer: UnsafePointer<Int32>) -> Int32 in
@@ -57,8 +60,14 @@ public struct CKLocationService: CTBleServiceProtocol {
 
                     let lat = Double(latInt) / 1000000
                     let lon = Double(lonInt) / 1000000
+                    
+                    let locationData = CKLocationData(latitude: lat,
+                                                      longitude: lon,
+                                                      altitude: Int(altitude),
+                                                      hdop: Int(hdop),
+                                                      speed: Int(speed))
 
-                    CTLocationService.shared.updateLocation(withDeviceName: "Test", lat: lat, lon: lon, altitude: Int(altitude))
+                    CTLocationService.shared.updateLocation(locationData)
                 }
             }
 

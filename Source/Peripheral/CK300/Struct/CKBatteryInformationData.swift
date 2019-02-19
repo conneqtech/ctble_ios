@@ -16,4 +16,6 @@ public struct CKBatteryInformationData: Codable {
     public var errors: String
     public var state: Int
     public var backupBatteryVoltage: Int
+    public var backupBatteryPercentage: Int
+    public var bikeBatteryActualCurrent: Int
 }

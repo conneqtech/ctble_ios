@@ -11,4 +11,6 @@ public struct CKLocationData: Codable {
     public var latitude: Double
     public var longitude: Double
     public var altitude: Int
+    public var hdop: Int
+    public var speed: Int
 }

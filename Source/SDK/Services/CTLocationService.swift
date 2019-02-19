@@ -17,8 +17,7 @@ public class CTLocationService: NSObject {
         super.init()
     }
 
-    func updateLocation(withDeviceName deviceName: String, lat: Double, lon: Double, altitude: Int) {
-        let data = CKLocationData(latitude: lat, longitude: lon, altitude: altitude)
-        locationSubject.onNext(data)
+    func updateLocation(_ locationData: CKLocationData) {
+        locationSubject.onNext(locationData)
     }
 }

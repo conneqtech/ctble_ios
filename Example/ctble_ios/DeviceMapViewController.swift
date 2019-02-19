@@ -25,7 +25,7 @@ class DeviceMapViewController: UIViewController {
     @IBOutlet weak var updatedOnButton: UIBarButtonItem!
     
     var coords: [CLLocationCoordinate2D] = []
-    var log: [CTLogObject] = []
+    var log: [CKLocationData] = []
     
     var mapAnnotations: [MKPointAnnotation] = []
     var route: MKPolyline?
@@ -61,7 +61,7 @@ class DeviceMapViewController: UIViewController {
     @IBAction func exportRoute(_ sender: Any) {
         var text = ""
         log.forEach { item in
-            text += "[\(item.date)] lat: \(item.lat) lon: \(item.lon) alt: \(item.altitude)\n"
+            text += "lat: \(item.latitude) lon: \(item.longitude) alt: \(item.altitude) hdop: \(item.hdop) speed: \(item.speed) \n"
         }
         
         let shareAll = [text]
@@ -95,16 +95,13 @@ extension DeviceMapViewController: MKMapViewDelegate {
         
         CTLocationService.shared.locationSubject.subscribe(onNext: { locationData in
             let annotation = MKPointAnnotation()
-            annotation.title = "alt: \(locationData.altitude)"
+            annotation.title = "🏎: \(locationData.speed) 🎈:\(locationData.altitude)"
             
             let coord = CLLocationCoordinate2D(latitude: locationData.latitude, longitude: locationData.longitude)
             annotation.coordinate = coord
             
             self.log.append(
-                CTLogObject(date: Date(),
-                            lat: locationData.latitude,
-                            lon: locationData.longitude,
-                            altitude:locationData.altitude)
+                locationData
             )
             
             if !self.coords.contains(where: { c in

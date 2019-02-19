@@ -21,6 +21,20 @@ struct TableSection {
 
 class DeviceDetailViewController: UITableViewController {
     
+    
+    let staticInformationSubtitles = [
+        "Bike type",
+        "Serial number bike",
+        "Serial number battery",
+        "Bike software version",
+        "Controller software version",
+        "Display software version",
+        "Bike design capacity",
+        "Wheel diameter",
+        "BLE Version",
+        "AIR Version"
+    ]
+    
     let bikeStaticInformationSubtitles = [
         "Bike type",
         "Serial number bike",
@@ -52,7 +66,9 @@ class DeviceDetailViewController: UITableViewController {
         "Temperature",
         "Errors",
         "State",
-        "Backup battery voltage"
+        "Backup battery voltage",
+        "Backup battery percentage",
+        "Bike actual current"
     ]
     
     let motorInformationSubtitles = [
@@ -74,6 +90,7 @@ class DeviceDetailViewController: UITableViewController {
     var bikeInformation: CKBikeInformationData?
     var batteryInformation: CKBatteryInformationData?
     var motorInformation: CKMotorInformationData?
+    var staticInfomation: CKStaticInformationData?
     
     
     let disposeBag = DisposeBag()
@@ -82,6 +99,7 @@ class DeviceDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         sections = [
+            TableSection(identifier: "static_info", title: "⚡️ Static information - 1020", items: staticInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
             TableSection(identifier: "bike_info", title: "🚴‍♀️ Bike information - 1051", items: bikeInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
             TableSection(identifier: "location", title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil),
             TableSection(identifier: "battery_info", title: "🔋 Battery information - 1053", items: batteryInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
@@ -96,6 +114,7 @@ class DeviceDetailViewController: UITableViewController {
     
         title = connectedDevice.peripheral.name!
         connectedDevice.getBikeInformation()
+        connectedDevice.getStaticInformation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +123,7 @@ class DeviceDetailViewController: UITableViewController {
         subscribeToBikeInformation()
         subscribeToBatteryInformation()
         subscribeToMotorInformation()
+        subscribeToStaticInformation()
         reloadTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reloadTableView), userInfo: nil, repeats: true)
     }
     
@@ -140,7 +160,10 @@ extension DeviceDetailViewController {
         }
         
         if sections[section].cellIdentifier == "titleCell" {
-            return ""
+            let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+            let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+
+            return "V\(appVersionString) build: \(buildNumber)"
         }
         
         return "Never updated"
@@ -156,6 +179,46 @@ extension DeviceDetailViewController {
             cell.textLabel?.text = sectionData.items[indexPath.row]
         } else {
             cell.detailTextLabel?.text = sectionData.items[indexPath.row]
+        }
+        
+        if sectionData.identifier == "static_info" {
+            if let info = staticInfomation {
+                sections[indexPath.section].lastUpdated = Date()
+                
+                var textToShow = "-"
+                switch indexPath.row {
+                case 0:
+                    textToShow = info.bikeType
+                case 1:
+                    textToShow = info.bikeSerialNumber
+                case 2:
+                    textToShow = info.batterySerialNumber
+                case 3:
+                    textToShow = info.bikeSoftwareVersion
+                case 4:
+                    textToShow = info.controllerSoftwareVersion
+                case 5:
+                    textToShow = info.displaySoftwareVersion
+                case 6:
+                    textToShow = "\(info.bikeDesignCapacity)mAh/mWh"
+                case 7:
+                    textToShow = "\(info.wheelDiameter)mm"
+                case 8:
+                    textToShow = info.bleVersion
+                case 9:
+                    textToShow = info.airVersion
+                default:
+                    break
+                }
+                
+                if textToShow == "" {
+                    textToShow = "NOT SET"
+                }
+                
+                cell.textLabel?.text = textToShow
+            } else {
+                cell.textLabel?.text = "-"
+            }
         }
         
         if sectionData.identifier == "bike_info" {
@@ -207,7 +270,6 @@ extension DeviceDetailViewController {
                 case 4:
                     textToShow = "\(info.temperature)C/K"
                 case 5:
-                    
                     textToShow = info.errors.replacingOccurrences(of: " ", with: "") != "" ? "\(info.errors)" : "-"
                 case 6:
                     switch info.state {
@@ -224,6 +286,10 @@ extension DeviceDetailViewController {
                     }
                 case 7:
                     textToShow = "\(info.backupBatteryVoltage)mV"
+                case 8:
+                    textToShow = "\(info.backupBatteryPercentage)%"
+                case 9:
+                    textToShow = "\(info.bikeBatteryActualCurrent)mA"
                 default:
                     break
                 }
@@ -301,84 +367,25 @@ extension DeviceDetailViewController {
     
     func subscribeToBikeInformation() {
         CTVariableInformationService.shared.bikeInformationSubject.subscribe(onNext: { bikeInformation in
-            // Bad code for bad tracker :(
-            if self.bikeInformation == nil {
-                self.bikeInformation = bikeInformation
-            } else {
-                self.bikeInformation?.bikeStatus = bikeInformation.bikeStatus
-                
-                if bikeInformation.speed != 0 {
-                    self.bikeInformation?.speed = bikeInformation.speed
-                }
-                
-                if bikeInformation.range != 0 {
-                    self.bikeInformation?.range = bikeInformation.range
-                }
-                
-                if bikeInformation.odometer != 0 {
-                    self.bikeInformation?.odometer = bikeInformation.odometer
-                }
-                
-                if bikeInformation.bikeBatterySOC != 0 {
-                    self.bikeInformation?.bikeBatterySOC = bikeInformation.bikeBatterySOC
-                }
-                
-                if bikeInformation.bikeBatterySOCPercentage != 0 {
-                    self.bikeInformation?.bikeBatterySOCPercentage = bikeInformation.bikeBatterySOCPercentage
-                }
-                
-                if bikeInformation.supportMode != 0 {
-                    self.bikeInformation?.supportMode = bikeInformation.supportMode
-                }
-                
-                self.bikeInformation?.lightStatus = bikeInformation.lightStatus
-            }
+            self.bikeInformation = bikeInformation
         }).disposed(by: disposeBag)
     }
     
     func subscribeToBatteryInformation() {
         CTVariableInformationService.shared.batteryInformationSubject.subscribe(onNext: { batteryInformation in
-            if self.batteryInformation == nil {
-                self.batteryInformation = batteryInformation
-            } else {
-                if batteryInformation.fccMah != 0 {
-                    self.batteryInformation?.fccMah = batteryInformation.fccMah
-                }
-                
-                if batteryInformation.fccPercentage != 0 {
-                    self.batteryInformation?.fccPercentage = batteryInformation.fccPercentage
-                }
-                
-                if batteryInformation.chargingCycles != 0 {
-                    self.batteryInformation?.chargingCycles = batteryInformation.chargingCycles
-                }
-                
-                if batteryInformation.packVoltage != 0 {
-                    self.batteryInformation?.packVoltage = batteryInformation.packVoltage
-                }
-                
-                if batteryInformation.temperature != 0 {
-                    self.batteryInformation?.temperature = batteryInformation.temperature
-                }
-                
-                if batteryInformation.errors != "" {
-                    self.batteryInformation?.errors = batteryInformation.errors
-                }
-                
-                if batteryInformation.state != 0 {
-                    self.batteryInformation?.state = batteryInformation.state
-                }
-                
-                if batteryInformation.backupBatteryVoltage != 0 {
-                    self.batteryInformation?.backupBatteryVoltage = batteryInformation.backupBatteryVoltage
-                }
-            }
+           self.batteryInformation = batteryInformation
         }).disposed(by: disposeBag)
     }
 
     func subscribeToMotorInformation() {
         CTVariableInformationService.shared.motorInformationSubject.subscribe(onNext: { motorInformation in
             self.motorInformation = motorInformation
+        }).disposed(by: disposeBag)
+    }
+    
+    func subscribeToStaticInformation() {
+        CTStaticInformationService.shared.staticInformationSubject.subscribe(onNext: { staticInformation in
+            self.staticInfomation = staticInformation
         }).disposed(by: disposeBag)
     }
 }

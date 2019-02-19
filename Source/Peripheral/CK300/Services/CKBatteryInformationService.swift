@@ -41,6 +41,9 @@ public struct CKBatteryInformationService: CTBleServiceProtocol {
                     let temperatureData = data.subdata(in: Range(10...11))
                     let batteryErrorData = data.subdata(in: Range(12...14))
                     let batteryStateData = data[15]
+                    let backupBatteryVoltageData =  data.subdata(in: Range(16...17)) // Not yet implemented.
+                    let backupBatteryPercentage = data[18]
+                    let bikeActualCurrentData = data.subdata(in: Range(19...20))
 
                     let fccMah = fccMahData.withUnsafeBytes {
                         (pointer: UnsafePointer<UInt32>) -> UInt32 in
@@ -70,12 +73,16 @@ public struct CKBatteryInformationService: CTBleServiceProtocol {
                     let batteryError = String(bytes: batteryErrorData, encoding: .ascii)
 
                     var backupBatteryVoltage: UInt16 = 0
-                    if data.count >= 17 {
-                        var backupBatteryData = data.subdata(in: Range(16...17))
-                        backupBatteryVoltage = backupBatteryData.withUnsafeBytes {
-                            (pointer: UnsafePointer<UInt16>) -> UInt16 in
-                            return pointer.pointee
-                        }
+    
+                    backupBatteryVoltage = backupBatteryVoltageData.withUnsafeBytes {
+                        (pointer: UnsafePointer<UInt16>) -> UInt16 in
+                        return pointer.pointee
+                    }
+                    
+//                    bikeActualCurrentData
+                    let bikeActualCurrent = bikeActualCurrentData.withUnsafeBytes {
+                        (pointer: UnsafePointer<Int16>) -> Int16 in
+                        return pointer.pointee
                     }
 
                     let batteryInformation = CKBatteryInformationData(
@@ -86,7 +93,9 @@ public struct CKBatteryInformationService: CTBleServiceProtocol {
                         temperature: Int(temperature),
                         errors: batteryError!,
                         state: Int(batteryStateData),
-                        backupBatteryVoltage: Int(backupBatteryVoltage))
+                        backupBatteryVoltage: Int(backupBatteryVoltage),
+                        backupBatteryPercentage: Int(backupBatteryPercentage),
+                        bikeBatteryActualCurrent: Int(bikeActualCurrent))
 
                     CTVariableInformationService.shared.updateBatteryInformation(batteryInformation)
                 }
