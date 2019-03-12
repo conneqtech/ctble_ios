@@ -62,7 +62,8 @@ public class CTBleManager: NSObject {
     }
 
     public func connectBleDevice(_ device: CK300Device) {
-        print("== Attempting to connect to device ==")
+        print("🔗 Trying to connect \(device.peripheral.name!)")
+        
         self.connectedDevice = device
         self.connectedDevice?.peripheral.delegate = self
 
@@ -113,7 +114,7 @@ extension CTBleManager: CBCentralManagerDelegate {
 // MARK: - CBPeripheral delegate
 extension CTBleManager: CBPeripheralDelegate {
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("connected")
+        print("🔗 Connected with \(peripheral.name!)")
         if let device = self.connectedDevice {
             delegate?.didConnect(device)
         }
@@ -128,7 +129,7 @@ extension CTBleManager: CBPeripheralDelegate {
         self.connectedDevice?.peripheral = peripheral
 
         peripheral.services?.forEach {
-            self.connectedDevice?.handleDiscoveredService($0)
+            self.connectedDevice?.handleDiscovered(service: $0)
         }
     }
 
@@ -136,9 +137,9 @@ extension CTBleManager: CBPeripheralDelegate {
                            didDiscoverCharacteristicsFor service: CBService,
                            error: Error?) {
         self.connectedDevice?.peripheral = peripheral
-
-        service.characteristics?.forEach { characteristic in
-            self.connectedDevice?.handleEvent(characteristic: characteristic, type: .discover)
+        
+        if let characteristics = service.characteristics {
+            self.connectedDevice?.handleDiscovered(characteristics: characteristics)
         }
     }
 

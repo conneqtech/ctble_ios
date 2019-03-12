@@ -81,17 +81,7 @@ class DeviceDetailViewController: UITableViewController {
         "Received signal strength"
     ]
     
-    let unlockedDeviceSubtitles = [
-        "Bike OnOff",
-        "Lights OnOff",
-        "ECU OnOff",
-        "E-RL Lock OnOff",
-        "Support mode",
-        "Digital IO OnOff"
-    ]
-    
-    
-    
+
     var sections: [TableSection] = []
     var reloadTimer: Timer!
     
@@ -108,7 +98,7 @@ class DeviceDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         sections = [
-            TableSection(identifier: "control", title: "🔌 Control bike - 10A0", items: ["🔒 Unlock device"], cellIdentifier: "titleCell", lastUpdated: nil),
+            TableSection(identifier: "control", title: "🔌 Control bike - 10A0", items: ["Show controls"], cellIdentifier: "titleCell", lastUpdated: nil),
             TableSection(identifier: "static_info", title: "⚡️ Static information - 1020", items: staticInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
             TableSection(identifier: "bike_info", title: "🚴‍♀️ Bike information - 1051", items: bikeInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
             TableSection(identifier: "location", title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil),
@@ -125,9 +115,9 @@ class DeviceDetailViewController: UITableViewController {
         self.device = connectedDevice
     
         title =  self.device.peripheral.name!
-        self.device.getBikeInformation()
-        self.device.getStaticInformation()
-        self.device.getControlData()
+        
+        self.device.getData(withServiceType: .bikeInformation)
+        self.device.getData(withServiceType: .staticInfomation)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,7 +127,6 @@ class DeviceDetailViewController: UITableViewController {
         subscribeToBatteryInformation()
         subscribeToMotorInformation()
         subscribeToStaticInformation()
-        subscribeToAuthenticationState()
         reloadTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reloadTableView), userInfo: nil, repeats: true)
     }
     
@@ -377,10 +366,7 @@ extension DeviceDetailViewController {
         }
         
         if sectionData.identifier == "control" {
-            print("Tap")
-            let password = "cVb??^Nn0^hnjXTL17nX"
-            CTBleManager.shared.connectedDevice?.login(withPassword: password)
-//            viewToUse = "bikeControlsTableViewController"
+            viewToUse = "bikeControlsTableViewController"
         }
         
         if viewToUse != "" {
@@ -413,19 +399,6 @@ extension DeviceDetailViewController {
     func subscribeToStaticInformation() {
         CTStaticInformationService.shared.staticInformationSubject.subscribe(onNext: { staticInformation in
             self.staticInfomation = staticInformation
-        }).disposed(by: disposeBag)
-    }
-    
-    func subscribeToAuthenticationState() {
-        CTAuthenticationService.shared.authenticationStatusSubject.subscribe(onNext: { status in
-            print(status)
-            
-            if (status == 0) {
-                self.sections[0].items = self.unlockedDeviceSubtitles
-                self.sections[0].cellIdentifier = "subtitleCell"
-            }
-            
-            self.reloadTableView()
         }).disposed(by: disposeBag)
     }
 }

@@ -67,10 +67,10 @@ public struct CKControlService: CTBleServiceProtocol {
                 print("Char: \(localCharacteristic.name)")
                 print("Value: \(Int(data[0]))")
                 
-                var command:UInt8 = 0
-                var data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
-                
-                peripheral.writeValue(data, for: localCharacteristic.characteristic!, type: .withResponse)
+//                var command:UInt8 = 0
+//                var data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
+//                
+//                peripheral.writeValue(data, for: localCharacteristic.characteristic!, type: .withResponse)
 //                
 //                if localCharacteristic.name == "bike_onoff" {
 //                    var command:UInt8 = 1

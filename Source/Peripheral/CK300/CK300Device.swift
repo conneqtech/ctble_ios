@@ -7,18 +7,32 @@
 
 import Foundation
 import CoreBluetooth
+import RxSwift
+
+public enum CKAuthenticationState: Int {
+    case unauthenticated = -1
+    case authenticated = 0
+}
+
+public enum CK300Service {
+    case authentication
+    case staticInfomation
+    case locationInformation
+    case bikeInformation
+    case batteryInformation
+    case motorInformation
+}
 
 public class CK300Device: CTBlePeripheral {
     public var peripheral: CBPeripheral!
 
-    public var services: [String: CTBleServiceProtocol] = [
-        "authentication": CKAuthenticationService(),
-        "static_information" : CKStaticInformationService(),
-        "location_information": CKLocationService(),
-        "bike_information": CKBikeInformationService(),
-        "battery_information": CKBatteryInformationService(),
-        "motor_information": CKMotorInformationService(),
-        "control": CKControlService()
+    public var services: [CK300Service: CTBleServiceProtocol] = [
+        .authentication         :   CKAuthenticationService(),
+        .staticInfomation       :   CKStaticInformationService(),
+        .locationInformation    :   CKLocationService(),
+        .bikeInformation        :   CKBikeInformationService(),
+        .batteryInformation     :   CKBatteryInformationService(),
+        .motorInformation       :   CKMotorInformationService()
     ]
     
     public var password = ""
@@ -29,79 +43,61 @@ public class CK300Device: CTBlePeripheral {
 
     public required init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
-        self.UUIDList = self.buildUUIDList()
     }
-
-    public func buildUUIDList() -> [String: String] {
-        var uuidList: [String: String] = [:]
-        services.forEach { _, service in
-            uuidList[service.UUID.uuidString] = service.name
-            service.characteristics.forEach { key, characteristic in
-                uuidList[key] = "\(service.name)|\(characteristic.name)"
-            }
-        }
-
-        return uuidList
-    }
-
-    public func login(withPassword password: String) {
-        print("== Performing login ==")
-
-        self.password = password
-        if let service = services["authentication"] {
-            self.peripheral.discoverServices([service.UUID])
-        }
-    }
-
-    public func getStaticInformation() {
-        print("== Fetching static information ==")
-
-        if let service = services["static_information"] {
-            self.peripheral.discoverServices([service.UUID])
-        }
-    }
-
-    public func getBatteryInformation() {
-        print("== Fetching battery information ==")
-
-        if let service = services["battery_information"] {
-            self.peripheral.discoverServices([service.UUID])
-        }
-    }
-
+    
     public func startReportingLocationData() {
-        if let service = services["location_information"] {
-            self.peripheral.discoverServices([service.UUID])
-        }
-    }
-
-    public func getBikeInformation() {
-        print("== Fetching bike information ==")
-
-        if let service = services["bike_information"] {
+        if let service = services[.locationInformation] {
             self.peripheral.discoverServices([service.UUID])
         }
     }
     
-    public func getControlData() {
-        print("== Fetching control information ==")
-        
-        if let service = services["control"] {
-            self.peripheral.discoverServices([service.UUID])
-        }
-    }
-
-    public func discoverCharacteristics(for service: CBService) {
-
-    }
-
     internal func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
         self.services.keys.forEach { key in
             self.services[key]!.handleEvent(peripheral: peripheral, characteristic: characteristic, type: type)
         }
     }
+}
 
-    public func handleDiscoveredService(_ service: CBService) {
+// MARK: Data
+public extension CK300Device {
+    
+    public func getData(withServiceType type: CK300Service) {
+        if let service = services[type] {
+            print("⚡️ Service `\(type)` is being fetched")
+            self.peripheral.discoverServices([service.UUID])
+        } else {
+            print("⚠️ Service `\(type)` is not implemented")
+        }
+    }
+}
+
+// MARK: Handlers
+public extension CK300Device {
+    public func handleDiscovered(characteristics: [CBCharacteristic]) {
+        
+    }
+    
+    public func handleDiscovered(service: CBService) {
         self.peripheral.discoverCharacteristics(nil, for: service)
     }
+}
+
+// MARK: Authentication
+public extension CK300Device {
+    public func getAuthenticationState() -> Observable<CKAuthenticationState> {
+        return Observable.of(.unauthenticated)
+    }
+    
+    public func login(withPassword password: String) -> Observable<CKAuthenticationState> {
+         return Observable.of(.unauthenticated)
+    }
+    
+//    public func login(withPassword password: String) {
+//        print("== Performing login ==")
+//
+//        self.password = password
+//        if let service = services["authentication"] {
+//            self.peripheral.discoverServices([service.UUID])
+//        }
+//    }
 }
