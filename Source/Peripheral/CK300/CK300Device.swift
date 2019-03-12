@@ -17,8 +17,11 @@ public class CK300Device: CTBlePeripheral {
         "location_information": CKLocationService(),
         "bike_information": CKBikeInformationService(),
         "battery_information": CKBatteryInformationService(),
-        "motor_information": CKMotorInformationService()
+        "motor_information": CKMotorInformationService(),
+        "control": CKControlService()
     ]
+    
+    public var password = ""
 
     public var UUIDList: [String: String] = [:]
 
@@ -44,6 +47,7 @@ public class CK300Device: CTBlePeripheral {
     public func login(withPassword password: String) {
         print("== Performing login ==")
 
+        self.password = password
         if let service = services["authentication"] {
             self.peripheral.discoverServices([service.UUID])
         }
@@ -75,6 +79,14 @@ public class CK300Device: CTBlePeripheral {
         print("== Fetching bike information ==")
 
         if let service = services["bike_information"] {
+            self.peripheral.discoverServices([service.UUID])
+        }
+    }
+    
+    public func getControlData() {
+        print("== Fetching control information ==")
+        
+        if let service = services["control"] {
             self.peripheral.discoverServices([service.UUID])
         }
     }

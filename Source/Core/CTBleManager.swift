@@ -113,6 +113,7 @@ extension CTBleManager: CBCentralManagerDelegate {
 // MARK: - CBPeripheral delegate
 extension CTBleManager: CBPeripheralDelegate {
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("connected")
         if let device = self.connectedDevice {
             delegate?.didConnect(device)
         }

@@ -59,8 +59,6 @@ public struct CKStaticInformationService: CTBleServiceProtocol {
             return
         }
 
-        print("[Static information service] handle \(type) for \(characteristic.uuid.uuidString)")
-
         localCharacteristic.characteristic = characteristic
         characteristics.updateValue(localCharacteristic, forKey: characteristic.uuid.uuidString)
 
@@ -74,8 +72,7 @@ public struct CKStaticInformationService: CTBleServiceProtocol {
                 if let rawString = String(data: data, encoding: .ascii) {
                     if let cString = rawString.cString(using: .utf8) {
                         let actualString = String(cString: cString)
-                        print(actualString)
-                        
+    
                         switch characteristic.uuid.uuidString {
                         case "003065A4-1021-11E8-A8D5-435154454348":
                             CTStaticInformationService.shared.data.bikeType = actualString

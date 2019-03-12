@@ -28,6 +28,14 @@ class DeviceListTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = refreshBarButton
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Disconnecting connected device")
+        if let connectedDevice = CTBleManager.shared.connectedDevice {
+            CTBleManager.shared.disconnectPeripheral(connectedDevice.peripheral)
+        }
+    }
+    
     func moveToDetailView() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "deviceDetailViewController")
         self.navigationController?.pushViewController(vc, animated: true)
@@ -42,7 +50,6 @@ extension DeviceListTableViewController: CTBleManagerDelegate {
     
     func didConnect(_ device: CK300Device) {
         activityIndicator.stopAnimating()
-    
         moveToDetailView()
     }
     

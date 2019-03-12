@@ -39,8 +39,12 @@ public struct CKAuthenticationService: CTBleServiceProtocol {
         switch type {
         case .discover:
             if localCharacteristic.name == "password" {
-                let password = "vyc?3MEYa}OKWI0mEI50"
-                peripheral.writeValue(password.data(using: .ascii)!, for: characteristic, type: .withResponse)
+                guard let password = CTBleManager.shared.connectedDevice?.password else {
+                    print("⚠️ Password not set before performing login.")
+                    return
+                }
+                
+                self.authenticate(peripheral, password)
             }
         case .write:
             if localCharacteristic.name == "password" {
@@ -53,13 +57,25 @@ public struct CKAuthenticationService: CTBleServiceProtocol {
             }
         case .update:
             if localCharacteristic.name == "authentication_status" {
+                
+                guard let password = CTBleManager.shared.connectedDevice?.password else {
+                    print("⚠️ Password not set before performing login.")
+                    return
+                }
+                
                 if let char = localCharacteristic.characteristic, let data = char.value {
                     let state = Int8(bitPattern: data[0])
-                    print("Authentication state: \(state)")
+                    CTAuthenticationService.shared.updateAuthenticationStatus(Int(state))
                 }
             }
         default:
             break
+        }
+    }
+    
+    func authenticate(_ peripheral: CBPeripheral, _ password: String) {
+        if let passwordChar = characteristics["003065A4-1002-11E8-A8D5-435154454348"]?.characteristic {
+            peripheral.writeValue(password.data(using: .ascii)!, for: passwordChar, type: .withResponse)
         }
     }
 }
