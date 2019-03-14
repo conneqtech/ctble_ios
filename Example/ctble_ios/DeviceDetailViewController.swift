@@ -53,6 +53,7 @@ class DeviceDetailViewController: UITableViewController {
         "Range",
         "Odometer",
         "Bike battery SOC mAh/mWh",
+        "Calculated bike battery SOC mAh/mWh",
         "Bike battery SOC percentage",
         "Support mode",
         "Light status"
@@ -60,7 +61,7 @@ class DeviceDetailViewController: UITableViewController {
     
     let batteryInformationSubtitles = [
         "FCC mAh/mWh",
-        "FCC percentage",
+        "State of health (SOH)",
         "Charging cycles",
         "Pack voltage",
         "Temperature",
@@ -247,10 +248,16 @@ extension DeviceDetailViewController {
                 case 4:
                     textToShow = "\(info.bikeBatterySOC) mAh/mWh"
                 case 5:
-                    textToShow = "\(info.bikeBatterySOCPercentage)%"
+                    if let batteryInformation = batteryInformation {
+                        textToShow = "\(info.bikeBatterySOCPercentage * batteryInformation.fccMah) mAh/mWh"
+                    } else {
+                        textToShow = "Can't calculate"
+                    }
                 case 6:
-                    textToShow = "\(info.supportMode)"
+                    textToShow = "\(info.bikeBatterySOCPercentage)%"
                 case 7:
+                    textToShow = "\(info.supportMode)"
+                case 8:
                     textToShow = info.lightStatus == 1 ? "ON" : "OFF"
                 default:
                     break
@@ -366,6 +373,9 @@ extension DeviceDetailViewController {
         }
         
         if sectionData.identifier == "control" {
+            self.device.getAuthenticationState().subscribe(onNext: { status in
+                print(status)
+            }).disposed(by: disposeBag)
             viewToUse = "bikeControlsTableViewController"
         }
         

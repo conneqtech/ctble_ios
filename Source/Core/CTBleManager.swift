@@ -128,8 +128,8 @@ extension CTBleManager: CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         self.connectedDevice?.peripheral = peripheral
 
-        peripheral.services?.forEach {
-            self.connectedDevice?.handleDiscovered(service: $0)
+        if let services = peripheral.services {
+            self.connectedDevice?.handleDiscovered(services: services)
         }
     }
 
