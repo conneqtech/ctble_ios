@@ -14,72 +14,72 @@ import RxSwift
 struct TableSection {
     var identifier: String
     var title: String
-    var items: [String]
+    var items: [TableRow]
     var cellIdentifier: String
     var lastUpdated: Date?
+}
+
+struct TableRow {
+    let title: String
+    let key: CK300Field
+    let prefix: String
+    let suffix: String
+    
+    init (title: String, key: CK300Field, prefix: String = "", suffix: String = "") {
+        self.title = title
+        self.key = key
+        self.prefix = prefix
+        self.suffix = suffix
+    }
 }
 
 class DeviceDetailViewController: UITableViewController {
     
     
-    let staticInformationSubtitles = [
-        "Bike type",
-        "Serial number bike",
-        "Serial number battery",
-        "Bike software version",
-        "Controller software version",
-        "Display software version",
-        "Bike design capacity",
-        "Wheel diameter",
-        "BLE Version",
-        "AIR Version"
+//    let staticInformationSubtitles = [
+//        TableRow(title: "Bike type", key: .bikeType)
+//        "Serial number bike",
+//        "Serial number battery",
+//        "Bike software version",
+//        "Controller software version",
+//        "Display software version",
+//        "Bike design capacity",
+//        "Wheel diameter",
+//        "BLE Version",
+//        "AIR Version"
+//    ]
+    
+    let bikeInformationSubtitles: [TableRow] = [
+        TableRow(title: "Bike status", key: .bikeStatus),
+        TableRow(title: "Bike speed", key: .bikeSpeed, suffix: " km/h"),
+        TableRow(title: "Bike range", key: .bikeRange, suffix: " km"),
+        TableRow(title: "Bike odometer", key: .bikeOdometer, suffix: " m"),
+        TableRow(title: "Bike battery SOC mAh/mWh", key: .bikeBatterySOC, suffix: " mAh"),
+        TableRow(title: "Bike battery SOC percentage", key: .bikeBatterySOCPercentage, suffix: " %"),
+        TableRow(title: "Bike support mode", key: .bikeSupportMode),
+        TableRow(title: "Bike light status", key: .bikeLightStatus)
     ]
     
-    let bikeStaticInformationSubtitles = [
-        "Bike type",
-        "Serial number bike",
-        "Serial number battery",
-        "Bike software version",
-        "Controller software version",
-        "Display software version",
-        "Bike design capacity",
-        "Wheel diameter",
-        "IMEI"
+    let bikeBatteryInformationSubtitles: [TableRow] = [
+        TableRow(title: "Bike battery FCC", key: .bikeBatteryFCC, suffix: " mAh"),
+        TableRow(title: "Bike battery FCC percentage", key: .bikeBatteryFCCPercentage, suffix: " %"),
+        TableRow(title: "Bike battery charging cycles", key: .bikeBatteryFCC),
+        TableRow(title: "Bike battery pack voltage", key: .bikeBatteryPackVoltage, suffix: " V"),
+        TableRow(title: "Bike battery temperature", key: .bikeBatteryTemperature, suffix: " °C"),
+        TableRow(title: "Bike battery errors", key: .bikeBatteryErrors),
+        TableRow(title: "Bike battery state", key: .bikeBatteryState),
+        TableRow(title: "Backup battery pack voltage", key: .backupBatteryVoltage, suffix: " mV"),
+        TableRow(title: "Bike battery actual current", key: .bikeBatteryPackVoltage, suffix: " mA"),
     ]
     
-    let bikeInformationSubtitles = [
-        "Bike status",
-        "Speed",
-        "Range",
-        "Odometer",
-        "Bike battery SOC mAh/mWh",
-        "Calculated bike battery SOC mAh/mWh",
-        "Bike battery SOC percentage",
-        "Support mode",
-        "Light status"
-    ]
-    
-    let batteryInformationSubtitles = [
-        "FCC mAh/mWh",
-        "State of health (SOH)",
-        "Charging cycles",
-        "Pack voltage",
-        "Temperature",
-        "Errors",
-        "State",
-        "Backup battery voltage",
-        "Backup battery percentage",
-        "Bike actual current"
-    ]
-    
-    let motorInformationSubtitles = [
-        "Actual torque",
-        "Bike wheel speed",
-        "Motor power",
-        "Motor error",
-        "Pedal cadence",
-        "Pedal power",
-        "Received signal strength"
+    let motorInformationSubtitles: [TableRow] = [
+        TableRow(title: "Actual torque", key: .bikeActualTorque, suffix: " Nm"),
+        TableRow(title: "Bike wheel speed", key: .bikeWheelSpeed, suffix: " RPM"),
+        TableRow(title: "Motor power", key: .motorPower, suffix: " W"),
+        TableRow(title: "Motor errors", key: .motorErrors),
+        TableRow(title: "Pedal cadence", key: .pedalCadence, suffix: " RPM"),
+        TableRow(title: "Pedal power", key: .pedalPower, suffix: " W"),
+        TableRow(title: "Received signal strength", key: .receivedSignalStrength, suffix: " dbm")
     ]
     
 
@@ -87,10 +87,7 @@ class DeviceDetailViewController: UITableViewController {
     var reloadTimer: Timer!
     
     var device: CK300Device!
-    var bikeInformation: CKBikeInformationData?
-    var batteryInformation: CKBatteryInformationData?
-    var motorInformation: CKMotorInformationData?
-    var staticInfomation: CKStaticInformationData?
+    var deviceState: [CK300Field: Any] = [:]
     
     
     let disposeBag = DisposeBag()
@@ -99,13 +96,37 @@ class DeviceDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         sections = [
-            TableSection(identifier: "control", title: "🔌 Control bike - 10A0", items: ["Show controls"], cellIdentifier: "titleCell", lastUpdated: nil),
-            TableSection(identifier: "static_info", title: "⚡️ Static information - 1020", items: staticInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
-            TableSection(identifier: "bike_info", title: "🚴‍♀️ Bike information - 1051", items: bikeInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
-            TableSection(identifier: "location", title: "🗺 Location - 1052", items: ["Show location"], cellIdentifier: "titleCell", lastUpdated: nil),
-            TableSection(identifier: "battery_info", title: "🔋 Battery information - 1053", items: batteryInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
-            TableSection(identifier: "motor_info", title: "ℹ️ Motor information - 1054", items: motorInformationSubtitles, cellIdentifier: "subtitleCell", lastUpdated: nil),
-            TableSection(identifier: "phone_as_display", title: "⚙️ Utilities", items: ["Logging"], cellIdentifier: "titleCell", lastUpdated: nil),
+            TableSection(identifier: "static_info",
+                         title: "⚡️ Static information - 1020",
+                         items: [],
+                         cellIdentifier: "subtitleCell",
+                         lastUpdated: nil),
+            TableSection(identifier: "bike_info",
+                         title: "🚴‍♀️ Bike information - 1051",
+                         items: bikeInformationSubtitles,
+                         cellIdentifier: "subtitleCell",
+                         lastUpdated: nil),
+            
+            TableSection(identifier: "location",
+                         title: "🗺 Location - 1052",
+                         items: [TableRow(title: "Location", key: .gpsAltitude)],
+                         cellIdentifier: "titleCell",
+                         lastUpdated: nil),
+            TableSection(identifier: "battery_info",
+                         title: "🔋 Battery information - 1053",
+                         items: bikeBatteryInformationSubtitles,
+                         cellIdentifier: "subtitleCell",
+                         lastUpdated: nil),
+            TableSection(identifier: "motor_info",
+                         title: "ℹ️ Motor information - 1054",
+                         items: motorInformationSubtitles,
+                         cellIdentifier: "subtitleCell",
+                         lastUpdated: nil),
+            TableSection(identifier: "settings",
+                         title: "⚙️ Utilities",
+                         items: [],
+                         cellIdentifier: "titleCell",
+                         lastUpdated: nil),
         ]
         
         guard let connectedDevice = CTBleManager.shared.connectedDevice else {
@@ -117,27 +138,26 @@ class DeviceDetailViewController: UITableViewController {
     
         title =  self.device.peripheral.name!
         
-        self.device.getData(withServiceType: .bikeInformation)
-        self.device.getData(withServiceType: .staticInfomation)
+        self.device.deviceStatus.subscribe(onNext: { newStatus in
+            print("🐛 Device status: \(newStatus)")
+            
+            if newStatus == .ready {
+                self.device.getData(withServiceType: .variable)
+            }
+            
+        }).disposed(by: disposeBag)
+        self.device.setupDevice()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        subscribeToBikeInformation()
-        subscribeToBatteryInformation()
-        subscribeToMotorInformation()
-        subscribeToStaticInformation()
-        reloadTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reloadTableView), userInfo: nil, repeats: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        reloadTimer.invalidate()
-        super.viewWillDisappear(animated)
-    }
-    
-    @objc func reloadTableView() {
-        self.tableView.reloadData()
+        self.device.deviceState
+            .throttle(1, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { newState in
+                self.deviceState = newState
+                self.tableView.reloadData()
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -157,20 +177,14 @@ extension DeviceDetailViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if let lastUpdated = sections[section].lastUpdated {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm:ss"
-            return "Last updated: \(dateFormatter.string(from: lastUpdated))"
-        }
-        
-        if sections[section].cellIdentifier == "titleCell" {
+        if sections[section].identifier == "settings" {
             let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
             let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
             return "V\(appVersionString) build: \(buildNumber)"
         }
         
-        return "Never updated"
+        return ""
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -179,173 +193,22 @@ extension DeviceDetailViewController {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: sectionData.cellIdentifier, for: indexPath)
         
+        let item = sectionData.items[indexPath.row]
+        
+        var textToShow = "-"
+        if let info = self.deviceState[item.key] {
+            textToShow = "\(item.prefix)\(info)\(item.suffix)"
+        }
+        
+        cell.textLabel?.text = textToShow
+        
+        
         if sectionData.cellIdentifier == "titleCell" {
-            cell.textLabel?.text = sectionData.items[indexPath.row]
+            cell.textLabel?.text = item.title
         } else {
-            cell.detailTextLabel?.text = sectionData.items[indexPath.row]
+            cell.detailTextLabel?.text = item.title
         }
         
-        if sectionData.identifier == "control" {
-            if sectionData.items.count > 1 {
-                cell.textLabel?.text = "-"
-            }
-        }
-        
-        if sectionData.identifier == "static_info" {
-            if let info = staticInfomation {
-                sections[indexPath.section].lastUpdated = Date()
-                
-                var textToShow = "-"
-                switch indexPath.row {
-                case 0:
-                    textToShow = info.bikeType
-                case 1:
-                    textToShow = info.bikeSerialNumber
-                case 2:
-                    textToShow = info.batterySerialNumber
-                case 3:
-                    textToShow = info.bikeSoftwareVersion
-                case 4:
-                    textToShow = info.controllerSoftwareVersion
-                case 5:
-                    textToShow = info.displaySoftwareVersion
-                case 6:
-                    textToShow = "\(info.bikeDesignCapacity)mAh/mWh"
-                case 7:
-                    textToShow = "\(info.wheelDiameter)mm"
-                case 8:
-                    textToShow = info.bleVersion
-                case 9:
-                    textToShow = info.airVersion
-                default:
-                    break
-                }
-                
-                if textToShow == "" {
-                    textToShow = "NOT SET"
-                }
-                
-                cell.textLabel?.text = textToShow
-            } else {
-                cell.textLabel?.text = "-"
-            }
-        }
-        
-        if sectionData.identifier == "bike_info" {
-            if let info = bikeInformation {
-                sections[indexPath.section].lastUpdated = Date()
-        
-                var textToShow = "-"
-                switch indexPath.row {
-                case 0:
-                    textToShow = info.bikeStatus == 1 ? "ON" : "OFF"
-                case 1:
-                    textToShow = "\(Double(info.speed) / 10) km/h"
-                case 2:
-                    textToShow = "\(info.range) km"
-                case 3:
-                    textToShow = "\(Double(info.odometer) / 1000) km"
-                case 4:
-                    textToShow = "\(info.bikeBatterySOC) mAh/mWh"
-                case 5:
-                    if let batteryInformation = batteryInformation {
-                        textToShow = "\(info.bikeBatterySOCPercentage * batteryInformation.fccMah) mAh/mWh"
-                    } else {
-                        textToShow = "Can't calculate"
-                    }
-                case 6:
-                    textToShow = "\(info.bikeBatterySOCPercentage)%"
-                case 7:
-                    textToShow = "\(info.supportMode)"
-                case 8:
-                    textToShow = info.lightStatus == 1 ? "ON" : "OFF"
-                default:
-                    break
-                }
-                
-                cell.textLabel?.text = textToShow
-            } else {
-                cell.textLabel?.text = "-"
-            }
-        }
-        
-        if sectionData.identifier == "battery_info" {
-            if let info = batteryInformation {
-                sections[indexPath.section].lastUpdated = Date()
-                
-                var textToShow = "-"
-                switch indexPath.row {
-                case 0:
-                    textToShow = "\(info.fccMah) mAh/mWh"
-                case 1:
-                    textToShow = "\(info.fccPercentage)%"
-                case 2:
-                    textToShow = "\(info.chargingCycles)"
-                case 3:
-                    textToShow = "\(Double(info.packVoltage) / 100)V"
-                case 4:
-                    textToShow = "\(info.temperature)C/K"
-                case 5:
-                    textToShow = info.errors.replacingOccurrences(of: " ", with: "") != "" ? "\(info.errors)" : "-"
-                case 6:
-                    switch info.state {
-                    case 0:
-                        textToShow = "rest"
-                    case 1:
-                        textToShow = "charge"
-                    case 2:
-                        textToShow = "discharge"
-                    case 3:
-                        textToShow = "disconnected"
-                    default:
-                        textToShow = "UNKNOWN"
-                    }
-                case 7:
-                    textToShow = "\(info.backupBatteryVoltage)mV"
-                case 8:
-                    textToShow = "\(info.backupBatteryPercentage)%"
-                case 9:
-                    textToShow = "\(info.bikeBatteryActualCurrent)mA"
-                default:
-                    break
-                }
-        
-                cell.textLabel?.text = textToShow
-            } else {
-                cell.textLabel?.text = "-"
-            }
-        }
-        
-        if sectionData.identifier == "motor_info" {
-            if let info = motorInformation {
-                sections[indexPath.section].lastUpdated = Date()
-                
-                var textToShow = "-"
-                switch indexPath.row {
-                case 0:
-                    textToShow = "\(Double(info.actualTorque) / 100) Nm"
-                case 1:
-                    textToShow = "\(info.wheelSpeed) RPM"
-                case 2:
-                    textToShow = "\(info.motorPower) W"
-                case 3:
-                    textToShow = info.motorError.replacingOccurrences(of: " ", with: "") != "" ? "\(info.motorError)" : "-"
-                case 4:
-                    textToShow = "\(info.pedalCadence) RPM"
-                case 5:
-                    textToShow = "\(info.pedalPower) W"
-                case 6:
-                    textToShow = "\(info.receivedSignalStrength) dbm"
-                default:
-                    break
-                }
-                
-                cell.textLabel?.text = textToShow
-            } else {
-                cell.textLabel?.text = "-"
-            }
-        }
-
         return cell
     }
 }
@@ -357,7 +220,7 @@ extension DeviceDetailViewController {
         
         var viewToUse = ""
         
-        if sectionData.identifier == "phone_as_display" {
+        if sectionData.identifier == "settings" {
             switch indexPath.row {
             case 0:
                 viewToUse = "logViewController"
@@ -372,43 +235,16 @@ extension DeviceDetailViewController {
             viewToUse = "deviceMapViewController"
         }
         
-        if sectionData.identifier == "control" {
-            self.device.getAuthenticationState().subscribe(onNext: { status in
-                print(status)
-            }).disposed(by: disposeBag)
-            viewToUse = "bikeControlsTableViewController"
-        }
+//        if sectionData.identifier == "control" {
+//            self.device.getAuthenticationState().subscribe(onNext: { status in
+//                print(status)
+//            }).disposed(by: disposeBag)
+//            viewToUse = "bikeControlsTableViewController"
+//        }
         
         if viewToUse != "" {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewToUse)
             self.navigationController?.pushViewController(vc, animated: true)
         }
-    }
-}
-
-extension DeviceDetailViewController {
-    
-    func subscribeToBikeInformation() {
-        CTVariableInformationService.shared.bikeInformationSubject.subscribe(onNext: { bikeInformation in
-            self.bikeInformation = bikeInformation
-        }).disposed(by: disposeBag)
-    }
-    
-    func subscribeToBatteryInformation() {
-        CTVariableInformationService.shared.batteryInformationSubject.subscribe(onNext: { batteryInformation in
-           self.batteryInformation = batteryInformation
-        }).disposed(by: disposeBag)
-    }
-
-    func subscribeToMotorInformation() {
-        CTVariableInformationService.shared.motorInformationSubject.subscribe(onNext: { motorInformation in
-            self.motorInformation = motorInformation
-        }).disposed(by: disposeBag)
-    }
-    
-    func subscribeToStaticInformation() {
-        CTStaticInformationService.shared.staticInformationSubject.subscribe(onNext: { staticInformation in
-            self.staticInfomation = staticInformation
-        }).disposed(by: disposeBag)
     }
 }

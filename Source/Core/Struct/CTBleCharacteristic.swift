@@ -11,26 +11,14 @@ import CoreBluetooth
 public struct CTBleCharacteristic {
     public var name: String
     public var UUID: CBUUID
-    public var type: CTBleCharacteristicType
-    public var mask: [CTBleCharacteristicType]
-    public var permission: [CTBleCharacteristicPermission]
+    public var mask: [CTBleCharacteristicMask]
     public var characteristic: CBCharacteristic?
 
     public init (name: String,
                  UUID: CBUUID,
-                 type: CTBleCharacteristicType,
-                 mask: [CTBleCharacteristicType] = [],
-                 permission: [CTBleCharacteristicPermission] = [.read]) {
+                 mask: [CTBleCharacteristicMask] = []) {
         self.name = name
         self.UUID = UUID
-        self.type = type
-
-        if mask.isEmpty {
-            self.mask = [self.type]
-        } else {
-            self.mask = mask
-        }
-
-        self.permission = permission
+        self.mask = mask
     }
 }

@@ -139,7 +139,7 @@ extension CTBleManager: CBPeripheralDelegate {
         self.connectedDevice?.peripheral = peripheral
         
         if let characteristics = service.characteristics {
-            self.connectedDevice?.handleDiscovered(characteristics: characteristics)
+            self.connectedDevice?.handleDiscovered(characteristics: characteristics, forService: service)
         }
     }
 

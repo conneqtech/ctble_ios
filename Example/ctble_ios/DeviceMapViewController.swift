@@ -31,12 +31,10 @@ class DeviceMapViewController: UIViewController {
     var route: MKPolyline?
     var hideAnnotations = false
     
-    let diposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        CTBleManager.shared.connectedDevice?.startReportingLocationData()
         self.title = "Locations"
         
         
@@ -54,6 +52,7 @@ class DeviceMapViewController: UIViewController {
         self.map.delegate = nil
         self.map.removeFromSuperview()
         self.map = nil
+        self.disposeBag = DisposeBag()
         
         super.viewWillDisappear(animated)
     }
@@ -92,17 +91,26 @@ class DeviceMapViewController: UIViewController {
 extension DeviceMapViewController: MKMapViewDelegate {
     
     func subscribeToLocationUpdates() {
-        
-        CTLocationService.shared.locationSubject.subscribe(onNext: { locationData in
+        CTBleManager.shared.connectedDevice?.deviceState.subscribe(onNext: { deviceState in
             let annotation = MKPointAnnotation()
-            annotation.title = "🏎: \(locationData.speed) 🎈:\(locationData.altitude)"
             
-            let coord = CLLocationCoordinate2D(latitude: locationData.latitude, longitude: locationData.longitude)
+            if let speed = deviceState[.gpsSpeed], let altitude = deviceState[.gpsAltitude] {
+                annotation.title = "🏎: \(speed) 🎈:\(altitude)"
+            }
+            
+            
+            
+            guard let latitude = deviceState[.gpsLatitude] as? Double, let longitude = deviceState[.gpsLongitude] as? Double else{
+              return
+            }
+
+            let coord = CLLocationCoordinate2D(latitude: latitude ,
+                                               longitude: longitude)
             annotation.coordinate = coord
             
-            self.log.append(
-                locationData
-            )
+//            self.log.append(
+//                locationData
+//            )
             
             if !self.coords.contains(where: { c in
                 c.latitude == coord.latitude && c.longitude == coord.longitude
@@ -127,7 +135,7 @@ extension DeviceMapViewController: MKMapViewDelegate {
             
             
             self.updatedOnButton.title = "Last updated: \(dateFormatter.string(from: Date()))"
-        }).disposed(by: diposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

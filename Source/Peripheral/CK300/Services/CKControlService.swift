@@ -13,47 +13,55 @@ public struct CKControlService: CTBleServiceProtocol {
     public let name: String = "control"
     public let type: CTBleServiceType = .authenticated
     
-    public var characteristics: [String : CTBleCharacteristic] = [
-        "003065A4-10A1-11E8-A8D5-435154454348": CTBleCharacteristic(name: "bike_onoff",
-                                                                    UUID: CBUUID(string: "003065A4-10A1-11E8-A8D5-435154454348"),
-                                                                    type: .uint8,
-                                                                    mask: [],
-                                                                    permission: [.read, .write]),
-        "003065A4-10A2-11E8-A8D5-435154454348": CTBleCharacteristic(name: "lights_onoff",
-                                                                    UUID: CBUUID(string: "003065A4-10A2-11E8-A8D5-435154454348"),
-                                                                    type: .uint8,
-                                                                    mask: [],
-                                                                    permission: [.read, .write]),
-        "003065A4-10A3-11E8-A8D5-435154454348": CTBleCharacteristic(name: "ecu_lock_onoff",
-                                                                    UUID: CBUUID(string: "003065A4-10A3-11E8-A8D5-435154454348"),
-                                                                    type: .uint8,
-                                                                    mask: [],
-                                                                    permission: [.read, .write]),
-        "003065A4-10A14-11E8-A8D5-435154454348": CTBleCharacteristic(name: "erl_lock_onoff",
-                                                                    UUID: CBUUID(string: "003065A4-10A4-11E8-A8D5-435154454348"),
-                                                                    type: .uint8,
-                                                                    mask: [],
-                                                                    permission: [.read, .write]),
-        "003065A4-10A5-11E8-A8D5-435154454348": CTBleCharacteristic(name: "support_mode",
-                                                                    UUID: CBUUID(string: "003065A4-10A5-11E8-A8D5-435154454348"),
-                                                                    type: .uint8,
-                                                                    mask: [],
-                                                                    permission: [.read, .write]),
-        "003065A4-10A6-11E8-A8D5-435154454348": CTBleCharacteristic(name: "digital_io_onoff",
-                                                                    UUID: CBUUID(string: "003065A4-10A6-11E8-A8D5-435154454348"),
-                                                                    type: .uint8,
-                                                                    mask: [],
-                                                                    permission: [.read, .write])
+    public var characteristics: [CTBleCharacteristic] = [
+//        CTBleCharacteristic(name: "bike_onoff",
+//                            UUID: CBUUID(string: "003065A4-10A1-11E8-A8D5-435154454348"),
+//                            type: .uint8,
+//                            mask: [],
+//                            permission: [.read, .write]),
+//        CTBleCharacteristic(name: "lights_onoff",
+//                            UUID: CBUUID(string: "003065A4-10A2-11E8-A8D5-435154454348"),
+//                            type: .uint8,
+//                            mask: [],
+//                            permission: [.read, .write]),
+//        CTBleCharacteristic(name: "ecu_lock_onoff",
+//                            UUID: CBUUID(string: "003065A4-10A3-11E8-A8D5-435154454348"),
+//                            type: .uint8,
+//                            mask: [],
+//                            permission: [.read, .write]),
+//        CTBleCharacteristic(name: "erl_lock_onoff",
+//                            UUID: CBUUID(string: "003065A4-10A4-11E8-A8D5-435154454348"),
+//                            type: .uint8,
+//                            mask: [],
+//                            permission: [.read, .write]),
+//        CTBleCharacteristic(name: "support_mode",
+//                            UUID: CBUUID(string: "003065A4-10A5-11E8-A8D5-435154454348"),
+//                            type: .uint8,
+//                            mask: [],
+//                            permission: [.read, .write]),
+//        CTBleCharacteristic(name: "digital_io_onoff",
+//                            UUID: CBUUID(string: "003065A4-10A6-11E8-A8D5-435154454348"),
+//                            type: .uint8,
+//                            mask: [],
+//                            permission: [.read, .write])
     ]
     
+    public func setup(withDevice device: CK300Device) {
+        // dd
+    }
+    
     public mutating func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
-        
-        guard var localCharacteristic = characteristics[characteristic.uuid.uuidString] else {
-            return
+        let localFilteredCharacteristic = self.characteristics.filter { element in
+            element.UUID == characteristic.uuid
         }
         
-        localCharacteristic.characteristic = characteristic
-        characteristics.updateValue(localCharacteristic, forKey: characteristic.uuid.uuidString)
+        if localFilteredCharacteristic.count == 0 {
+            return
+        }
+        let localCharacteristic = localFilteredCharacteristic[0]
+        
+//        localCharacteristic.characteristic = characteristic
+//        characteristics.updateValue(localCharacteristic, forKey: characteristic.uuid.uuidString)
         
         print("[Control service] handle \(type) for \(characteristic.uuid.uuidString)")
         

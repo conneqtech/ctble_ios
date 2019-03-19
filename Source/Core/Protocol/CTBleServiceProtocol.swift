@@ -11,8 +11,9 @@ import CoreBluetooth
 public protocol CTBleServiceProtocol {
     var name: String { get }
     var UUID: CBUUID { get }
-    var type: CTBleServiceType { get }
-    var characteristics: [String: CTBleCharacteristic] { get set }
+    var characteristics: [CTBleCharacteristic] { get set }
 
+    func setup(withDevice device: CK300Device)
+    
     mutating func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType)
 }

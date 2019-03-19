@@ -14,45 +14,32 @@ public enum CKAuthenticationState: Int {
     case authenticated = 0
 }
 
-public enum CK300Service {
+public enum CK300Data {
     case authentication
-    case staticInfomation
-    case locationInformation
-    case bikeInformation
-    case batteryInformation
-    case motorInformation
+    case device
+    case variable
 }
 
 public class CK300Device: CTBlePeripheral {
     public var peripheral: CBPeripheral!
 
-    public var dataServices: [CK300Service: CTBleServiceProtocol] = [
+    public var dataServices: [CK300Data: CTBleServiceProtocol] = [
         .authentication         :   CKAuthenticationService(),
-        .staticInfomation       :   CKStaticInformationService(),
-        .locationInformation    :   CKLocationService(),
-        .bikeInformation        :   CKBikeInformationService(),
-        .batteryInformation     :   CKBatteryInformationService(),
-        .motorInformation       :   CKMotorInformationService()
+        .device                 :   CKStaticInformationService(),
+        .variable               :   CKVariableInformationService()
     ]
     
+    private let totalServices = 5
+    private var status: CK300DeviceStatus = .notSetup
+    internal var state: [CK300Field: Any] = [:]
     
-    public var services: [CBService] = []
+    public var deviceStatus: PublishSubject = PublishSubject<CK300DeviceStatus> ()
+    public var deviceState: PublishSubject = PublishSubject<[CK300Field: Any]> ()
     
     public var password = ""
-
-    public var UUIDList: [String: String] = [:]
-
-    public var discoveredCharacteristics: [String: CBCharacteristic] = [:]
-
+    
     public required init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
-        self.peripheral.discoverServices(nil)
-    }
-    
-    public func startReportingLocationData() {
-        if let service = dataServices[.locationInformation] {
-            self.peripheral.discoverServices([service.UUID])
-        }
     }
     
     internal func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
@@ -62,36 +49,55 @@ public class CK300Device: CTBlePeripheral {
     }
 }
 
+
 // MARK: Data
 public extension CK300Device {
     
-    public func getData(withServiceType type: CK300Service) {
-        if let service = dataServices[type] {
+    public func setupDevice() {
+        self.updateDeviceStatus(newStatus: .settingUp)
+        self.peripheral.discoverServices(nil)
+    }
+    
+    public func getData(withServiceType type: CK300Data) {
+        if self.status != .ready {
+            print("🚫 Device is not ready")
+            return
+        }
+        
+        if let dataService = dataServices[type] {
             print("⚡️ Service `\(type)` is being fetched")
-            self.peripheral.discoverServices([service.UUID])
+            dataService.setup(withDevice: self)
         } else {
             print("⚠️ Service `\(type)` is not implemented")
         }
     }
 }
 
+internal extension CK300Device {
+    internal func updateDeviceStatus(newStatus status: CK300DeviceStatus) {
+        self.status = status
+        self.deviceStatus.onNext(self.status)
+    }
+}
+
 // MARK: Handlers
 public extension CK300Device {
-    public func handleDiscovered(characteristics: [CBCharacteristic]) {
-        characteristics.forEach { characteristic in
-            self.handleDiscovered(characteristic: characteristic)
+    public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
+        var finishedServices = 0
+        if let services = peripheral.services {
+            services.forEach { service in
+                if let _ = service.characteristics {
+                    finishedServices += 1
+                }
+            }
         }
-    }
-    
-    public func handleDiscovered(characteristic: CBCharacteristic) {
-        self.dataServices.keys.forEach { key in
-            self.dataServices[key]!.handleEvent(peripheral: peripheral, characteristic: characteristic, type: .discover)
+        
+        if finishedServices == totalServices {
+            self.updateDeviceStatus(newStatus: .ready)
         }
     }
     
     public func handleDiscovered(services: [CBService]) {
-        self.services = services
-        
         services.forEach { service in
             self.handleDiscovered(service:service)
         }
@@ -100,35 +106,4 @@ public extension CK300Device {
     public func handleDiscovered(service: CBService) {
         self.peripheral.discoverCharacteristics(nil, for: service)
     }
-}
-
-// MARK: Authentication
-public extension CK300Device {
-    public func getAuthenticationState() -> Observable<CKAuthenticationState> {
-        // --> Get login service
-        // --> Get characteristics
-        // --> Go hardcore
-    
-        let foundService = self.services.filter { service in service.uuid.uuidString == "003065A4-1001-11E8-A8D5-435154454348" }
-        
-        if !foundService.isEmpty {
-            print("Found auth")
-        }
-        
-        
-        return Observable.of(.unauthenticated)
-    }
-    
-    public func login(withPassword password: String) -> Observable<CKAuthenticationState> {
-         return Observable.of(.unauthenticated)
-    }
-    
-//    public func login(withPassword password: String) {
-//        print("== Performing login ==")
-//
-//        self.password = password
-//        if let service = services["authentication"] {
-//            self.peripheral.discoverServices([service.UUID])
-//        }
-//    }
 }
