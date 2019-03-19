@@ -6,6 +6,17 @@
 //
 
 public enum CK300Field {
+    case bikeType
+    case bikeSerialNumber
+    case batterySerialNumber
+    case bikeSoftwareVersion
+    case controllerSoftwareVersion
+    case displaySoftwareVersion
+    case bikeDesignCapacity
+    case wheelDiameter
+    case bleVersion
+    case airVersion
+    
     case bikeStatus
     case bikeSpeed
     case bikeRange

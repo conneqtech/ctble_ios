@@ -16,7 +16,7 @@ public enum CKAuthenticationState: Int {
 
 public enum CK300Data {
     case authentication
-    case device
+    case bikeStatic
     case variable
 }
 
@@ -25,7 +25,7 @@ public class CK300Device: CTBlePeripheral {
 
     public var dataServices: [CK300Data: CTBleServiceProtocol] = [
         .authentication         :   CKAuthenticationService(),
-        .device                 :   CKStaticInformationService(),
+        .bikeStatic                 :   CKStaticInformationService(),
         .variable               :   CKVariableInformationService()
     ]
     

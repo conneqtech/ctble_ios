@@ -10,15 +10,15 @@ import CoreBluetooth
 
 public struct CTBleCharacteristic {
     public var name: String
-    public var UUID: CBUUID
+    public var uuid: CBUUID
     public var mask: [CTBleCharacteristicMask]
     public var characteristic: CBCharacteristic?
 
     public init (name: String,
-                 UUID: CBUUID,
+                 uuid: CBUUID,
                  mask: [CTBleCharacteristicMask] = []) {
         self.name = name
-        self.UUID = UUID
+        self.uuid = uuid
         self.mask = mask
     }
 }

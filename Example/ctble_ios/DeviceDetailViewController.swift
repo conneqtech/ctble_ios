@@ -36,18 +36,18 @@ struct TableRow {
 class DeviceDetailViewController: UITableViewController {
     
     
-//    let staticInformationSubtitles = [
-//        TableRow(title: "Bike type", key: .bikeType)
-//        "Serial number bike",
-//        "Serial number battery",
-//        "Bike software version",
-//        "Controller software version",
-//        "Display software version",
-//        "Bike design capacity",
-//        "Wheel diameter",
-//        "BLE Version",
-//        "AIR Version"
-//    ]
+    let staticInformationSubtitles = [
+        TableRow(title: "Bike type", key: .bikeType),
+        TableRow(title: "Bike serial number", key: .bikeSerialNumber),
+        TableRow(title: "Battery serial number", key: .batterySerialNumber),
+        TableRow(title: "Bike software version", key: .bikeSoftwareVersion),
+        TableRow(title: "Controller software version", key: .controllerSoftwareVersion),
+        TableRow(title: "Display software version", key: .displaySoftwareVersion),
+        TableRow(title: "Bike design capacity", key: .bikeDesignCapacity),
+        TableRow(title: "Bike wheel diameter", key: .wheelDiameter),
+        TableRow(title: "BLE version", key: .bleVersion),
+        TableRow(title: "AIR version", key: .airVersion),
+    ]
     
     let bikeInformationSubtitles: [TableRow] = [
         TableRow(title: "Bike status", key: .bikeStatus),
@@ -63,7 +63,7 @@ class DeviceDetailViewController: UITableViewController {
     let bikeBatteryInformationSubtitles: [TableRow] = [
         TableRow(title: "Bike battery FCC", key: .bikeBatteryFCC, suffix: " mAh"),
         TableRow(title: "Bike battery FCC percentage", key: .bikeBatteryFCCPercentage, suffix: " %"),
-        TableRow(title: "Bike battery charging cycles", key: .bikeBatteryFCC),
+        TableRow(title: "Bike battery charging cycles", key: .bikeBatteryChargingCycles),
         TableRow(title: "Bike battery pack voltage", key: .bikeBatteryPackVoltage, suffix: " V"),
         TableRow(title: "Bike battery temperature", key: .bikeBatteryTemperature, suffix: " °C"),
         TableRow(title: "Bike battery errors", key: .bikeBatteryErrors),
@@ -98,7 +98,7 @@ class DeviceDetailViewController: UITableViewController {
         sections = [
             TableSection(identifier: "static_info",
                          title: "⚡️ Static information - 1020",
-                         items: [],
+                         items: staticInformationSubtitles,
                          cellIdentifier: "subtitleCell",
                          lastUpdated: nil),
             TableSection(identifier: "bike_info",
@@ -123,7 +123,7 @@ class DeviceDetailViewController: UITableViewController {
                          cellIdentifier: "subtitleCell",
                          lastUpdated: nil),
             TableSection(identifier: "settings",
-                         title: "⚙️ Utilities",
+                         title: "⚙️ Version",
                          items: [],
                          cellIdentifier: "titleCell",
                          lastUpdated: nil),
@@ -143,6 +143,7 @@ class DeviceDetailViewController: UITableViewController {
             
             if newStatus == .ready {
                 self.device.getData(withServiceType: .variable)
+                self.device.getData(withServiceType: .bikeStatic)
             }
             
         }).disposed(by: disposeBag)
@@ -198,6 +199,10 @@ extension DeviceDetailViewController {
         var textToShow = "-"
         if let info = self.deviceState[item.key] {
             textToShow = "\(item.prefix)\(info)\(item.suffix)"
+        }
+        
+        if textToShow == "" {
+            textToShow = "-"
         }
         
         cell.textLabel?.text = textToShow

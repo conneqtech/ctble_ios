@@ -52,7 +52,7 @@ public struct CKControlService: CTBleServiceProtocol {
     
     public mutating func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
         let localFilteredCharacteristic = self.characteristics.filter { element in
-            element.UUID == characteristic.uuid
+            element.uuid == characteristic.uuid
         }
         
         if localFilteredCharacteristic.count == 0 {

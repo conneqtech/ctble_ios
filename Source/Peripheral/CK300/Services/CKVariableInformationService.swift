@@ -15,7 +15,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
     
     public var characteristics: [CTBleCharacteristic] = [
         CTBleCharacteristic(name: "bike_information",
-                            UUID: CBUUID(string: "003065A4-1051-11E8-A8D5-435154454348"),
+                            uuid: CBUUID(string: "003065A4-1051-11E8-A8D5-435154454348"),
                             mask: [
                                 CTBleCharacteristicMask(range: Range(0...0),
                                                         type: .uint8,
@@ -43,7 +43,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                                         key: .bikeLightStatus)
             ]),
         CTBleCharacteristic(name: "location_information",
-                            UUID: CBUUID(string: "003065A4-1052-11E8-A8D5-435154454348"),
+                            uuid: CBUUID(string: "003065A4-1052-11E8-A8D5-435154454348"),
                             mask: [
                                 CTBleCharacteristicMask(range: Range(0...3),
                                                         type: .int32,
@@ -62,7 +62,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                                         key: .gpsSpeed)
             ]),
         CTBleCharacteristic(name: "battery_information",
-                            UUID: CBUUID(string: "003065A4-1053-11E8-A8D5-435154454348"),
+                            uuid: CBUUID(string: "003065A4-1053-11E8-A8D5-435154454348"),
                             mask: [
                                 CTBleCharacteristicMask(range: Range(0...3),
                                                         type: .uint32,
@@ -88,13 +88,16 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(16...17),
                                                         type: .uint16,
                                                         key: .backupBatteryVoltage),
-                                CTBleCharacteristicMask(range: Range(6...7),
+                                CTBleCharacteristicMask(range: Range(18...18),
+                                                        type: .uint16,
+                                                        key: .backupBatteryPercentage),
+                                CTBleCharacteristicMask(range: Range(19...20),
                                                         type: .int16,
                                                         key: .bikeBatteryActualCurrent),
                                 
             ]),
         CTBleCharacteristic(name: "motor_information",
-                            UUID: CBUUID(string: "003065A4-1054-11E8-A8D5-435154454348"),
+                            uuid: CBUUID(string: "003065A4-1054-11E8-A8D5-435154454348"),
                             mask: [
                                 CTBleCharacteristicMask(range: Range(0...1),
                                                         type: .uint16,
@@ -119,7 +122,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                                         key: .receivedSignalStrength),
             ]),
         CTBleCharacteristic(name: "trip_information",
-                            UUID: CBUUID(string: "003065A4-1055-11E8-A8D5-435154454348"),
+                            uuid: CBUUID(string: "003065A4-1055-11E8-A8D5-435154454348"),
                             mask: [
                                 
             ])
@@ -141,7 +144,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
     
     
     public func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
-        let filter = characteristics.filter { $0.UUID == characteristic.uuid }
+        let filter = characteristics.filter { $0.uuid == characteristic.uuid }
         guard let ckCharacteristic = filter.first else {
             return
         }
