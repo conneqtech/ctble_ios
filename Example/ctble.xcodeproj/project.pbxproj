@@ -18,6 +18,7 @@
 		C012A00C21EE8911006585F0 /* PhoneAsADisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012A00B21EE8911006585F0 /* PhoneAsADisplayViewController.swift */; };
 		C022087321E8BDD900053866 /* DeviceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087221E8BDD900053866 /* DeviceListTableViewController.swift */; };
 		C022087521E8C93000053866 /* DeviceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C022087421E8C93000053866 /* DeviceDetailViewController.swift */; };
+		C0765DDA2241440F00C7626E /* ControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0765DD92241440F00C7626E /* ControlViewController.swift */; };
 		C0CC890C21F1CC4C00D1C2F9 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC890B21F1CC4C00D1C2F9 /* LogViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		C012A00B21EE8911006585F0 /* PhoneAsADisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAsADisplayViewController.swift; sourceTree = "<group>"; };
 		C022087221E8BDD900053866 /* DeviceListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListTableViewController.swift; sourceTree = "<group>"; };
 		C022087421E8C93000053866 /* DeviceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailViewController.swift; sourceTree = "<group>"; };
+		C0765DD92241440F00C7626E /* ControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlViewController.swift; sourceTree = "<group>"; };
 		C0CC890B21F1CC4C00D1C2F9 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		C198502BF3216BB7CD286710 /* Pods_ctble_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ctble_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA33C250496228239C70D8C7 /* Pods-ctble_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ctble_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ctble_Tests/Pods-ctble_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				C0129FFA21EDDC5B006585F0 /* DeviceMapViewController.swift */,
 				C012A00B21EE8911006585F0 /* PhoneAsADisplayViewController.swift */,
 				C0CC890B21F1CC4C00D1C2F9 /* LogViewController.swift */,
+				C0765DD92241440F00C7626E /* ControlViewController.swift */,
 			);
 			name = "Example for ctble";
 			path = ctble_ios;
@@ -422,6 +425,7 @@
 				C0CC890C21F1CC4C00D1C2F9 /* LogViewController.swift in Sources */,
 				C022087521E8C93000053866 /* DeviceDetailViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				C0765DDA2241440F00C7626E /* ControlViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

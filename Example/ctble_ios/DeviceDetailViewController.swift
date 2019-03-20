@@ -122,9 +122,11 @@ class DeviceDetailViewController: UITableViewController {
                          items: motorInformationSubtitles,
                          cellIdentifier: "subtitleCell",
                          lastUpdated: nil),
-            TableSection(identifier: "settings",
-                         title: "⚙️ Version",
-                         items: [],
+            TableSection(identifier: "control",
+                         title: "⚙️ Control",
+                         items: [
+                            TableRow(title: "Control", key: .bikeType),
+                         ],
                          cellIdentifier: "titleCell",
                          lastUpdated: nil),
         ]
@@ -240,12 +242,9 @@ extension DeviceDetailViewController {
             viewToUse = "deviceMapViewController"
         }
         
-//        if sectionData.identifier == "control" {
-//            self.device.getAuthenticationState().subscribe(onNext: { status in
-//                print(status)
-//            }).disposed(by: disposeBag)
-//            viewToUse = "bikeControlsTableViewController"
-//        }
+        if sectionData.identifier == "control" {
+            viewToUse = "bikeControlsTableViewController"
+        }
         
         if viewToUse != "" {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewToUse)

@@ -81,8 +81,8 @@ public struct CKControlService: CTBleServiceProtocol {
 //                peripheral.writeValue(data, for: localCharacteristic.characteristic!, type: .withResponse)
 //                
 //                if localCharacteristic.name == "bike_onoff" {
-//                    var command:UInt8 = 1
-//                    var data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
+                //                    var command:UInt8 = 1
+                //                    var data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
 //                    
 //                    peripheral.writeValue(data, for: localCharacteristic.characteristic!, type: .withResponse)
 //                }

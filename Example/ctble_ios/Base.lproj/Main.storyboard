@@ -257,34 +257,53 @@
             </objects>
             <point key="canvasLocation" x="4309.6000000000004" y="178.56071964017991"/>
         </scene>
-        <!--Controls-->
-        <scene sceneID="X16-N2-OYf">
+        <!--Control-->
+        <scene sceneID="kJz-HG-vUP">
             <objects>
-                <tableViewController storyboardIdentifier="bikeControlsTableViewController" title="Controls" id="atg-dP-7dq" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9yq-AP-HZU">
+                <viewController storyboardIdentifier="bikeControlsTableViewController" title="Control" id="QiK-eI-64t" customClass="ControlViewController" customModule="ctble_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WMc-8S-X50"/>
+                        <viewControllerLayoutGuide type="bottom" id="wYR-Ss-ElR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7ow-0R-XWQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iQC-o3-7F5">
+                                <rect key="frame" x="16" y="80" width="343" height="587"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quC-aU-A1P">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="293.5"/>
+                                        <color key="backgroundColor" red="0.37685596942901611" green="0.97705608606338501" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Bike on"/>
+                                        <connections>
+                                            <action selector="turnBikeOn:" destination="QiK-eI-64t" eventType="touchUpInside" id="42h-Qg-iSB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXf-6c-gPs">
+                                        <rect key="frame" x="0.0" y="293.5" width="343" height="293.5"/>
+                                        <color key="backgroundColor" red="0.8862745098" green="0.01176470588" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Bike off"/>
+                                        <connections>
+                                            <action selector="turnBikeOff:" destination="QiK-eI-64t" eventType="touchUpInside" id="AGU-Wa-WQG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mV8-3o-bFT">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mV8-3o-bFT" id="e6d-3C-B07">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="atg-dP-7dq" id="Dkf-ou-lqd"/>
-                            <outlet property="delegate" destination="atg-dP-7dq" id="COB-cI-8GR"/>
-                        </connections>
-                    </tableView>
+                        <constraints>
+                            <constraint firstItem="iQC-o3-7F5" firstAttribute="leading" secondItem="7ow-0R-XWQ" secondAttribute="leadingMargin" id="2zH-uO-kd8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iQC-o3-7F5" secondAttribute="trailing" id="LaH-vg-9h4"/>
+                            <constraint firstItem="iQC-o3-7F5" firstAttribute="top" secondItem="WMc-8S-X50" secondAttribute="bottom" constant="16" id="Oep-Om-pxL"/>
+                            <constraint firstItem="wYR-Ss-ElR" firstAttribute="top" secondItem="iQC-o3-7F5" secondAttribute="bottom" id="Oms-d6-dPN"/>
+                        </constraints>
+                    </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9tb-ca-au2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zp8-c2-qLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4998" y="186"/>
+            <point key="canvasLocation" x="4990" y="175"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bIM-HR-R6a">

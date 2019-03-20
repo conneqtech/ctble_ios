@@ -24,7 +24,7 @@ public class CK300Device: CTBlePeripheral {
     public var peripheral: CBPeripheral!
 
     public var dataServices: [CK300Data: CTBleServiceProtocol] = [
-        .authentication         :   CKAuthenticationService(),
+//        .authentication         :   CKAuthenticationService(),
         .bikeStatic                 :   CKStaticInformationService(),
         .variable               :   CKVariableInformationService()
     ]
@@ -36,6 +36,8 @@ public class CK300Device: CTBlePeripheral {
     public var deviceStatus: PublishSubject = PublishSubject<CK300DeviceStatus> ()
     public var deviceState: PublishSubject = PublishSubject<[CK300Field: Any]> ()
     
+    private let authService = CKAuthenticationService()
+    
     public var password = ""
     
     public required init(peripheral: CBPeripheral) {
@@ -46,6 +48,8 @@ public class CK300Device: CTBlePeripheral {
         self.dataServices.keys.forEach { key in
             self.dataServices[key]!.handleEvent(peripheral: peripheral, characteristic: characteristic, type: type)
         }
+        
+        self.authService.handleEvent(peripheral: peripheral, characteristic:characteristic, type:type)
     }
 }
 
@@ -80,6 +84,14 @@ internal extension CK300Device {
     }
 }
 
+public extension CK300Device {
+    
+    public func startAuthentication(withPassword password: String) {
+        print("Start authing")
+        self.authService.startAuthentication(withPassword: password, andDevice: self)
+    }
+}
+
 // MARK: Handlers
 public extension CK300Device {
     public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
@@ -106,4 +118,45 @@ public extension CK300Device {
     public func handleDiscovered(service: CBService) {
         self.peripheral.discoverCharacteristics(nil, for: service)
     }
+}
+
+public extension CK300Device {
+    
+    private func getControlService() -> CBService? {
+        let filteredService = self.peripheral.services?.filter { service in
+            service.uuid.uuidString == "003065A4-10A0-11E8-A8D5-435154454348"
+        }
+        
+        return filteredService?.first
+    }
+    
+    private func getCharacteristic(fromService service: CBService, uuid: String) -> CBCharacteristic? {
+        let filteredCharacteristic = service.characteristics?.filter { characteristic in
+            characteristic.uuid.uuidString == uuid
+        }
+        
+        return filteredCharacteristic?.first
+    }
+    
+    func turnBikeOn() {
+        if  let peripheral = self.peripheral,
+            let controlService = getControlService(),
+            let bikeChar = getCharacteristic(fromService: controlService, uuid: "003065A4-10A1-11E8-A8D5-435154454348") {
+            var command:UInt8 = 1
+            let data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
+            peripheral.writeValue(data, for: bikeChar, type: .withResponse)
+        }
+    }
+    
+    func turnBikeOff() {
+        if  let peripheral = self.peripheral,
+            let controlService = getControlService(),
+            let bikeChar = getCharacteristic(fromService: controlService, uuid: "003065A4-10A1-11E8-A8D5-435154454348") {
+            var command:UInt8 = 0
+            let data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
+            peripheral.writeValue(data, for: bikeChar, type: .withResponse)
+        }
+    }
+    
+    
 }

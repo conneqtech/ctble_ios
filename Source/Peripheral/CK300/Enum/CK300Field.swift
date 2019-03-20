@@ -5,7 +5,7 @@
 //  Created by Gert-Jan Vercauteren on 19/03/2019.
 //
 
-public enum CK300Field {
+public enum CK300Field {    
     case bikeType
     case bikeSerialNumber
     case batterySerialNumber
