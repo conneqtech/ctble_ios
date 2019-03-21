@@ -69,7 +69,7 @@ class DeviceDetailViewController: UITableViewController {
         TableRow(title: "Bike battery errors", key: .bikeBatteryErrors),
         TableRow(title: "Bike battery state", key: .bikeBatteryState),
         TableRow(title: "Backup battery pack voltage", key: .backupBatteryVoltage, suffix: " mV"),
-        TableRow(title: "Bike battery actual current", key: .bikeBatteryPackVoltage, suffix: " mA"),
+        TableRow(title: "Bike battery actual current", key: .bikeBatteryActualCurrent, suffix: " mA"),
     ]
     
     let motorInformationSubtitles: [TableRow] = [
@@ -86,7 +86,7 @@ class DeviceDetailViewController: UITableViewController {
     var sections: [TableSection] = []
     var reloadTimer: Timer!
     
-    var device: CK300Device!
+    var device: CK300Device?
     var deviceState: [CK300Field: Any] = [:]
     
     
@@ -138,29 +138,31 @@ class DeviceDetailViewController: UITableViewController {
         
         self.device = connectedDevice
     
-        title =  self.device.peripheral.name!
+        title =  self.device?.peripheral.name!
         
-        self.device.deviceStatus.subscribe(onNext: { newStatus in
+        self.device?.deviceStatus.subscribe(onNext: { newStatus in
             print("🐛 Device status: \(newStatus)")
             
             if newStatus == .ready {
-                self.device.getData(withServiceType: .variable)
-                self.device.getData(withServiceType: .bikeStatic)
+                self.device?.getData(withServiceType: .variable)
+                self.device?.getData(withServiceType: .bikeStatic)
             }
             
         }).disposed(by: disposeBag)
-        self.device.setupDevice()
+        self.device?.setupDevice()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.device.deviceState
-            .throttle(1, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { newState in
-                self.deviceState = newState
-                self.tableView.reloadData()
-            }).disposed(by: disposeBag)
+        if let device = self.device {
+            device.deviceState
+                .throttle(1, scheduler: MainScheduler.instance)
+                .subscribe(onNext: { newState in
+                    self.deviceState = newState
+                    self.tableView.reloadData()
+                }).disposed(by: disposeBag)
+        }
     }
 }
 
@@ -179,6 +181,10 @@ extension DeviceDetailViewController {
         return sections[section].title
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 47.0
+    }
+    
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if sections[section].identifier == "settings" {
             let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
@@ -192,7 +198,6 @@ extension DeviceDetailViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionData = sections[indexPath.section]
-        
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: sectionData.cellIdentifier, for: indexPath)
         
