@@ -40,7 +40,7 @@ class PhoneAsADisplayViewController: UIViewController {
         
     CTBleManager.shared.connectedDevice?.deviceState.subscribe(onNext: { state in
             let speed = state[.bikeSpeed] ?? 0
-            self.speedLabel.text = "\(speed) \nkm/h"
+            self.speedLabel.text = "\(speed) km/h"
         
         if let batteryPercent = state[.bikeBatterySOCPercentage] as? Int {
             self.batteryPercentageLabel?.text = "\(batteryPercent)%"
@@ -57,11 +57,12 @@ class PhoneAsADisplayViewController: UIViewController {
         
         if let supportMode = state[.bikeSupportMode] as? Int {
             //Reset
-            self.supportOne.backgroundColor = UIColor.lightGray
-            self.supportTwo.backgroundColor = UIColor.lightGray
-            self.supportThree.backgroundColor = UIColor.lightGray
-            self.supportFour.backgroundColor = UIColor.lightGray
-            self.supportFive.backgroundColor = UIColor.lightGray
+            let emptyColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+            self.supportOne.backgroundColor = emptyColor
+            self.supportTwo.backgroundColor = emptyColor
+            self.supportThree.backgroundColor = emptyColor
+            self.supportFour.backgroundColor = emptyColor
+            self.supportFive.backgroundColor = emptyColor
             
             
             if supportMode >= 1 {
