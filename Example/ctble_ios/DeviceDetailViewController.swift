@@ -126,6 +126,7 @@ class DeviceDetailViewController: UITableViewController {
                          title: "⚙️ Control",
                          items: [
                             TableRow(title: "Control", key: .bikeType),
+                            TableRow(title: "Phone as a display", key: .bikeType)
                          ],
                          cellIdentifier: "titleCell",
                          lastUpdated: nil),
@@ -248,7 +249,13 @@ extension DeviceDetailViewController {
         }
         
         if sectionData.identifier == "control" {
-            viewToUse = "bikeControlsTableViewController"
+            if indexPath.row == 0 {
+                viewToUse = "bikeControlsTableViewController"
+            }
+            
+            if indexPath.row == 1 {
+               viewToUse = "phoneAsDisplay"
+            }
         }
         
         if viewToUse != "" {
