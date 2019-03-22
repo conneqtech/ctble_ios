@@ -19,6 +19,9 @@ class ControlViewController: UIViewController {
     
     @IBOutlet var buttons: [UIButton]!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
