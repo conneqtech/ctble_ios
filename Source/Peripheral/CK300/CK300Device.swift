@@ -139,20 +139,47 @@ public extension CK300Device {
     }
     
     func turnBikeOn() {
-        if  let peripheral = self.peripheral,
-            let controlService = getControlService(),
-            let bikeChar = getCharacteristic(fromService: controlService, uuid: "003065A4-10A1-11E8-A8D5-435154454348") {
-            var command:UInt8 = 1
-            let data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
-            peripheral.writeValue(data, for: bikeChar, type: .withResponse)
-        }
+        send(value: 1, forCharacteristicUUID: "003065A4-10A1-11E8-A8D5-435154454348")
     }
     
     func turnBikeOff() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10A1-11E8-A8D5-435154454348")
+    }
+    
+    func turnLightsOn() {
+        send(value: 1, forCharacteristicUUID: "003065A4-10A2-11E8-A8D5-435154454348")
+    }
+    
+    func turnLightsOff() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10A2-11E8-A8D5-435154454348")
+    }
+    
+    func turnECULockOn() {
+        send(value: 1, forCharacteristicUUID: "003065A4-10A3-11E8-A8D5-435154454348")
+    }
+    
+    func turnECULockOff() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10A3-11E8-A8D5-435154454348")
+    }
+    
+    func turnERLLockOn() {
+       send(value: 1, forCharacteristicUUID: "003065A4-10A4-11E8-A8D5-435154454348")
+    }
+    
+    func turnERLLockOff() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10A4-11E8-A8D5-435154454348")
+    }
+    
+    func setSupportMode(_ mode: Int) {
+          send(value: mode, forCharacteristicUUID: "003065A4-10A5-11E8-A8D5-435154454348")
+    }
+    
+    
+    private func send(value: Int, forCharacteristicUUID uuid: String) {
         if  let peripheral = self.peripheral,
             let controlService = getControlService(),
-            let bikeChar = getCharacteristic(fromService: controlService, uuid: "003065A4-10A1-11E8-A8D5-435154454348") {
-            var command:UInt8 = 0
+            let bikeChar = getCharacteristic(fromService: controlService, uuid: uuid) {
+            var command:UInt8 = UInt8(value)
             let data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
             peripheral.writeValue(data, for: bikeChar, type: .withResponse)
         }

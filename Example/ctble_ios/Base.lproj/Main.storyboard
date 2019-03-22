@@ -357,25 +357,149 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iQC-o3-7F5">
-                                <rect key="frame" x="16" y="80" width="343" height="587"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iQC-o3-7F5">
+                                <rect key="frame" x="16" y="80" width="343" height="579"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quC-aU-A1P">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="293.5"/>
-                                        <color key="backgroundColor" red="0.37685596942901611" green="0.97705608606338501" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Bike on"/>
-                                        <connections>
-                                            <action selector="turnBikeOn:" destination="QiK-eI-64t" eventType="touchUpInside" id="42h-Qg-iSB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXf-6c-gPs">
-                                        <rect key="frame" x="0.0" y="293.5" width="343" height="293.5"/>
-                                        <color key="backgroundColor" red="0.8862745098" green="0.01176470588" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Bike off"/>
-                                        <connections>
-                                            <action selector="turnBikeOff:" destination="QiK-eI-64t" eventType="touchUpInside" id="AGU-Wa-WQG"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tmj-aG-9uA">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="109.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quC-aU-A1P">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="109.5"/>
+                                                <color key="backgroundColor" red="0.10588235294117647" green="0.36862745098039218" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Bike on">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnBikeOn:" destination="QiK-eI-64t" eventType="touchUpInside" id="42h-Qg-iSB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXf-6c-gPs">
+                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="109.5"/>
+                                                <color key="backgroundColor" red="0.77647058823529413" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Bike off">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnBikeOff:" destination="QiK-eI-64t" eventType="touchUpInside" id="AGU-Wa-WQG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cFL-63-nmX">
+                                        <rect key="frame" x="0.0" y="117.5" width="343" height="109.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQT-hI-AUi">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="109.5"/>
+                                                <color key="backgroundColor" red="0.1058823529" green="0.36862745099999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Lights on">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnLightsOn:" destination="QiK-eI-64t" eventType="touchUpInside" id="YUU-ha-pqk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-Ry-ksg">
+                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="109.5"/>
+                                                <color key="backgroundColor" red="0.71764705882352942" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Lights off">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnLightsOff:" destination="QiK-eI-64t" eventType="touchUpInside" id="gDa-V2-PvW"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N7Z-jO-IVz">
+                                        <rect key="frame" x="0.0" y="235" width="343" height="109"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehp-Cd-iih">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="109"/>
+                                                <color key="backgroundColor" red="0.1058823529" green="0.36862745099999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="ECU UNLOCKED">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnECULockOn:" destination="QiK-eI-64t" eventType="touchUpInside" id="fsY-05-Lcn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NxO-4F-s1I">
+                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="109"/>
+                                                <color key="backgroundColor" red="0.71764705880000002" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="ECU LOCKED">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnECULockOff:" destination="QiK-eI-64t" eventType="touchUpInside" id="aca-Y2-86m"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9nv-KW-fPU">
+                                        <rect key="frame" x="0.0" y="352" width="343" height="109.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4r-b0-81g">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="109.5"/>
+                                                <color key="backgroundColor" red="0.1058823529" green="0.36862745099999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="E-RL lock on">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnERLLockOn:" destination="QiK-eI-64t" eventType="touchUpInside" id="Xko-Ex-g4V"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pva-pN-TMj">
+                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="109.5"/>
+                                                <color key="backgroundColor" red="0.71764705880000002" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="E-RL lock off">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnERLLockOff:" destination="QiK-eI-64t" eventType="touchUpInside" id="Vaa-mJ-N1T"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NGJ-iS-GyV">
+                                        <rect key="frame" x="0.0" y="465.5" width="343" height="0.0"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipt-V6-iBD">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="0.0"/>
+                                                <color key="backgroundColor" red="0.1058823529" green="0.36862745099999999" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Digital IO on">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnDigitalioOn:" destination="QiK-eI-64t" eventType="touchUpInside" id="yt6-5T-sX1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAp-HW-W3X">
+                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="0.0"/>
+                                                <color key="backgroundColor" red="0.71764705880000002" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Digital IO off">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="turnDigitalioOff:" destination="QiK-eI-64t" eventType="touchUpInside" id="ucX-du-ieN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0h-v2-TGa">
+                                        <rect key="frame" x="0.0" y="469.5" width="343" height="109.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyx-gn-0Sn">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="109.5"/>
+                                                <color key="backgroundColor" red="0.37647058823529411" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Set support mode">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="setSupportMode:" destination="QiK-eI-64t" eventType="touchUpInside" id="Ata-Wv-pyJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -384,10 +508,23 @@
                             <constraint firstItem="iQC-o3-7F5" firstAttribute="leading" secondItem="7ow-0R-XWQ" secondAttribute="leadingMargin" id="2zH-uO-kd8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iQC-o3-7F5" secondAttribute="trailing" id="LaH-vg-9h4"/>
                             <constraint firstItem="iQC-o3-7F5" firstAttribute="top" secondItem="WMc-8S-X50" secondAttribute="bottom" constant="16" id="Oep-Om-pxL"/>
-                            <constraint firstItem="wYR-Ss-ElR" firstAttribute="top" secondItem="iQC-o3-7F5" secondAttribute="bottom" id="Oms-d6-dPN"/>
+                            <constraint firstItem="wYR-Ss-ElR" firstAttribute="top" secondItem="iQC-o3-7F5" secondAttribute="bottom" constant="8" id="Oms-d6-dPN"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outletCollection property="buttons" destination="quC-aU-A1P" collectionClass="NSMutableArray" id="PoD-e2-wrr"/>
+                        <outletCollection property="buttons" destination="ZXf-6c-gPs" collectionClass="NSMutableArray" id="DLr-aF-jBk"/>
+                        <outletCollection property="buttons" destination="yQT-hI-AUi" collectionClass="NSMutableArray" id="VXk-hp-JCi"/>
+                        <outletCollection property="buttons" destination="CJW-Ry-ksg" collectionClass="NSMutableArray" id="ixu-ZM-DYe"/>
+                        <outletCollection property="buttons" destination="ehp-Cd-iih" collectionClass="NSMutableArray" id="30y-i9-XJD"/>
+                        <outletCollection property="buttons" destination="NxO-4F-s1I" collectionClass="NSMutableArray" id="aEt-gk-PJd"/>
+                        <outletCollection property="buttons" destination="m4r-b0-81g" collectionClass="NSMutableArray" id="FwL-ez-SV1"/>
+                        <outletCollection property="buttons" destination="Pva-pN-TMj" collectionClass="NSMutableArray" id="adu-Z4-cHQ"/>
+                        <outletCollection property="buttons" destination="ipt-V6-iBD" collectionClass="NSMutableArray" id="J6O-a5-abk"/>
+                        <outletCollection property="buttons" destination="cAp-HW-W3X" collectionClass="NSMutableArray" id="8Q5-Or-B07"/>
+                        <outletCollection property="buttons" destination="xyx-gn-0Sn" collectionClass="NSMutableArray" id="JSi-dL-oJK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zp8-c2-qLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
