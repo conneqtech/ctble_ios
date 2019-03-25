@@ -69,6 +69,7 @@ class DeviceDetailViewController: UITableViewController {
         TableRow(title: "Bike battery errors", key: .bikeBatteryErrors),
         TableRow(title: "Bike battery state", key: .bikeBatteryState),
         TableRow(title: "Backup battery pack voltage", key: .backupBatteryVoltage, suffix: " mV"),
+        TableRow(title: "Backup battery percentage", key: .backupBatteryPercentage, suffix: " %"),
         TableRow(title: "Bike battery actual current", key: .bikeBatteryActualCurrent, suffix: " mA"),
     ]
     
