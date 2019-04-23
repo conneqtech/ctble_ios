@@ -66,13 +66,24 @@ public class CTBleManager: NSObject {
         
         self.connectedDevice = device
         self.connectedDevice?.peripheral.delegate = self
+        //CBConnectPeripheralOptionNotifyOnConnectionKey
+        print("Connecting with benefits")
 
-        centralManager?.connect(self.connectedDevice!.peripheral, options: nil)
+        centralManager?.connect(self.connectedDevice!.peripheral, options: [
+            CBConnectPeripheralOptionNotifyOnConnectionKey: true,
+            CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
+            CBConnectPeripheralOptionNotifyOnNotificationKey: true
+        ])
     }
 }
 
 // MARK: - CBCentralManager delegate
 extension CTBleManager: CBCentralManagerDelegate {
+
+    public func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
+        print("RESTORING")
+    }
+
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         var message = ""
 

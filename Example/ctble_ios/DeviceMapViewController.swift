@@ -25,7 +25,6 @@ class DeviceMapViewController: UIViewController {
     @IBOutlet weak var updatedOnButton: UIBarButtonItem!
     
     var coords: [CLLocationCoordinate2D] = []
-    var log: [CKLocationData] = []
     
     var mapAnnotations: [MKPointAnnotation] = []
     var route: MKPolyline?
@@ -58,15 +57,12 @@ class DeviceMapViewController: UIViewController {
     }
     
     @IBAction func exportRoute(_ sender: Any) {
-        var text = ""
-        log.forEach { item in
-            text += "lat: \(item.latitude) lon: \(item.longitude) alt: \(item.altitude) hdop: \(item.hdop) speed: \(item.speed) \n"
-        }
-        
-        let shareAll = [text]
-        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
+//        var text = ""
+//        
+//        let shareAll = [text]
+//        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+//        activityViewController.popoverPresentationController?.sourceView = self.view
+//        self.present(activityViewController, animated: true, completion: nil)
     }
 
     @IBAction func toggleAnnotations(_ sender: Any) {

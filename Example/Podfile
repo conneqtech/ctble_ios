@@ -1,8 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://bitbucket.org/nfnty_admin/conneqtech-specs.git'
 use_frameworks!
 
 target 'ctble_Example' do
   pod 'ctble', :path => '../'
-  pod 'RxSwift'
 
   target 'ctble_Tests' do
     inherit! :search_paths

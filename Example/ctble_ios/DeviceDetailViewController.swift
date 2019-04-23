@@ -57,7 +57,9 @@ class DeviceDetailViewController: UITableViewController {
         TableRow(title: "Bike battery SOC mAh/mWh", key: .bikeBatterySOC, suffix: " mAh"),
         TableRow(title: "Bike battery SOC percentage", key: .bikeBatterySOCPercentage, suffix: " %"),
         TableRow(title: "Bike support mode", key: .bikeSupportMode),
-        TableRow(title: "Bike light status", key: .bikeLightStatus)
+        TableRow(title: "Bike light status", key: .bikeLightStatus),
+        TableRow(title: "E-RL lock status", key: .erlLockStatus),
+        TableRow(title: "Ecu lock status", key: .ecuLockStatus)
     ]
     
     let bikeBatteryInformationSubtitles: [TableRow] = [

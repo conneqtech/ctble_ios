@@ -6,14 +6,18 @@ PODS:
   - RxAtomic (4.4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
+  - StyleableKit (0.2.18)
 
 DEPENDENCIES:
   - ctble (from `../`)
   - Nimble (~> 7.0.2)
   - Quick (~> 1.2.0)
   - RxSwift
+  - StyleableKit
 
 SPEC REPOS:
+  https://bitbucket.org/nfnty_admin/conneqtech-specs.git:
+    - StyleableKit
   https://github.com/cocoapods/specs.git:
     - Nimble
     - Quick
@@ -30,7 +34,8 @@ SPEC CHECKSUMS:
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  StyleableKit: 77fb6c1c8b5e8b395c0db0441cfd215bcbc5b664
 
-PODFILE CHECKSUM: 9720d46d8ba08fe94e0a0e589bf8b110571cb340
+PODFILE CHECKSUM: 5f12d68aaf86af0f59cb76517944ed9223c69574
 
 COCOAPODS: 1.5.3

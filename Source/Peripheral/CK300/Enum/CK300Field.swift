@@ -25,6 +25,8 @@ public enum CK300Field {
     case bikeBatterySOCPercentage
     case bikeSupportMode
     case bikeLightStatus
+    case erlLockStatus
+    case ecuLockStatus
     
     case gpsLatitude
     case gpsLongitude

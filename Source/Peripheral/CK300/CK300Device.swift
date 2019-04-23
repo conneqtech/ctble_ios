@@ -57,12 +57,12 @@ public class CK300Device: CTBlePeripheral {
 // MARK: Data
 public extension CK300Device {
     
-    public func setupDevice() {
+    func setupDevice() {
         self.updateDeviceStatus(newStatus: .settingUp)
         self.peripheral.discoverServices(nil)
     }
     
-    public func getData(withServiceType type: CK300Data) {
+    func getData(withServiceType type: CK300Data) {
         if self.status != .ready {
             print("🚫 Device is not ready")
             return
@@ -78,7 +78,7 @@ public extension CK300Device {
 }
 
 internal extension CK300Device {
-    internal func updateDeviceStatus(newStatus status: CK300DeviceStatus) {
+    func updateDeviceStatus(newStatus status: CK300DeviceStatus) {
         self.status = status
         self.deviceStatus.onNext(self.status)
     }
@@ -86,7 +86,7 @@ internal extension CK300Device {
 
 public extension CK300Device {
     
-    public func startAuthentication(withPassword password: String) {
+    func startAuthentication(withPassword password: String) {
         print("Start authing")
         self.authService.startAuthentication(withPassword: password, andDevice: self)
     }
@@ -94,7 +94,7 @@ public extension CK300Device {
 
 // MARK: Handlers
 public extension CK300Device {
-    public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
+    func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
         var finishedServices = 0
         if let services = peripheral.services {
             services.forEach { service in
@@ -109,13 +109,13 @@ public extension CK300Device {
         }
     }
     
-    public func handleDiscovered(services: [CBService]) {
+    func handleDiscovered(services: [CBService]) {
         services.forEach { service in
             self.handleDiscovered(service:service)
         }
     }
     
-    public func handleDiscovered(service: CBService) {
+    func handleDiscovered(service: CBService) {
         self.peripheral.discoverCharacteristics(nil, for: service)
     }
 }
@@ -179,8 +179,8 @@ public extension CK300Device {
         if  let peripheral = self.peripheral,
             let controlService = getControlService(),
             let bikeChar = getCharacteristic(fromService: controlService, uuid: uuid) {
-            var command:UInt8 = UInt8(value)
-            let data = Data(bytes: &command, count: MemoryLayout<UInt8>.size)
+            var command:Int8 = Int8(value)
+            let data = Data(bytes: &command, count: MemoryLayout<Int8>.size)
             peripheral.writeValue(data, for: bikeChar, type: .withResponse)
         }
     }
