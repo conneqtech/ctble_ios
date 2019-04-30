@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CTBleCharacteristicType {
+enum CTBleCharacteristicType {
     case ascii
     case uint16
     case int16

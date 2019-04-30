@@ -8,10 +8,9 @@
 import Foundation
 import CoreBluetooth
 
-public struct CKControlService: CTBleServiceProtocol {
+public class CKControlService: CTBleServiceProtocol {
     public let UUID: CBUUID = CBUUID(string: "003065A4-10A0-11E8-A8D5-435154454348")
     public let name: String = "control"
-    public let type: CTBleServiceType = .authenticated
     
     public var characteristics: [CTBleCharacteristic] = [
 //        CTBleCharacteristic(name: "bike_onoff",
@@ -50,7 +49,7 @@ public struct CKControlService: CTBleServiceProtocol {
         // dd
     }
     
-    public mutating func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
+    func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
         let localFilteredCharacteristic = self.characteristics.filter { element in
             element.uuid == characteristic.uuid
         }

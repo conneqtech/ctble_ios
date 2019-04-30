@@ -9,18 +9,30 @@
 import Foundation
 import CoreBluetooth
 
+public class CTBleManagerDevice {
+    public var device: CTDevice
+    public var deviceType: CTDeviceType
+    public var connectionState: CTBleDeviceConnectionState
+
+    public init (device: CTDevice, deviceType: CTDeviceType, connectionState: CTBleDeviceConnectionState) {
+        self.device = device
+        self.deviceType = deviceType
+        self.connectionState = connectionState
+    }
+}
+
 // MARK: - CTBLeManager base
 public class CTBleManager: NSObject {
     public static let shared = CTBleManager()
     public var delegate: CTBleManagerDelegate?
+
+    var devices:[CTBleManagerDevice] = []
 
     let timerPauseInterval:TimeInterval = 10.0
     let timerScanInterval:TimeInterval = 2.0
 
     var centralManager: CBCentralManager!
     var keepScanning = false
-
-    public var connectedDevice: CK300Device?
 
     private override init() {
         super.init()
@@ -61,29 +73,22 @@ public class CTBleManager: NSObject {
         centralManager?.cancelPeripheralConnection(peripheral)
     }
 
-    public func connectBleDevice(_ device: CK300Device) {
-        print("🔗 Trying to connect \(device.peripheral.name!)")
-        
-        self.connectedDevice = device
-        self.connectedDevice?.peripheral.delegate = self
-        //CBConnectPeripheralOptionNotifyOnConnectionKey
-        print("Connecting with benefits")
+    public func connectBleDevice(_ device: CTDevice) {
+        print("🔗 Trying to connect \(device.blePeripheral.name!)")
 
-        centralManager?.connect(self.connectedDevice!.peripheral, options: [
-            CBConnectPeripheralOptionNotifyOnConnectionKey: true,
-            CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
-            CBConnectPeripheralOptionNotifyOnNotificationKey: true
-        ])
+        centralManager?.connect(device.blePeripheral)
+
+        /*
+ , options: [
+ CBConnectPeripheralOptionNotifyOnConnectionKey: true,
+ CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
+ CBConnectPeripheralOptionNotifyOnNotificationKey: true
+ ]*/
     }
 }
 
 // MARK: - CBCentralManager delegate
 extension CTBleManager: CBCentralManagerDelegate {
-
-    public func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-        print("RESTORING")
-    }
-
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         var message = ""
 
@@ -110,66 +115,42 @@ extension CTBleManager: CBCentralManagerDelegate {
     }
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             if peripheralName.contains("CK300") {
                 print("🚴‍♀️ \(peripheralName)")
                 keepScanning = false
 
                 let device = CK300Device(peripheral: peripheral)
+                devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
+                devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))
+
                 delegate?.didDiscover(device)
             }
         }
     }
 }
 
-// MARK: - CBPeripheral delegate
-extension CTBleManager: CBPeripheralDelegate {
+// MARK: - Connection status manager
+extension CTBleManager {
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("🔗 Connected with \(peripheral.name!)")
-        if let device = self.connectedDevice {
-            delegate?.didConnect(device)
+        if let managedDevice = devices.filter({$0.device.blePeripheral.name == peripheral.name}).first {
+            managedDevice.connectionState = .connected
+            delegate?.didConnect(managedDevice.device)
         }
     }
 
     public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        let device = CK300Device(peripheral: peripheral)
-        delegate?.didFailToConnect(device)
-    }
-
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        self.connectedDevice?.peripheral = peripheral
-
-        if let services = peripheral.services {
-            self.connectedDevice?.handleDiscovered(services: services)
+        if let managedDevice = devices.filter({$0.device.blePeripheral.name == peripheral.name}).first {
+            managedDevice.connectionState = .failedToConnect
+            delegate?.didFailToConnect(managedDevice.device)
         }
     }
 
-    public func peripheral(_ peripheral: CBPeripheral,
-                           didDiscoverCharacteristicsFor service: CBService,
-                           error: Error?) {
-        self.connectedDevice?.peripheral = peripheral
-        
-        if let characteristics = service.characteristics {
-            self.connectedDevice?.handleDiscovered(characteristics: characteristics, forService: service)
+    public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        if let managedDevice = devices.filter({$0.device.blePeripheral.name == peripheral.name}).first {
+            managedDevice.connectionState = .disconnected
+            delegate?.didDisconnect(managedDevice.device)
         }
-    }
-
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        self.connectedDevice?.peripheral = peripheral
-        self.connectedDevice?.handleEvent(characteristic: characteristic, type: .write)
-    }
-
-    public func peripheral(_ peripheral: CBPeripheral,
-                           didUpdateNotificationStateFor characteristic: CBCharacteristic,
-                           error: Error?) {
-        self.connectedDevice?.peripheral = peripheral
-        self.connectedDevice?.handleEvent(characteristic: characteristic, type: .notification)
-    }
-
-    public func peripheral(_ peripheral: CBPeripheral,
-                           didUpdateValueFor characteristic: CBCharacteristic,
-                           error: Error?) {
-        self.connectedDevice?.peripheral = peripheral
-        self.connectedDevice?.handleEvent(characteristic: characteristic, type: .update)
     }
 }

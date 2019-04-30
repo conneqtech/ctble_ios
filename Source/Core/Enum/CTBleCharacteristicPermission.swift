@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CTBleCharacteristicPermission {
+enum CTBleCharacteristicPermission {
     case read
     case write
     case notify

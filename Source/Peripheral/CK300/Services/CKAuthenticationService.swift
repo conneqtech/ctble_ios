@@ -11,7 +11,6 @@ import CoreBluetooth
 public class CKAuthenticationService: NSObject {
     public let uuid: CBUUID = CBUUID(string: "003065A4-1001-11E8-A8D5-435154454348")
     public let name: String = "authentication"
-    public let type: CTBleServiceType = .login
     
     public var maxRetries = 3
     public var device: CK300Device!
@@ -36,7 +35,7 @@ public class CKAuthenticationService: NSObject {
         self.device = device
         self.password = password
         self.notifyingChars = 0
-        let filterResult = self.device.peripheral.services?.filter { service in
+        let filterResult = self.device.blePeripheral.services?.filter { service in
             service.uuid.uuidString == "003065A4-1001-11E8-A8D5-435154454348"
         }
         
@@ -53,13 +52,13 @@ public class CKAuthenticationService: NSObject {
                 // Status char
                 if characteristic.uuid.uuidString == "003065A4-1003-11E8-A8D5-435154454348" {
                     self.authenticationStatusCharacteristic = characteristic
-                    self.device.peripheral.setNotifyValue(true, for: characteristic)
+                    self.device.blePeripheral.setNotifyValue(true, for: characteristic)
                 }
             }
         }
     }
     
-    public func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
+    func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
         let filterResult = self.characteristics.filter { element in
             element.uuid == characteristic.uuid
         }
@@ -72,7 +71,7 @@ public class CKAuthenticationService: NSObject {
             print("👂 Authentication status is listening")
             
             if let passwordCharacteristic = self.passwordCharacteristic {
-                self.device.peripheral.writeValue(
+                self.device.blePeripheral.writeValue(
                     self.password.data(using: .ascii)!,
                     for: passwordCharacteristic,
                     type: .withResponse)

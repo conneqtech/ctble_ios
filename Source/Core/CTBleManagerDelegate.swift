@@ -9,9 +9,11 @@
 import CoreBluetooth
 
 public protocol CTBleManagerDelegate: class {
-    func didDiscover(_ device: CK300Device)
+    func didDiscover(_ device: CTDevice)
 
-    func didConnect(_ device: CK300Device)
+    func didConnect(_ device: CTDevice)
 
-    func didFailToConnect(_ device: CK300Device)
+    func didDisconnect(_ device: CTDevice)
+
+    func didFailToConnect(_ device: CTDevice)
 }

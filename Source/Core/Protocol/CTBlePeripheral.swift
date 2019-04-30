@@ -9,5 +9,10 @@ import Foundation
 import CoreBluetooth
 
 public protocol CTBlePeripheral {
-    var peripheral: CBPeripheral! { get set}
+    var blePeripheral: CBPeripheral! { get set}
+
+    func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType)
+
+    func handleDiscovered(services: [CBService])
+    func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService)
 }

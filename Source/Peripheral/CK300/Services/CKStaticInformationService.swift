@@ -96,18 +96,18 @@ public class CKStaticInformationService: CTBleServiceProtocol {
     public func setup(withDevice device: CK300Device) {
         print("🐛 Setting up staticInformation")
         self.device = device
-        let service = device.peripheral.services?.filter { service in
+        let service = device.blePeripheral.services?.filter { service in
             service.uuid == self.UUID
         }
         
         if let service = service, service.count > 0 {
             service[0].characteristics?.forEach { characteristic in
-                handleEvent(peripheral: device.peripheral, characteristic: characteristic, type: .discover)
+                handleEvent(peripheral: device.blePeripheral, characteristic: characteristic, type: .discover)
             }
         }
     }
 
-    public func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
+    func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
         let filter = characteristics.filter { $0.uuid == characteristic.uuid }
         guard let ckCharacteristic = filter.first else {
             return
