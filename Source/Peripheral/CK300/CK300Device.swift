@@ -63,6 +63,7 @@ public class CK300Device: CTDevice {
 
     override public func handleDiscovered(services: [CBService]) {
         services.forEach { service in
+            print(service.uuid.uuidString)
             self.handleDiscovered(service:service)
         }
     }

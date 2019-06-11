@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ctble'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'SDK to communicate with BLE enabled bluetooth trackers provided by Conneqtech'
   s.swift_version    = '4.2'
 

@@ -8,12 +8,12 @@
 
 import Foundation
 import CoreBluetooth
+import CoreLocation
 
 public class CTBleManagerDevice {
     public var device: CTDevice
     public var deviceType: CTDeviceType
     public var connectionState: CTBleDeviceConnectionState
-
     public init (device: CTDevice, deviceType: CTDeviceType, connectionState: CTBleDeviceConnectionState) {
         self.device = device
         self.deviceType = deviceType
@@ -33,6 +33,14 @@ public class CTBleManager: NSObject {
 
     var centralManager: CBCentralManager!
     var keepScanning = false
+
+    let services:[CBUUID] = [
+//        CBUUID(string: "003065A4-1001-11E8-A8D5-435154454348"),
+//        CBUUID(string: "003065A4-1020-11E8-A8D5-435154454348"),
+//        CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")//,
+        //                CBUUID(string: "003065A4-10A0-11E8-A8D5-435154454348"),
+        //                CBUUID(string: "003065A4-10B0-11E8-A8D5-435154454348")
+    ]
 
     private override init() {
         super.init()
@@ -57,12 +65,16 @@ public class CTBleManager: NSObject {
                       selector: #selector(pauseScan),
                       userInfo: nil,
                       repeats: false)
-            centralManager.scanForPeripherals(withServices: [], options: nil)
+
+
+
+
+            centralManager.scanForPeripherals(withServices: services, options: nil)
         }
     }
 
     public func startScanForPeripherals() {
-        centralManager?.scanForPeripherals(withServices: [], options: nil)
+        centralManager?.scanForPeripherals(withServices: services, options: nil)
     }
 
     public func stopScanForPeripherals() {
@@ -84,6 +96,10 @@ public class CTBleManager: NSObject {
  CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
  CBConnectPeripheralOptionNotifyOnNotificationKey: true
  ]*/
+    }
+
+    public func rangeForPeripheral(_ peripheral: CBPeripheral) {
+
     }
 }
 
@@ -117,10 +133,9 @@ extension CTBleManager: CBCentralManagerDelegate {
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
 
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
+            print(peripheralName)
             if peripheralName.contains("CK300") {
-                print("🚴‍♀️ \(peripheralName)")
-                keepScanning = false
-
+                print("🚴‍♀️ \(peripheralName) found")
                 let device = CK300Device(peripheral: peripheral)
                 devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
                 devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))

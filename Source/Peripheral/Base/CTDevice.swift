@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+import RxSwift
 
 public enum CTDeviceType {
     case ck300
@@ -14,13 +15,14 @@ public enum CTDeviceType {
 
 public class CTDevice: NSObject, CTBlePeripheral {
     public var blePeripheral: CBPeripheral!
+    public var peripheralUpdate: PublishSubject = PublishSubject<CTDevice> ()
+    public var rssi: NSNumber = 0
 
     public required init(peripheral: CBPeripheral) {
         super.init()
 
         self.blePeripheral = peripheral
         self.blePeripheral.delegate = self
-        print("🔗 Setting peripheral delegate \(self.blePeripheral.name)")
     }
 
     public func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
@@ -64,8 +66,22 @@ extension CTDevice: CBPeripheralDelegate {
         handleEvent(characteristic: characteristic, type: .notification)
     }
 
+    public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        rssi = RSSI
+        peripheralUpdate.onNext(self)
+    }
+
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         blePeripheral = peripheral
         handleEvent(characteristic: characteristic, type: .update)
+    }
+
+    public func peripheral(_ peripheral: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
+        print("Change?")
+
+    }
+
+    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor descriptor: CBDescriptor, error: Error?) {
+        print("write?")
     }
 }
