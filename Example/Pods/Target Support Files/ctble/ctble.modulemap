@@ -1,6 +1,0 @@
-framework module ctble {
-  umbrella header "ctble-umbrella.h"
-
-  export *
-  module * { export * }
-}

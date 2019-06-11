@@ -1,9 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://bitbucket.org/nfnty_admin/conneqtech-specs.git'
 use_frameworks!
 
-target 'ctble_ios_Example' do
+target 'ctble_Example' do
   pod 'ctble', :path => '../'
 
-  target 'ctble_ios_Tests' do
+  target 'ctble_Tests' do
     inherit! :search_paths
 
     pod 'Quick', '~> 1.2.0'
