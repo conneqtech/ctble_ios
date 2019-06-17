@@ -39,15 +39,11 @@ public class CKAuthenticationService: NSObject {
             service.uuid.uuidString == "003065A4-1001-11E8-A8D5-435154454348"
         }
 
-        print("GOING PLACES")
-        
         if let authService = filterResult?.first {
-            print("HAS AUTH")
             self.authService = authService
 
             authService.characteristics?.forEach { characteristic in
-                print("GO WILDE")
-                
+
                 //Password char
                 if characteristic.uuid.uuidString == "003065A4-1002-11E8-A8D5-435154454348" {
                     self.passwordCharacteristic = characteristic

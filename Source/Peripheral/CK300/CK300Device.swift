@@ -155,7 +155,7 @@ public extension CK300Device {
     }
     
     func turnERLLockOn() {
-       send(value: 1, forCharacteristicUUID: "003065A4-10A4-11E8-A8D5-435154454348")
+        send(value: 1, forCharacteristicUUID: "003065A4-10A4-11E8-A8D5-435154454348")
     }
     
     func turnERLLockOff() {
@@ -163,7 +163,7 @@ public extension CK300Device {
     }
     
     func setSupportMode(_ mode: Int) {
-          send(value: mode, forCharacteristicUUID: "003065A4-10A5-11E8-A8D5-435154454348")
+        send(value: mode, forCharacteristicUUID: "003065A4-10A5-11E8-A8D5-435154454348")
     }
     
     
