@@ -35,6 +35,7 @@ public class CK300Device: CTDevice {
     public var deviceState: PublishSubject = PublishSubject<[CK300Field: Any]> ()
     
     private let authService = CKAuthenticationService()
+    private let updateService = CKFirmwareUpdateService()
     
     public var password = ""
 
@@ -44,6 +45,7 @@ public class CK300Device: CTDevice {
         }
         
         self.authService.handleEvent(peripheral: blePeripheral, characteristic:characteristic, type:type)
+        self.updateService.handleEvent(peripheral: blePeripheral, characteristic: characteristic, type: type)
     }
 
     override public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
@@ -110,6 +112,11 @@ public extension CK300Device {
         print("Start authing")
         self.authService.startAuthentication(withPassword: password, andDevice: self)
     }
+
+    func startFirmwarUpdate() {
+        print("Start update processs")
+        self.updateService.atartFirmwareUpdate(withDevice: self)
+    }
 }
 
 public extension CK300Device {
@@ -168,9 +175,11 @@ public extension CK300Device {
     
     
     private func send(value: Int, forCharacteristicUUID uuid: String) {
+        print("prepare send")
         if  let peripheral = self.blePeripheral,
             let controlService = getControlService(),
             let bikeChar = getCharacteristic(fromService: controlService, uuid: uuid) {
+            print("SENDING")
             var command:Int8 = Int8(value)
             let data = Data(bytes: &command, count: MemoryLayout<Int8>.size)
             peripheral.writeValue(data, for: bikeChar, type: .withResponse)

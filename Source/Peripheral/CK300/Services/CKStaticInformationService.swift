@@ -108,14 +108,14 @@ public class CKStaticInformationService: CTBleServiceProtocol {
     }
 
     func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
-        print("Handle char: \(characteristic.uuid.uuidString)")
+//        print("Handle char: \(characteristic.uuid.uuidString)")
         let filter = characteristics.filter { $0.uuid == characteristic.uuid }
         guard let ckCharacteristic = filter.first else {
             return
         }
 
-        print("Found matching char!")
-        
+//        print("Found matching char!")
+
         switch type {
         case .discover:
             peripheral.setNotifyValue(true, for: characteristic)
