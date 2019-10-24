@@ -25,14 +25,16 @@ public class CTBleManagerDevice {
 public class CTBleManager: NSObject {
     public static let shared = CTBleManager()
     public var delegate: CTBleManagerDelegate?
+    public var deviceFilterName = "CK300"
 
     var devices:[CTBleManagerDevice] = []
+
+
 
     let timerPauseInterval:TimeInterval = 10.0
     let timerScanInterval:TimeInterval = 2.0
 
     var centralManager: CBCentralManager!
-    var locationManager: CLLocationManager!
     var keepScanning = false
 
     let services:[CBUUID] = [
@@ -46,10 +48,6 @@ public class CTBleManager: NSObject {
     private override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-
-        locationManager.requestWhenInUseAuthorization()
     } // Use the shared variable
 
     @objc func pauseScan() {
@@ -86,11 +84,6 @@ public class CTBleManager: NSObject {
 
     public func startScanForPeripherals() {
         centralManager?.scanForPeripherals(withServices: services, options: nil)
-
-        let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "38363638-3733-3032-3931-343038393700")!, identifier: "CK100")
-
-        locationManager.startRangingBeacons(in: beaconRegion)
-        print("Start rangeren van bacons")
     }
 
     public func stopScanForPeripherals() {
@@ -149,7 +142,7 @@ extension CTBleManager: CBCentralManagerDelegate {
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             print(peripheralName)
-            if peripheralName.contains("CK300") {
+            if peripheralName.lowercased().contains(deviceFilterName) || deviceFilterName == "" {
                 print("🚴‍♀️ \(peripheralName) found")
                 let device = CK300Device(peripheral: peripheral)
                 devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
@@ -182,17 +175,5 @@ extension CTBleManager {
             managedDevice.connectionState = .disconnected
             delegate?.didDisconnect(managedDevice.device)
         }
-    }
-}
-
-extension CTBleManager: CLLocationManagerDelegate {
-    public func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-//        print("RANGED")
-//        print(beacons)
-    }
-
-    public func locationManager(_ manager: CLLocationManager, rangingBeaconsDidFailFor region: CLBeaconRegion, withError error: Error) {
-//        print("FAILED")
-//        print(error)
     }
 }
