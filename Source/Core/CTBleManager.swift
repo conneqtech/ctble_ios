@@ -141,14 +141,16 @@ extension CTBleManager: CBCentralManagerDelegate {
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
-            print("Found: \(peripheralName)")
+            print("Trying to match: \(peripheralName)")
             if peripheralName.lowercased().contains(deviceFilterName.lowercased()) || deviceFilterName == "" {
-                print("🚴‍♀️ \(peripheralName) found")
+                print("\t✅ \(peripheralName) matched with \(deviceFilterName)")
                 let device = CK300Device(peripheral: peripheral)
                 devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
                 devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))
 
                 delegate?.didDiscover(device)
+            } else{
+                print("\t❌ \(peripheralName) not matched with: \(deviceFilterName)")
             }
         }
     }
