@@ -58,7 +58,7 @@ public class CK300Device: CTDevice {
             }
         }
 
-        if finishedServices == totalServices {
+        if finishedServices == totalServices && status != .ready {
             self.updateDeviceStatus(newStatus: .ready)
         }
     }
