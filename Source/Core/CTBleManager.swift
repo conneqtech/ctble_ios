@@ -143,14 +143,14 @@ extension CTBleManager: CBCentralManagerDelegate {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             print("Trying to match: \(peripheralName)")
             if peripheralName.lowercased().contains(deviceFilterName.lowercased()) || deviceFilterName == "" {
-                print("\t✅ \(peripheralName) matched with \(deviceFilterName)")
+                print("\t✅ \(peripheralName) matched with '\(deviceFilterName)'")
                 let device = CK300Device(peripheral: peripheral)
                 devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
                 devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))
 
                 delegate?.didDiscover(device)
             } else{
-                print("\t❌ \(peripheralName) not matched with: \(deviceFilterName)")
+                print("\t❌ \(peripheralName) not matched with: '\(deviceFilterName)'")
             }
         }
     }
