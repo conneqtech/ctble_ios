@@ -165,7 +165,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                 let mask = ckCharacteristic.mask
 
                 if CTBLE.shared.logging {
-                    print("➡️ \(characteristic.uuid.uuidString)")
+                    print("➡️ VIS: \(characteristic.uuid.uuidString)")
                     print("\t \(data)")
                     print("\t\(data.map { $0 })")
                 }

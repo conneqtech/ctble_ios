@@ -124,6 +124,12 @@ public class CKStaticInformationService: CTBleServiceProtocol {
         case .update:
             if let data = characteristic.value{
                 let mask = ckCharacteristic.mask
+
+                if CTBLE.shared.logging {
+                    print("➡️ SIS: \(characteristic.uuid.uuidString)")
+                    print("\t \(data)")
+                    print("\t\(data.map { $0 })")
+                }
                 
                 mask.forEach { item in
                     let slicedData = data.subdata(in: item.range)
