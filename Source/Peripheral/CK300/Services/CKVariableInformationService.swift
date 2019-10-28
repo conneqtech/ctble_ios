@@ -95,7 +95,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                                         type: .uint16,
                                                         key: .backupBatteryVoltage),
                                 CTBleCharacteristicMask(range: Range(18...18),
-                                                        type: .uint16,
+                                                        type: .uint8,
                                                         key: .backupBatteryPercentage),
                                 CTBleCharacteristicMask(range: Range(19...20),
                                                         type: .int16,
@@ -163,6 +163,13 @@ public class CKVariableInformationService: CTBleServiceProtocol {
         case .update:
             if let data = characteristic.value{
                 let mask = ckCharacteristic.mask
+
+                if CTBLE.shared.logging {
+                    print("➡️ \(characteristic.uuid.uuidString)")
+                    print("\t \(data)")
+                    print("\t\(data.map { $0 })")
+                }
+
                 
                 mask.forEach { item in
                     let slicedData = data.subdata(in: item.range)
@@ -211,6 +218,12 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                     if item.key == .bikeActualTorque {
                         if let value = device.state[item.key] as? Int {
                             device.state[item.key] = Double(value) / 100
+                        }
+                    }
+
+                    if item.key == .bikeBatteryFCC {
+                        if let value = device.state[item.key] as? Int {
+                            print("BBFCC: \(value)")
                         }
                     }
                 }
