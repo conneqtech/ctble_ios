@@ -20,14 +20,14 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...14),
                                                         type: .ascii,
                                                         key: .bikeType)
-                            ]),
+        ]),
         CTBleCharacteristic(name: "serial_number_bike",
                             uuid: CBUUID(string: "003065A4-1022-11E8-A8D5-435154454348"),
                             mask: [
                                 CTBleCharacteristicMask(range: Range(0...29),
                                                         type: .ascii,
                                                         key: .bikeSerialNumber)
-            ]),
+        ]),
 
         CTBleCharacteristic(name: "serial_number_battery",
                             uuid: CBUUID(string: "003065A4-1023-11E8-A8D5-435154454348"),
@@ -35,7 +35,7 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...29),
                                                         type: .ascii,
                                                         key: .batterySerialNumber)
-            ]),
+        ]),
 
         CTBleCharacteristic(name: "bike_software_version",
                             uuid: CBUUID(string: "003065A4-1024-11E8-A8D5-435154454348"),
@@ -43,7 +43,7 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...14),
                                                         type: .ascii,
                                                         key: .bikeSoftwareVersion)
-            ]),
+        ]),
 
         CTBleCharacteristic(name: "controller_software_version",
                             uuid: CBUUID(string: "003065A4-1025-11E8-A8D5-435154454348"),
@@ -51,7 +51,7 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...14),
                                                         type: .ascii,
                                                         key: .controllerSoftwareVersion)
-            ]),
+        ]),
 
         CTBleCharacteristic(name: "display_software_version",
                             uuid: CBUUID(string: "003065A4-1026-11E8-A8D5-435154454348"),
@@ -59,7 +59,7 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...14),
                                                         type: .ascii,
                                                         key: .displaySoftwareVersion)
-            ]),
+        ]),
 
         CTBleCharacteristic(name: "bike_design_capacity",
                             uuid: CBUUID(string: "003065A4-1027-11E8-A8D5-435154454348"),
@@ -67,7 +67,7 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...1),
                                                         type: .uint16,
                                                         key: .bikeDesignCapacity)
-            ]),
+        ]),
 
         CTBleCharacteristic(name: "wheel_diameter",
                             uuid: CBUUID(string: "003065A4-1028-11E8-A8D5-435154454348"),
@@ -75,7 +75,7 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...1),
                                                         type: .uint16,
                                                         key: .wheelDiameter)
-            ]),
+        ]),
 
         CTBleCharacteristic(name: "ble_version",
                             uuid: CBUUID(string: "003065A4-1029-11E8-A8D5-435154454348"),
@@ -83,14 +83,14 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(0...14),
                                                         type: .ascii,
                                                         key: .bleVersion)
-            ]),
+        ]),
         CTBleCharacteristic(name: "air_version",
                             uuid: CBUUID(string: "003065A4-1030-11E8-A8D5-435154454348"),
                             mask: [
                                 CTBleCharacteristicMask(range: Range(0...14),
                                                         type: .ascii,
                                                         key: .airVersion)
-            ])
+        ])
     ]
     
     public func setup(withDevice device: CK300Device) {
@@ -108,13 +108,10 @@ public class CKStaticInformationService: CTBleServiceProtocol {
     }
 
     func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
-//        print("Handle char: \(characteristic.uuid.uuidString)")
         let filter = characteristics.filter { $0.uuid == characteristic.uuid }
         guard let ckCharacteristic = filter.first else {
             return
         }
-
-//        print("Found matching char!")
 
         switch type {
         case .discover:
@@ -132,7 +129,7 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                 }
                 
                 mask.forEach { item in
-                    let slicedData = data.subdata(in: item.range)
+                    let slicedData = data
                     switch item.type {
                     case .ascii:
                         if let rawString = String(data: slicedData, encoding: .ascii) {
