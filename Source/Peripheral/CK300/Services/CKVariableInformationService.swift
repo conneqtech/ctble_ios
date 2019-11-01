@@ -97,10 +97,10 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(18...18),
                                                         type: .uint8,
                                                         key: .backupBatteryPercentage),
-                                CTBleCharacteristicMask(range: Range(19...20),
-                                                        type: .int16,
-                                                        key: .bikeBatteryActualCurrent),
-                                
+//                                CTBleCharacteristicMask(range: Range(19...20),
+//                                                        type: .int16,
+//                                                        key: .bikeBatteryActualCurrent),
+
             ]),
         CTBleCharacteristic(name: "motor_information",
                             uuid: CBUUID(string: "003065A4-1054-11E8-A8D5-435154454348"),
@@ -130,7 +130,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
         CTBleCharacteristic(name: "trip_information",
                             uuid: CBUUID(string: "003065A4-1055-11E8-A8D5-435154454348"),
                             mask: [
-                                
+
             ])
         ]
     
@@ -171,6 +171,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                 }
 
                 
+                if data.count > 2{
                 mask.forEach { item in
                     let slicedData = data.subdata(in: item.range)
                     switch item.type {
@@ -195,26 +196,26 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                     default:
                         break
                     }
-                    
+
                     // Post processing
                     if item.key == .gpsLatitude || item.key == .gpsLongitude {
                         if let value = device.state[item.key] as? Int {
                            device.state[item.key] = Double(value) / 1000000
                         }
                     }
-                    
+
                     if item.key == .bikeSpeed {
                         if let value = device.state[item.key] as? Int {
                             device.state[item.key] = Double(value) / 10
                         }
                     }
-                    
+
                     if item.key == .bikeBatteryPackVoltage {
                         if let value = device.state[item.key] as? Int {
                             device.state[item.key] = Double(value) / 100
                         }
                     }
-                    
+
                     if item.key == .bikeActualTorque {
                         if let value = device.state[item.key] as? Int {
                             device.state[item.key] = Double(value) / 100
@@ -226,6 +227,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                             print("BBFCC: \(value)")
                         }
                     }
+                }
                 }
             }
             device.deviceState.onNext(device.state)

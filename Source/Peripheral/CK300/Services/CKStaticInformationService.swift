@@ -132,7 +132,9 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                 }
                 
                 mask.forEach { item in
-                    let slicedData = data.subdata(in: item.range)
+//                    let slicedData = data.subdata(in: item.range)
+                    
+                    let slicedData = data
                     switch item.type {
                     case .ascii:
                         if let rawString = String(data: slicedData, encoding: .ascii) {
