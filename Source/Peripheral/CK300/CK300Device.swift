@@ -35,7 +35,6 @@ public class CK300Device: CTDevice {
     public var deviceState: PublishSubject = PublishSubject<[CK300Field: Any]> ()
     
     private let authService = CKAuthenticationService()
-    private let updateService = CKFirmwareUpdateService()
     
     public var password = ""
 
@@ -45,7 +44,6 @@ public class CK300Device: CTDevice {
         }
         
         self.authService.handleEvent(peripheral: blePeripheral, characteristic:characteristic, type:type)
-        self.updateService.handleEvent(peripheral: blePeripheral, characteristic: characteristic, type: type)
     }
 
     override public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
@@ -111,11 +109,6 @@ public extension CK300Device {
     func startAuthentication(withPassword password: String) {
         print("Start authing")
         self.authService.startAuthentication(withPassword: password, andDevice: self)
-    }
-
-    func startFirmwarUpdate() {
-        print("Start update processs")
-        self.updateService.atartFirmwareUpdate(withDevice: self)
     }
 }
 
