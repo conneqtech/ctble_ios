@@ -139,6 +139,8 @@ extension CTBleManager: CBCentralManagerDelegate {
 
             _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
             centralManager.scanForPeripherals(withServices: [], options: nil)
+        default:
+            break
         }
         
         bluetoothManagerStatusSubject.onNext(central.state)

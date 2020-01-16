@@ -1,9 +1,9 @@
 PODS:
-  - ctble (0.2.1):
-    - RxSwift (~> 4.0)
+  - ctble (0.3.1):
+    - RxSwift (~> 5.0)
   - Nimble (7.0.3)
   - Quick (1.2.0)
-  - RxSwift (4.5.0)
+  - RxSwift (5.0.1)
 
 DEPENDENCIES:
   - ctble (from `../`)
@@ -11,7 +11,7 @@ DEPENDENCIES:
   - Quick (~> 1.2.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Nimble
     - Quick
     - RxSwift
@@ -21,11 +21,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ctble: c2aedac1f047ba81e00011744bb7debfd805d675
+  ctble: c343e4140e998ee9e14fe8d874c3a43f215cc5e7
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
 
 PODFILE CHECKSUM: bae86c296797c145c5f9a6abaac02dc83851780a
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.8.4
