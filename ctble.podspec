@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name             = 'ctble'
-  s.version          = '0.2.1'
+  s.version          = '0.3.1'
   s.summary          = 'SDK to communicate with BLE enabled bluetooth trackers provided by Conneqtech'
-  s.swift_version    = '4.2'
+  s.swift_version    = '5.0'
 
   s.description      = <<-DESC
   Enable communication between iOS apps and ble enabled trackers. This SDK is the main point of entry for all bluetooth comms.
