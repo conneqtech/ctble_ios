@@ -9,11 +9,15 @@
 import Foundation
 import CoreBluetooth
 import CoreLocation
+import RxSwift
 
 public class CTBleManagerDevice {
     public var device: CTDevice
     public var deviceType: CTDeviceType
     public var connectionState: CTBleDeviceConnectionState
+    
+    
+    
     public init (device: CTDevice, deviceType: CTDeviceType, connectionState: CTBleDeviceConnectionState) {
         self.device = device
         self.deviceType = deviceType
@@ -26,6 +30,7 @@ public class CTBleManager: NSObject {
     public static let shared = CTBleManager()
     public var delegate: CTBleManagerDelegate?
     public var deviceFilterName = "CK300"
+    public let bluetoothManagerStatusSubject = PublishSubject<CBManagerState>()
 
     var devices:[CTBleManagerDevice] = []
 
@@ -34,7 +39,7 @@ public class CTBleManager: NSObject {
     let timerPauseInterval:TimeInterval = 10.0
     let timerScanInterval:TimeInterval = 2.0
 
-    var centralManager: CBCentralManager!
+    public var centralManager: CBCentralManager!
     var keepScanning = false
 
     let services:[CBUUID] = [
@@ -135,6 +140,8 @@ extension CTBleManager: CBCentralManagerDelegate {
             _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
             centralManager.scanForPeripherals(withServices: [], options: nil)
         }
+        
+        bluetoothManagerStatusSubject.onNext(central.state)
 
         print(message)
     }

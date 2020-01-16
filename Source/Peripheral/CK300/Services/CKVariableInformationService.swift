@@ -233,7 +233,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
 
                     if item.key == .bikeBatteryFCC {
                         if let value = device.state[item.key] as? Int {
-                            print("BBFCC: \(value)")
+//                            print("BBFCC: \(value)")
                         }
                     }
                 }

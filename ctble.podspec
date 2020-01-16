@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.author           = { 'Conneqtech B.V.' => 'info@conneqtech.com' }
   s.source           = { :git => 'https://bitbucket.org/nfnty_admin/ctble_ios.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'Source/**/*.swift'
 
