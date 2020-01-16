@@ -35,6 +35,7 @@ public class CK300Device: CTDevice {
     public var deviceState: PublishSubject = PublishSubject<[CK300Field: Any]> ()
     
     private let authService = CKAuthenticationService()
+    private let updateService = CKFirmwareUpdateService()
     
     public var password = ""
 
@@ -44,6 +45,7 @@ public class CK300Device: CTDevice {
         }
         
         self.authService.handleEvent(peripheral: blePeripheral, characteristic:characteristic, type:type)
+        self.updateService.handleEvent(peripheral: blePeripheral, characteristic: characteristic, type: type)
     }
 
     override public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
@@ -56,7 +58,7 @@ public class CK300Device: CTDevice {
             }
         }
 
-        if finishedServices == totalServices {
+        if finishedServices == totalServices && status != .ready {
             self.updateDeviceStatus(newStatus: .ready)
         }
     }
@@ -110,6 +112,11 @@ public extension CK300Device {
         print("Start authing")
         self.authService.startAuthentication(withPassword: password, andDevice: self)
     }
+
+    func startFirmwarUpdate() {
+        print("Start update processs")
+        self.updateService.atartFirmwareUpdate(withDevice: self)
+    }
 }
 
 public extension CK300Device {
@@ -155,7 +162,7 @@ public extension CK300Device {
     }
     
     func turnERLLockOn() {
-       send(value: 1, forCharacteristicUUID: "003065A4-10A4-11E8-A8D5-435154454348")
+        send(value: 1, forCharacteristicUUID: "003065A4-10A4-11E8-A8D5-435154454348")
     }
     
     func turnERLLockOff() {
@@ -163,14 +170,16 @@ public extension CK300Device {
     }
     
     func setSupportMode(_ mode: Int) {
-          send(value: mode, forCharacteristicUUID: "003065A4-10A5-11E8-A8D5-435154454348")
+        send(value: mode, forCharacteristicUUID: "003065A4-10A5-11E8-A8D5-435154454348")
     }
     
     
     private func send(value: Int, forCharacteristicUUID uuid: String) {
+        print("prepare send")
         if  let peripheral = self.blePeripheral,
             let controlService = getControlService(),
             let bikeChar = getCharacteristic(fromService: controlService, uuid: uuid) {
+            print("SENDING")
             var command:Int8 = Int8(value)
             let data = Data(bytes: &command, count: MemoryLayout<Int8>.size)
             peripheral.writeValue(data, for: bikeChar, type: .withResponse)

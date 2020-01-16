@@ -9,11 +9,15 @@
 import Foundation
 import CoreBluetooth
 import CoreLocation
+import RxSwift
 
 public class CTBleManagerDevice {
     public var device: CTDevice
     public var deviceType: CTDeviceType
     public var connectionState: CTBleDeviceConnectionState
+    
+    
+    
     public init (device: CTDevice, deviceType: CTDeviceType, connectionState: CTBleDeviceConnectionState) {
         self.device = device
         self.deviceType = deviceType
@@ -25,13 +29,17 @@ public class CTBleManagerDevice {
 public class CTBleManager: NSObject {
     public static let shared = CTBleManager()
     public var delegate: CTBleManagerDelegate?
+    public var deviceFilterName = "CK300"
+    public let bluetoothManagerStatusSubject = PublishSubject<CBManagerState>()
 
     var devices:[CTBleManagerDevice] = []
+
+
 
     let timerPauseInterval:TimeInterval = 10.0
     let timerScanInterval:TimeInterval = 2.0
 
-    var centralManager: CBCentralManager!
+    public var centralManager: CBCentralManager!
     var keepScanning = false
 
     let services:[CBUUID] = [
@@ -70,6 +78,12 @@ public class CTBleManager: NSObject {
 
 
             centralManager.scanForPeripherals(withServices: services, options: nil)
+        }
+    }
+
+    public func disconnectAllDevices() {
+        for device in devices {
+            centralManager.cancelPeripheralConnection(device.device.blePeripheral)
         }
     }
 
@@ -126,21 +140,24 @@ extension CTBleManager: CBCentralManagerDelegate {
             _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
             centralManager.scanForPeripherals(withServices: [], options: nil)
         }
+        
+        bluetoothManagerStatusSubject.onNext(central.state)
 
         print(message)
     }
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
-            print(peripheralName)
-            if peripheralName.contains("CK300") {
-                print("🚴‍♀️ \(peripheralName) found")
+            print("Trying to match: \(peripheralName)")
+            if peripheralName.lowercased().contains(deviceFilterName.lowercased()) || deviceFilterName == "" {
+                print("\t✅ \(peripheralName) matched with '\(deviceFilterName)'")
                 let device = CK300Device(peripheral: peripheral)
                 devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
                 devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))
 
                 delegate?.didDiscover(device)
+            } else{
+                print("\t❌ \(peripheralName) not matched with: '\(deviceFilterName)'")
             }
         }
     }

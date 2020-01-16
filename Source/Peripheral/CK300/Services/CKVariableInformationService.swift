@@ -47,7 +47,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(18...18),
                                                         type: .int8,
                                                         key: .ecuLockStatus)
-            ]),
+        ]),
         CTBleCharacteristic(name: "location_information",
                             uuid: CBUUID(string: "003065A4-1052-11E8-A8D5-435154454348"),
                             mask: [
@@ -66,7 +66,7 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(11...11),
                                                         type: .uint8,
                                                         key: .gpsSpeed)
-            ]),
+        ]),
         CTBleCharacteristic(name: "battery_information",
                             uuid: CBUUID(string: "003065A4-1053-11E8-A8D5-435154454348"),
                             mask: [
@@ -95,13 +95,13 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                                         type: .uint16,
                                                         key: .backupBatteryVoltage),
                                 CTBleCharacteristicMask(range: Range(18...18),
-                                                        type: .uint16,
+                                                        type: .uint8,
                                                         key: .backupBatteryPercentage),
                                 CTBleCharacteristicMask(range: Range(19...20),
                                                         type: .int16,
                                                         key: .bikeBatteryActualCurrent),
-                                
-            ]),
+
+        ]),
         CTBleCharacteristic(name: "motor_information",
                             uuid: CBUUID(string: "003065A4-1054-11E8-A8D5-435154454348"),
                             mask: [
@@ -126,13 +126,13 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                                 CTBleCharacteristicMask(range: Range(13...13),
                                                         type: .int8,
                                                         key: .receivedSignalStrength),
-            ]),
+        ]),
         CTBleCharacteristic(name: "trip_information",
                             uuid: CBUUID(string: "003065A4-1055-11E8-A8D5-435154454348"),
                             mask: [
-                                
-            ])
-        ]
+
+        ])
+    ]
     
     public func setup(withDevice device: CK300Device) {
         print("🐛 Setting up variableInformation")
@@ -163,8 +163,25 @@ public class CKVariableInformationService: CTBleServiceProtocol {
         case .update:
             if let data = characteristic.value{
                 let mask = ckCharacteristic.mask
+
+                if CTBLE.shared.logging {
+                    print("➡️ VIS: \(characteristic.uuid.uuidString)")
+                    print("\t \(data)")
+                    print("\t\(data.map { $0 })")
+                }
+
+
+                if data.count <= 2 {
+                    return
+                }
                 
+
                 mask.forEach { item in
+                    // Don't crash when data is shorter
+                    if data.count < item.range.endIndex {
+                        return
+                    }
+
                     let slicedData = data.subdata(in: item.range)
                     switch item.type {
                     case .ascii:
@@ -188,29 +205,35 @@ public class CKVariableInformationService: CTBleServiceProtocol {
                     default:
                         break
                     }
-                    
+
                     // Post processing
                     if item.key == .gpsLatitude || item.key == .gpsLongitude {
                         if let value = device.state[item.key] as? Int {
-                           device.state[item.key] = Double(value) / 1000000
+                            device.state[item.key] = Double(value) / 1000000
                         }
                     }
-                    
+
                     if item.key == .bikeSpeed {
                         if let value = device.state[item.key] as? Int {
                             device.state[item.key] = Double(value) / 10
                         }
                     }
-                    
+
                     if item.key == .bikeBatteryPackVoltage {
                         if let value = device.state[item.key] as? Int {
                             device.state[item.key] = Double(value) / 100
                         }
                     }
-                    
+
                     if item.key == .bikeActualTorque {
                         if let value = device.state[item.key] as? Int {
                             device.state[item.key] = Double(value) / 100
+                        }
+                    }
+
+                    if item.key == .bikeBatteryFCC {
+                        if let value = device.state[item.key] as? Int {
+//                            print("BBFCC: \(value)")
                         }
                     }
                 }
