@@ -22,8 +22,8 @@ public enum CK300Data {
 
 public class CK300Device: CTDevice {
     var dataServices: [CK300Data: CTBleServiceProtocol] = [
-//        .authentication         :   CKAuthenticationService(),
-        .bikeStatic                 :   CKStaticInformationService(),
+        //        .authentication         :   CKAuthenticationService(),
+        .bikeStatic             :   CKStaticInformationService(),
         .variable               :   CKVariableInformationService()
     ]
     
@@ -37,7 +37,7 @@ public class CK300Device: CTDevice {
     private let authService = CKAuthenticationService()
     
     public var password = ""
-
+    
     override public func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
         self.dataServices.keys.forEach { key in
             self.dataServices[key]!.handleEvent(peripheral: blePeripheral, characteristic: characteristic, type: type)
@@ -45,7 +45,7 @@ public class CK300Device: CTDevice {
         
         self.authService.handleEvent(peripheral: blePeripheral, characteristic:characteristic, type:type)
     }
-
+    
     override public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
         var finishedServices = 0
         if let services = blePeripheral.services {
@@ -55,19 +55,19 @@ public class CK300Device: CTDevice {
                 }
             }
         }
-
+        
         if finishedServices == totalServices && status != .ready {
             self.updateDeviceStatus(newStatus: .ready)
         }
     }
-
+    
     override public func handleDiscovered(services: [CBService]) {
         services.forEach { service in
             print(service.uuid.uuidString)
             self.handleDiscovered(service:service)
         }
     }
-
+    
     func handleDiscovered(service: CBService) {
         self.blePeripheral.discoverCharacteristics(nil, for: service)
     }
@@ -164,6 +164,14 @@ public extension CK300Device {
     
     func setSupportMode(_ mode: Int) {
         send(value: mode, forCharacteristicUUID: "003065A4-10A5-11E8-A8D5-435154454348")
+    }
+    
+    func clearTripCounter() {
+        send(value: 1, forCharacteristicUUID: "003065A4-10A7-11E8-A8D5-435154454348")
+    }
+    
+    func setRidingMode(_ mode: Int) {
+        send(value: mode, forCharacteristicUUID: "003065A4-10A8-11E8-A8D5-435154454348")
     }
     
     
