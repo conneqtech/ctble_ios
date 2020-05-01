@@ -151,7 +151,7 @@ extension CTBleManager: CBCentralManagerDelegate {
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             print("Trying to match: \(peripheralName)")
-            if peripheralName.lowercased().contains(deviceFilterName.lowercased()) || deviceFilterName == "" {
+            if peripheralName.lowercased().starts(with: deviceFilterName.lowercased()) || deviceFilterName == "" {
                 print("\t✅ \(peripheralName) matched with '\(deviceFilterName)'")
                 let device = CK300Device(peripheral: peripheral)
                 devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
