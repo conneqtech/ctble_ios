@@ -139,8 +139,8 @@ public class CKStaticInformationService: CTBleServiceProtocol {
                         }
                     case .uint8:
                         device.state[item.key] = Int(slicedData.to(type: UInt8.self))
-                    case .uint16:
-                        device.state[item.key] = Int(slicedData.to(type: UInt16.self))
+//                    case .uint16:
+//                        device.state[item.key] = Int(slicedData.to(type: UInt16.self))
                     case .uint32:
                         device.state[item.key] = Int(slicedData.to(type: UInt32.self))
                     case .int8:

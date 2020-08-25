@@ -16,4 +16,6 @@ public protocol CTBleManagerDelegate: class {
     func didDisconnect(_ device: CTDevice)
 
     func didFailToConnect(_ device: CTDevice)
+    
+    func didUpdateCentralState(_ state: CBManagerState)
 }
