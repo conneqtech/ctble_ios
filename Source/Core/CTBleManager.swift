@@ -27,6 +27,7 @@ public class CTBleManagerDevice {
 
 // MARK: - CTBLeManager base
 public class CTBleManager: NSObject {
+    public static let shared = CTBleManager()
     public var delegate: CTBleManagerDelegate?
     public var deviceFilterName = "CK300"
 
