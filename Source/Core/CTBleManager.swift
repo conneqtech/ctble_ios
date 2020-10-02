@@ -30,30 +30,21 @@ public class CTBleManager: NSObject {
     public static let shared = CTBleManager()
     public var delegate: CTBleManagerDelegate?
     public var deviceFilterName = "CK300"
-    public let bluetoothManagerStatusSubject = PublishSubject<CBManagerState>()
 
     var devices:[CTBleManagerDevice] = []
-
-
-
+    
     let timerPauseInterval:TimeInterval = 10.0
     let timerScanInterval:TimeInterval = 2.0
 
     public var centralManager: CBCentralManager!
     var keepScanning = false
 
-    let services:[CBUUID] = [
-//        CBUUID(string: "003065A4-1001-11E8-A8D5-435154454348"),
-//        CBUUID(string: "003065A4-1020-11E8-A8D5-435154454348"),
-//        CBUUID(string: "003065A4-1050-11E8-A8D5-435154454348")//,
-        //                CBUUID(string: "003065A4-10A0-11E8-A8D5-435154454348"),
-        //                CBUUID(string: "003065A4-10B0-11E8-A8D5-435154454348")
-    ]
+    let services:[CBUUID] = []
 
-    private override init() {
+    public override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-    } // Use the shared variable
+    }
 
     @objc func pauseScan() {
         print("== Pausing scan ==")
@@ -143,9 +134,7 @@ extension CTBleManager: CBCentralManagerDelegate {
             break
         }
         
-        bluetoothManagerStatusSubject.onNext(central.state)
-
-        print(message)
+        delegate?.didUpdateCentralState(central.state)
     }
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
