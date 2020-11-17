@@ -31,7 +31,7 @@ public class CTBleManager: NSObject {
     public var delegate: CTBleManagerDelegate?
     public var deviceFilterName = "CK300"
 
-    var devices:[CTBleManagerDevice] = []
+    public var devices:[CTBleManagerDevice] = []
     
     let timerPauseInterval:TimeInterval = 10.0
     let timerScanInterval:TimeInterval = 2.0
