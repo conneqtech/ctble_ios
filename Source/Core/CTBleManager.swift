@@ -47,6 +47,9 @@ public class CTBleManager: NSObject {
     }
 
     @objc func pauseScan() {
+        if centralManager.state != .poweredOn {
+            return
+        }
         print("== Pausing scan ==")
         _ = Timer(timeInterval: timerPauseInterval,
                   target: self,
@@ -57,6 +60,9 @@ public class CTBleManager: NSObject {
     }
 
     @objc func resumeScan() {
+        if centralManager.state != .poweredOn {
+            return
+        }
         if keepScanning {
             print("== Resuming scan ==")
             _ = Timer(timeInterval: timerScanInterval,
@@ -64,33 +70,44 @@ public class CTBleManager: NSObject {
                       selector: #selector(pauseScan),
                       userInfo: nil,
                       repeats: false)
-
-
-
-
             centralManager.scanForPeripherals(withServices: services, options: nil)
         }
     }
 
     public func disconnectAllDevices() {
+        if centralManager.state != .poweredOn {
+            return
+        }
         for device in devices {
             centralManager.cancelPeripheralConnection(device.device.blePeripheral)
         }
     }
 
     public func startScanForPeripherals() {
+        if centralManager.state != .poweredOn {
+            return
+        }
         centralManager?.scanForPeripherals(withServices: services, options: nil)
     }
 
     public func stopScanForPeripherals() {
+        if centralManager.state != .poweredOn {
+            return
+        }
         centralManager?.stopScan()
     }
 
     public func disconnectPeripheral(_ peripheral: CBPeripheral) {
+        if centralManager.state != .poweredOn {
+            return
+        }
         centralManager?.cancelPeripheralConnection(peripheral)
     }
 
     public func connectBleDevice(_ device: CTDevice) {
+        if centralManager.state != .poweredOn {
+            return
+        }
         print("🔗 Trying to connect \(device.blePeripheral.name!)")
 
         centralManager?.connect(device.blePeripheral)
@@ -129,7 +146,9 @@ extension CTBleManager: CBCentralManagerDelegate {
             keepScanning = true
 
             _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
-            centralManager.scanForPeripherals(withServices: [], options: nil)
+            if centralManager.state == .poweredOn {
+                centralManager.scanForPeripherals(withServices: [], options: nil)
+            }
         default:
             break
         }
@@ -139,16 +158,16 @@ extension CTBleManager: CBCentralManagerDelegate {
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
-            print("Trying to match: \(peripheralName)")
+//            print("Trying to match: \(peripheralName)")
             if peripheralName.lowercased().starts(with: deviceFilterName.lowercased()) || deviceFilterName == "" {
-                print("\t✅ \(peripheralName) matched with '\(deviceFilterName)'")
+//                print("\t✅ \(peripheralName) matched with '\(deviceFilterName)'")
                 let device = CK300Device(peripheral: peripheral)
                 devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
                 devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))
 
                 delegate?.didDiscover(device)
             } else{
-                print("\t❌ \(peripheralName) not matched with: '\(deviceFilterName)'")
+//                print("\t❌ \(peripheralName) not matched with: '\(deviceFilterName)'")
             }
         }
     }
