@@ -4,8 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "ctble_ios",
+    name: "ctble",
+    platforms: [
+        .macOS(.v10_10),
+        .iOS(.v10)
+    ],
+    products: [
+        .library(
+            name: "ctble",
+            targets: ["ctble"]),
+    ],
     dependencies: [
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2")
+        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2")
+    ],
+    targets: [
+        .target(
+            name: "ctble",
+            dependencies: ["RxSwift"],
+            path: "Source")
     ]
 )
