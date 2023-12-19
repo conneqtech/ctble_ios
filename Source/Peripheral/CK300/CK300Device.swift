@@ -174,6 +174,21 @@ public extension CK300Device {
         send(value: mode, forCharacteristicUUID: "003065A4-10A8-11E8-A8D5-435154454348")
     }
     
+    func set36VLightsOn() {
+        send(value: 1, forCharacteristicUUID: "003065A4-10A9-11E8-A8D5-435154454348")
+    }
+    
+    func set36VLightsOff() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10A9-11E8-A8D5-435154454348")
+    }
+    
+    func setBatteryLockOpen() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10AA-11E8-A8D5-435154454348")
+    }
+    
+    func setBatteryLockClose() {
+        send(value: 1, forCharacteristicUUID: "003065A4-10AA-11E8-A8D5-435154454348")
+    }
     
     private func send(value: Int, forCharacteristicUUID uuid: String) {
         print("prepare send")
