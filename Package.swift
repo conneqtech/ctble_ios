@@ -6,6 +6,7 @@ import PackageDescription
 let package = Package(
     name: "ctble",
     platforms: [
+        .macOS(.v10_10),
         .iOS(.v10)
     ],
     products: [
