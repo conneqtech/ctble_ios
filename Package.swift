@@ -6,7 +6,6 @@ import PackageDescription
 let package = Package(
     name: "ctble",
     platforms: [
-        .macOS(.v10_10),
         .iOS(.v10)
     ],
     products: [
@@ -15,7 +14,7 @@ let package = Package(
             targets: ["ctble"]),
     ],
     dependencies: [
-        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2")
+        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2"),
     ],
     targets: [
         .target(
