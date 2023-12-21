@@ -111,7 +111,6 @@ public class CTBleManager: NSObject {
         print("🔗 Trying to connect \(device.blePeripheral.name!)")
 
         centralManager?.connect(device.blePeripheral)
-
     }
 
     public func rangeForPeripheral(_ peripheral: CBPeripheral) {
@@ -121,8 +120,8 @@ public class CTBleManager: NSObject {
 
 // MARK: - CBCentralManager delegate
 extension CTBleManager: CBCentralManagerDelegate {
+    
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
-
         if central.state == .poweredOn {
             keepScanning = true
             _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
