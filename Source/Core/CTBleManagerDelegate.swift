@@ -8,7 +8,7 @@
 
 import CoreBluetooth
 
-public protocol CTBleManagerDelegate: AnyObject {
+public protocol CTBleManagerDelegate: class {
     func didDiscover(_ device: CTDevice)
 
     func didConnect(_ device: CTDevice)

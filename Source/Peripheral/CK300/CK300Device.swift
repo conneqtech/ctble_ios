@@ -22,8 +22,10 @@ public enum CK300Data {
 
 public class CK300Device: CTDevice {
     var dataServices: [CK300Data: CTBleServiceProtocol] = [
+        //        .authentication         :   CKAuthenticationService(),
         .bikeStatic             :   CKStaticInformationService(),
-        .variable               :   CKVariableInformationService()]
+        .variable               :   CKVariableInformationService()
+    ]
     
     private let totalServices = 5
     private var status: CK300DeviceStatus = .notSetup
@@ -36,7 +38,7 @@ public class CK300Device: CTDevice {
     
     public var password = ""
     
-    public func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
+    override public func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
         self.dataServices.keys.forEach { key in
             self.dataServices[key]!.handleEvent(peripheral: blePeripheral, characteristic: characteristic, type: type)
         }
@@ -44,7 +46,7 @@ public class CK300Device: CTDevice {
         self.authService.handleEvent(peripheral: blePeripheral, characteristic:characteristic, type:type)
     }
     
-    public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
+    override public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
         var finishedServices = 0
         if let services = blePeripheral.services {
             services.forEach { service in
@@ -59,7 +61,7 @@ public class CK300Device: CTDevice {
         }
     }
     
-    public func handleDiscovered(services: [CBService]) {
+    override public func handleDiscovered(services: [CBService]) {
         services.forEach { service in
             print(service.uuid.uuidString)
             self.handleDiscovered(service:service)
