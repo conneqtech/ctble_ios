@@ -22,7 +22,6 @@ public enum CK300Data {
 
 public class CK300Device: CTDevice {
     var dataServices: [CK300Data: CTBleServiceProtocol] = [
-        //        .authentication         :   CKAuthenticationService(),
         .bikeStatic             :   CKStaticInformationService(),
         .variable               :   CKVariableInformationService()
     ]

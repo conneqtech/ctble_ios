@@ -111,13 +111,6 @@ public class CTBleManager: NSObject {
         print("🔗 Trying to connect \(device.blePeripheral.name!)")
 
         centralManager?.connect(device.blePeripheral)
-
-        /*
- , options: [
- CBConnectPeripheralOptionNotifyOnConnectionKey: true,
- CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
- CBConnectPeripheralOptionNotifyOnNotificationKey: true
- ]*/
     }
 
     public func rangeForPeripheral(_ peripheral: CBPeripheral) {
@@ -127,32 +120,15 @@ public class CTBleManager: NSObject {
 
 // MARK: - CBCentralManager delegate
 extension CTBleManager: CBCentralManagerDelegate {
+    
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        var message = ""
-
-        switch central.state {
-        case .poweredOff:
-            message = "Bluetooth on this device is currently powered off."
-        case .unsupported:
-            message = "This device does not support Bluetooth Low Energy."
-        case .unauthorized:
-            message = "This app is not authorized to use Bluetooth Low Energy."
-        case .resetting:
-            message = "The BLE Manager is resetting; a state update is pending."
-        case .unknown:
-            message = "The state of the BLE Manager is unknown."
-        case .poweredOn:
-            message = "Bluetooth LE is turned on and ready for communication."
+        if central.state == .poweredOn {
             keepScanning = true
-
             _ = Timer(timeInterval: timerScanInterval, target: self, selector: #selector(pauseScan), userInfo: nil, repeats: false)
             if centralManager.state == .poweredOn {
                 centralManager.scanForPeripherals(withServices: [], options: nil)
             }
-        default:
-            break
         }
-        
         delegate?.didUpdateCentralState(central.state)
     }
 
