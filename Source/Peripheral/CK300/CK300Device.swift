@@ -22,10 +22,8 @@ public enum CK300Data {
 
 public class CK300Device: CTDevice {
     var dataServices: [CK300Data: CTBleServiceProtocol] = [
-        //        .authentication         :   CKAuthenticationService(),
         .bikeStatic             :   CKStaticInformationService(),
-        .variable               :   CKVariableInformationService()
-    ]
+        .variable               :   CKVariableInformationService()]
     
     private let totalServices = 5
     private var status: CK300DeviceStatus = .notSetup
@@ -38,7 +36,7 @@ public class CK300Device: CTDevice {
     
     public var password = ""
     
-    override public func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
+    public func handleEvent(characteristic: CBCharacteristic, type: CTBleEventType) {
         self.dataServices.keys.forEach { key in
             self.dataServices[key]!.handleEvent(peripheral: blePeripheral, characteristic: characteristic, type: type)
         }
@@ -46,7 +44,7 @@ public class CK300Device: CTDevice {
         self.authService.handleEvent(peripheral: blePeripheral, characteristic:characteristic, type:type)
     }
     
-    override public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
+    public func handleDiscovered(characteristics: [CBCharacteristic], forService service: CBService) {
         var finishedServices = 0
         if let services = blePeripheral.services {
             services.forEach { service in
@@ -61,7 +59,7 @@ public class CK300Device: CTDevice {
         }
     }
     
-    override public func handleDiscovered(services: [CBService]) {
+    public func handleDiscovered(services: [CBService]) {
         services.forEach { service in
             print(service.uuid.uuidString)
             self.handleDiscovered(service:service)
@@ -174,6 +172,21 @@ public extension CK300Device {
         send(value: mode, forCharacteristicUUID: "003065A4-10A8-11E8-A8D5-435154454348")
     }
     
+    func set36VLightsOn() {
+        send(value: 1, forCharacteristicUUID: "003065A4-10A9-11E8-A8D5-435154454348")
+    }
+    
+    func set36VLightsOff() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10A9-11E8-A8D5-435154454348")
+    }
+    
+    func setBatteryLockOpen() {
+        send(value: 0, forCharacteristicUUID: "003065A4-10AA-11E8-A8D5-435154454348")
+    }
+    
+    func setBatteryLockClose() {
+        send(value: 1, forCharacteristicUUID: "003065A4-10AA-11E8-A8D5-435154454348")
+    }
     
     private func send(value: Int, forCharacteristicUUID uuid: String) {
         print("prepare send")
