@@ -12,8 +12,6 @@ protocol CTBleServiceProtocol {
     var name: String { get }
     var UUID: CBUUID { get }
     var characteristics: [CTBleCharacteristic] { get set }
-
     func setup(withDevice device: CK300Device)
-    
     func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType)
 }
