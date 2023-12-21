@@ -9,12 +9,13 @@ import Foundation
 import CoreBluetooth
 
 public class CKControlService: CTBleServiceProtocol {
-    
     public let UUID: CBUUID = CBUUID(string: "003065A4-10A0-11E8-A8D5-435154454348")
     public let name: String = "control"
+    
     public var characteristics: [CTBleCharacteristic] = []
     
     public func setup(withDevice device: CK300Device) {
+        // dd
     }
     
     func handleEvent(peripheral: CBPeripheral, characteristic: CBCharacteristic, type: CTBleEventType) {
