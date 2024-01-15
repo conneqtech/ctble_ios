@@ -29,7 +29,7 @@ public class CTBleManagerDevice {
 public class CTBleManager: NSObject {
     public static let shared = CTBleManager()
     public var delegate: CTBleManagerDelegate?
-    public var deviceFilterName = "CK300"
+    public var deviceFilterNames = ["CK300", "HW40"]
 
     public var devices:[CTBleManagerDevice] = []
     
@@ -134,16 +134,14 @@ extension CTBleManager: CBCentralManagerDelegate {
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
-//            print("Trying to match: \(peripheralName)")
-            if peripheralName.lowercased().starts(with: deviceFilterName.lowercased()) || deviceFilterName == "" {
-//                print("\t✅ \(peripheralName) matched with '\(deviceFilterName)'")
-                let device = CK300Device(peripheral: peripheral)
-                devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
-                devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))
-
-                delegate?.didDiscover(device)
-            } else{
-//                print("\t❌ \(peripheralName) not matched with: '\(deviceFilterName)'")
+            for deviceFilterName in self.deviceFilterNames {
+                if peripheralName.lowercased().starts(with: deviceFilterName.lowercased()) {
+                    let device = CK300Device(peripheral: peripheral)
+                    devices = devices.filter {$0.device.blePeripheral.name != peripheral.name}
+                    devices.append(CTBleManagerDevice(device: device, deviceType: .ck300, connectionState: .disconnected))
+                    delegate?.didDiscover(device)
+                }
+                
             }
         }
     }
