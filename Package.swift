@@ -15,7 +15,7 @@ let package = Package(
             targets: ["ctble"]),
     ],
     dependencies: [
-        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.2"),
+        .package(name: "RxSwift", url: "https://github.com/ReactiveX/RxSwift.git", from: "6.8.0"),
     ],
     targets: [
         .target(
